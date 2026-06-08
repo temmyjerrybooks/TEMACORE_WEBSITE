@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: "Temacore",
+  icons: {
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    shortcut: "/logo.png",
+    apple: "/logo.png"
+  },
   alternates: {
     canonical: site.domain
   },

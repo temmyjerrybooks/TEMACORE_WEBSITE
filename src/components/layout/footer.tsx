@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin } from "lucide-react";
 import { footerNavigation, routes } from "@/lib/navigation";
 import { services, site } from "@/lib/data";
@@ -12,13 +13,17 @@ export function Footer() {
       <Container className="grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <Link href={routes.home} className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-md bg-white text-lg font-black text-blue001">
-              T
-            </span>
+            <Image
+              src="/logo.png"
+              alt="TEMACORE logo"
+              width={44}
+              height={44}
+              className="h-11 w-11 rounded-md object-cover"
+            />
             <span>
-              <span className="block text-xl font-black text-white">Temacore</span>
+              <span className="block text-xl font-black text-white">TEMACORE</span>
               <span className="mt-1 block text-xs font-semibold uppercase tracking-[0.18em] text-blue-100/70">
-                Operations + Technology
+                TECHNOLOGY SOLUTIONS
               </span>
             </span>
           </Link>

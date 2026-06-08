@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, ShieldCheck, X } from "lucide-react";
@@ -28,13 +29,18 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/95 backdrop-blur-xl">
       <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between page-padding">
         <Link href={routes.home} className="flex items-center gap-3" aria-label="Temacore home">
-          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-blue001 text-lg font-black text-white shadow-[0_12px_30px_rgba(25,39,114,0.26)]">
-            T
-          </span>
+          <Image
+            src="/logo.png"
+            alt="TEMACORE logo"
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-md object-cover shadow-[0_12px_30px_rgba(25,39,114,0.26)]"
+            priority
+          />
           <span className="leading-none">
-            <span className="block text-xl font-black tracking-tight text-ink">Temacore</span>
+            <span className="block text-xl font-black tracking-tight text-ink">TEMACORE</span>
             <span className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-              Operations + Technology
+              TECHNOLOGY SOLUTIONS
             </span>
           </span>
         </Link>
@@ -126,10 +132,14 @@ export function Header() {
           <div className="ml-auto flex h-full w-full max-w-md flex-col bg-white shadow-2xl">
             <div className="flex h-[76px] items-center justify-between border-b border-line px-5">
               <Link href={routes.home} className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
-                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-blue001 font-black text-white">
-                  T
-                </span>
-                <span className="text-lg font-black text-ink">Temacore</span>
+                <Image
+                  src="/logo.png"
+                  alt="TEMACORE logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-md object-cover"
+                />
+                <span className="text-lg font-black text-ink">TEMACORE</span>
               </Link>
               <button
                 type="button"
