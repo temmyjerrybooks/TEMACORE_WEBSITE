@@ -27,8 +27,14 @@ export function HomeHero() {
   return (
     <section className="relative overflow-hidden bg-footer text-white">
       <div className="absolute inset-0 bg-command-grid opacity-30 animate-pulse-grid" />
+      <div className="hero-universe-stars" />
+      <div className="hero-universe-stars-mini" />
       <div className="absolute -left-24 top-16 h-64 w-64 rounded-full bg-blue002/25 blur-3xl" />
       <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-signal/15 blur-3xl" />
+      <div className="hero-universe-starburst right-[8%] top-[9%] hidden md:block" />
+      <div className="hero-universe-starburst left-[58%] top-[38%] scale-50 opacity-70" />
+      <div className="hero-universe-starburst -left-16 bottom-[24%] scale-75 opacity-60" />
+      <div className="hero-universe-vignette" />
       <Container className="relative z-10 grid min-h-[78svh] items-center gap-12 py-16 lg:grid-cols-[1fr_0.92fr] lg:py-20">
         <div className="max-w-3xl">
           <p className="mb-5 inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-100">
