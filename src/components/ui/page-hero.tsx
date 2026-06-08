@@ -12,9 +12,12 @@ type PageHeroProps = {
 
 export function PageHero({ eyebrow, title, body, children, className }: PageHeroProps) {
   return (
-    <section className={cn("relative overflow-hidden bg-footer py-20 text-white md:py-28", className)}>
-      <div className="absolute inset-0 bg-command-grid opacity-30 animate-pulse-grid" />
-      <div className="absolute left-1/2 top-0 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-blue002/20 blur-3xl" />
+    <section className={cn("cosmic-shell relative overflow-hidden py-20 text-white md:py-28", className)}>
+      <div className="cosmic-stars" />
+      <div className="cosmic-stars-mini" />
+      <div className="cosmic-starburst right-[9%] top-[14%] hidden scale-75 opacity-70 md:block" />
+      <div className="cosmic-starburst -left-10 bottom-[18%] scale-50 opacity-60" />
+      <div className="cosmic-vignette" />
       <Container className="relative z-10">
         <div className="max-w-4xl">
           {eyebrow ? (

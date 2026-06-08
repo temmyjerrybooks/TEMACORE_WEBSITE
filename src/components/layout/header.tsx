@@ -25,15 +25,15 @@ export function Header() {
     href === routes.home ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-footer/95 backdrop-blur-xl">
       <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between page-padding">
         <Link href={routes.home} className="flex items-center gap-3" aria-label="Temacore home">
-          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-blue001 text-lg font-black text-white shadow-[0_12px_30px_rgba(25,39,114,0.26)]">
+          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-white text-lg font-black text-blue001 shadow-[0_12px_30px_rgba(0,0,0,0.22)]">
             T
           </span>
           <span className="leading-none">
-            <span className="block text-xl font-black tracking-tight text-ink">Temacore</span>
-            <span className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+            <span className="block text-xl font-black tracking-tight text-white">Temacore</span>
+            <span className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-100/70">
               Operations + Technology
             </span>
           </span>
@@ -47,8 +47,8 @@ export function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "inline-flex items-center gap-1 rounded-md px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-blue001/5 hover:text-blue001",
-                      isActive(item.href) && "bg-blue001/10 text-blue001"
+                      "inline-flex items-center gap-1 rounded-md px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10 hover:text-blue-100",
+                      isActive(item.href) && "bg-white/10 text-blue-200"
                     )}
                   >
                     Services
@@ -89,8 +89,8 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-blue001/5 hover:text-blue001",
-                  isActive(item.href) && "bg-blue001/10 text-blue001"
+                  "rounded-md px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10 hover:text-blue-100",
+                  isActive(item.href) && "bg-white/10 text-blue-200"
                 )}
               >
                 {item.label}
@@ -102,7 +102,7 @@ export function Header() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href={routes.clientIntake}
-            className="inline-flex min-h-11 items-center justify-center rounded-md border border-blue001/20 px-4 py-2 text-sm font-bold text-blue001 transition hover:border-blue001 hover:bg-blue001 hover:text-white"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-white/20 px-4 py-2 text-sm font-bold text-white transition hover:border-white hover:bg-white hover:text-blue001"
           >
             Client Intake
           </Link>
@@ -113,7 +113,7 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 text-ink lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/20 text-white lg:hidden"
           onClick={() => setMobileOpen(true)}
           aria-label="Open navigation menu"
         >
