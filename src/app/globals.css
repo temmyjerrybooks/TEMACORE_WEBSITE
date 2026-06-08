@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ffffff;
+  --color-secondary: #000000;
+  --color-blue001: #192772;
+  --color-blue002: #2563eb;
+  --color-footer: #111827;
+  --color-ink: #0b1020;
+  --color-paper: #f6f8fb;
+  --color-line: #d9e2f2;
+  --color-signal: #0f9f7a;
+  --color-warm: #c0843c;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0b1020;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+button,
+summary {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.18);
+}
+
+@keyframes float-panel {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-grid {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.44;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateX(-35%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+.page-padding {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .page-padding {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.bg-command-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.animate-float-panel {
+  animation: float-panel 7s ease-in-out infinite;
+}
+
+.animate-pulse-grid {
+  animation: pulse-grid 6s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.animate-scan {
+  animation: scan 8s linear infinite;
+}

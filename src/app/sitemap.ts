@@ -1,0 +1,30 @@
+import type { MetadataRoute } from "next";
+import { services, site } from "@/lib/data";
+import { routes } from "@/lib/navigation";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = site.domain.replace(/\/$/, "");
+  const staticRoutes = [
+    routes.home,
+    routes.about,
+    routes.services,
+    routes.industries,
+    routes.howItWorks,
+    routes.technology,
+    routes.careers,
+    routes.clientIntake,
+    routes.projectRequest,
+    routes.contact
+  ];
+
+  return [
+    ...staticRoutes.map((route) => ({
+      url: `${base}${route}`,
+      lastModified: new Date()
+    })),
+    ...services.map((service) => ({
+      url: `${base}${routes.services}/${service.slug}`,
+      lastModified: new Date()
+    }))
+  ];
+}
