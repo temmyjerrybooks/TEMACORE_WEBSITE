@@ -25,6 +25,9 @@ This project is ready for Vercel. Add environment variables later when Supabase 
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+NOTIFICATION_EMAIL_FROM=
+NOTIFICATION_EMAIL_TO=
 ```
 
 ## Supabase Activation
@@ -38,5 +41,15 @@ SUPABASE_SERVICE_ROLE_KEY=
 4. Redeploy the project.
 
 The public forms submit through server API routes so the service role key stays server-side.
+
+## Email Notifications
+
+Form notification emails use Resend. In Vercel, add:
+
+- `RESEND_API_KEY`
+- `NOTIFICATION_EMAIL_TO`, for example `info@temacore.com`
+- `NOTIFICATION_EMAIL_FROM`, for example `TEMACORE <noreply@temacore.com>`
+
+If `RESEND_API_KEY` is not set, form submissions still save to Supabase but no email is sent.
 
 The `topsborg-reference/` folder is ignored and should remain local only.

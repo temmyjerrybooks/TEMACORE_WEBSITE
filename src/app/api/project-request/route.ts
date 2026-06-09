@@ -6,6 +6,7 @@ import {
   requireFields
 } from "@/lib/api/form-data";
 import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { sendSubmissionNotification } from "@/lib/email/notifications";
 import type { ProjectRequest } from "@/lib/db/types";
 
 export const runtime = "nodejs";
@@ -50,6 +51,20 @@ export async function POST(request: Request) {
     if (error) {
       return jsonError(error.message, 500);
     }
+
+    await sendSubmissionNotification({
+      subject: "New TEMACORE project request",
+      heading: "New project request submitted",
+      fields: [
+        { label: "Company", value: formText(formData, "company_name") },
+        { label: "Email", value: formText(formData, "contact_email") },
+        { label: "Project type", value: formText(formData, "project_type") },
+        { label: "Budget range", value: optionalFormText(formData, "budget_range") },
+        { label: "Timeline", value: optionalFormText(formData, "timeline") },
+        { label: "Current tools", value: optionalFormText(formData, "current_tools") },
+        { label: "Requirements", value: formText(formData, "requirements_summary") }
+      ]
+    });
 
     return NextResponse.json({ ok: true });
   } catch (error) {

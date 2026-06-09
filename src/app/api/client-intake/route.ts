@@ -7,6 +7,7 @@ import {
   requireFields
 } from "@/lib/api/form-data";
 import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { sendSubmissionNotification } from "@/lib/email/notifications";
 
 export const runtime = "nodejs";
 
@@ -62,6 +63,21 @@ export async function POST(request: Request) {
     if (intakeError) {
       return jsonError(intakeError.message, 500);
     }
+
+    await sendSubmissionNotification({
+      subject: "New TEMACORE client intake",
+      heading: "New client intake submitted",
+      fields: [
+        { label: "Company", value: formText(formData, "company_name") },
+        { label: "Contact", value: formText(formData, "contact_name") },
+        { label: "Email", value: formText(formData, "email") },
+        { label: "Website", value: optionalFormText(formData, "website") },
+        { label: "Region", value: formText(formData, "region") },
+        { label: "Monthly volume", value: optionalFormText(formData, "monthly_volume") },
+        { label: "Services needed", value: servicesNeeded },
+        { label: "Workflow summary", value: formText(formData, "workflow_summary") }
+      ]
+    });
 
     return NextResponse.json({ ok: true });
   } catch (error) {

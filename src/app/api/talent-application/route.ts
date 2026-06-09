@@ -6,6 +6,7 @@ import {
   requireFields
 } from "@/lib/api/form-data";
 import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { sendSubmissionNotification } from "@/lib/email/notifications";
 
 export const runtime = "nodejs";
 
@@ -35,6 +36,21 @@ export async function POST(request: Request) {
     if (error) {
       return jsonError(error.message, 500);
     }
+
+    await sendSubmissionNotification({
+      subject: "New TEMACORE talent application",
+      heading: "New talent application submitted",
+      fields: [
+        { label: "Full name", value: formText(formData, "full_name") },
+        { label: "Email", value: formText(formData, "email") },
+        { label: "Country", value: optionalFormText(formData, "country") },
+        { label: "Role interest", value: formText(formData, "role_interest") },
+        { label: "Experience level", value: optionalFormText(formData, "experience_level") },
+        { label: "Availability", value: optionalFormText(formData, "availability") },
+        { label: "Portfolio", value: optionalFormText(formData, "portfolio_url") },
+        { label: "Experience summary", value: optionalFormText(formData, "experience_summary") }
+      ]
+    });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
