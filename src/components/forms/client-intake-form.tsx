@@ -35,7 +35,7 @@ export function ClientIntakeForm() {
 
           form.reset();
           setStatus("success");
-          setMessage("Intake submitted successfully. Temacore will review it and follow up.");
+          setMessage("Intake submitted successfully. TEMACORE Team will review it and follow up.");
         } catch (error) {
           setStatus("error");
           setMessage(error instanceof Error ? error.message : "Unable to submit intake.");
