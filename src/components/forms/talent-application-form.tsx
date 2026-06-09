@@ -3,15 +3,42 @@
 import { useState } from "react";
 import { FormField } from "./form-field";
 
+type SubmitStatus = "idle" | "submitting" | "success" | "error";
+
 export function TalentApplicationForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [message, setMessage] = useState("");
 
   return (
     <form
       className="grid gap-6 rounded-lg border border-line bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] md:p-8"
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
-        setSubmitted(true);
+        const form = event.currentTarget;
+
+        setStatus("submitting");
+        setMessage("");
+
+        try {
+          const response = await fetch("/api/talent-application", {
+            method: "POST",
+            body: new FormData(form)
+          });
+          const result = (await response.json().catch(() => null)) as {
+            error?: string;
+          } | null;
+
+          if (!response.ok) {
+            throw new Error(result?.error ?? "Unable to submit application.");
+          }
+
+          form.reset();
+          setStatus("success");
+          setMessage("Application submitted successfully. Temacore will review your profile.");
+        } catch (error) {
+          setStatus("error");
+          setMessage(error instanceof Error ? error.message : "Unable to submit application.");
+        }
       }}
     >
       <div className="grid gap-5 md:grid-cols-2">
@@ -55,19 +82,20 @@ export function TalentApplicationForm() {
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 text-slate-500">
-          Talent applications include status fields for future screening workflows.
+          Talent applications are stored for Supabase screening and status tracking.
         </p>
         <button
           type="submit"
+          disabled={status === "submitting"}
           className="inline-flex min-h-11 items-center justify-center rounded-md bg-blue001 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue002"
         >
-          Join Talent Pool
+          {status === "submitting" ? "Submitting..." : "Join Talent Pool"}
         </button>
       </div>
 
-      {submitted ? (
-        <p className="rounded-md bg-signal/10 px-4 py-3 text-sm font-bold text-signal">
-          Application captured locally. Supabase storage will be activated in the backend phase.
+      {message ? (
+        <p className={`rounded-md px-4 py-3 text-sm font-bold ${status === "error" ? "bg-red-50 text-red-700" : "bg-signal/10 text-signal"}`}>
+          {message}
         </p>
       ) : null}
     </form>

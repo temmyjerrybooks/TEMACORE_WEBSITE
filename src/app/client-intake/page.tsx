@@ -23,7 +23,7 @@ export default function ClientIntakePage() {
           <SectionHeading
             eyebrow="Secure scoping"
             title="Structured intake for leads, operations, and future admin review."
-            body="This form is prepared for future Supabase persistence with lead status, intake status, and admin workflow tracking."
+            body="This form submits to Supabase with lead status, intake status, and admin workflow tracking."
           />
           <ClientIntakeForm />
         </Container>

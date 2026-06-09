@@ -60,6 +60,7 @@ export type ClientIntake = TimestampedRecord & {
   services_needed: string[];
   monthly_volume?: string | null;
   current_tools?: string | null;
+  workflow_summary: string;
   desired_start_date?: string | null;
   status: IntakeStatus;
 };
@@ -71,6 +72,7 @@ export type ProjectRequest = TimestampedRecord & {
   contact_email: string;
   budget_range?: string | null;
   timeline?: string | null;
+  current_tools?: string | null;
   requirements_summary: string;
   status: ProjectRequestStatus;
 };
@@ -83,6 +85,7 @@ export type TalentApplication = TimestampedRecord & {
   experience_level?: string | null;
   portfolio_url?: string | null;
   availability?: string | null;
+  experience_summary?: string | null;
   status: TalentApplicationStatus;
 };
 

@@ -64,6 +64,7 @@ create table public.client_intakes (
   services_needed text[] not null default '{}',
   monthly_volume text,
   current_tools text,
+  workflow_summary text not null,
   desired_start_date date,
   status intake_status not null default 'submitted',
   created_at timestamptz not null default now(),
@@ -78,6 +79,7 @@ create table public.project_requests (
   contact_email text not null,
   budget_range text,
   timeline text,
+  current_tools text,
   requirements_summary text not null,
   status project_request_status not null default 'submitted',
   created_at timestamptz not null default now(),
@@ -93,6 +95,7 @@ create table public.talent_applications (
   experience_level text,
   portfolio_url text,
   availability text,
+  experience_summary text,
   status talent_application_status not null default 'submitted',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()

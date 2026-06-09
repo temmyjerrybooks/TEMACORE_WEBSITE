@@ -4,15 +4,42 @@ import { useState } from "react";
 import { services } from "@/lib/data";
 import { FormField } from "./form-field";
 
+type SubmitStatus = "idle" | "submitting" | "success" | "error";
+
 export function ClientIntakeForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [message, setMessage] = useState("");
 
   return (
     <form
       className="grid gap-6 rounded-lg border border-line bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] md:p-8"
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
-        setSubmitted(true);
+        const form = event.currentTarget;
+
+        setStatus("submitting");
+        setMessage("");
+
+        try {
+          const response = await fetch("/api/client-intake", {
+            method: "POST",
+            body: new FormData(form)
+          });
+          const result = (await response.json().catch(() => null)) as {
+            error?: string;
+          } | null;
+
+          if (!response.ok) {
+            throw new Error(result?.error ?? "Unable to submit intake.");
+          }
+
+          form.reset();
+          setStatus("success");
+          setMessage("Intake submitted successfully. Temacore will review it and follow up.");
+        } catch (error) {
+          setStatus("error");
+          setMessage(error instanceof Error ? error.message : "Unable to submit intake.");
+        }
       }}
     >
       <div className="grid gap-5 md:grid-cols-2">
@@ -57,19 +84,20 @@ export function ClientIntakeForm() {
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 text-slate-500">
-          Submissions are currently staged for future Supabase storage and admin review.
+          Submissions are stored for Supabase admin review and status tracking.
         </p>
         <button
           type="submit"
+          disabled={status === "submitting"}
           className="inline-flex min-h-11 items-center justify-center rounded-md bg-blue001 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue002"
         >
-          Submit Intake
+          {status === "submitting" ? "Submitting..." : "Submit Intake"}
         </button>
       </div>
 
-      {submitted ? (
-        <p className="rounded-md bg-signal/10 px-4 py-3 text-sm font-bold text-signal">
-          Intake captured locally. Supabase persistence will be connected in the next backend phase.
+      {message ? (
+        <p className={`rounded-md px-4 py-3 text-sm font-bold ${status === "error" ? "bg-red-50 text-red-700" : "bg-signal/10 text-signal"}`}>
+          {message}
         </p>
       ) : null}
     </form>
