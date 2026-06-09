@@ -28,7 +28,9 @@ export function Footer() {
             </span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">
-            Temacore helps companies run cleaner operations with remote teams, outsourcing workflows, and practical business technology.
+            2709 N Hayden Island Dr STE 115066
+            <br />
+            Portland, Oregon, OR 97217
           </p>
           <div className="mt-6 grid gap-3 text-sm">
             <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition hover:text-white">
@@ -82,6 +84,9 @@ export function Footer() {
               </li>
             ))}
           </ul>
+          <p className="mt-6 text-sm leading-6 text-slate-400">
+            Temacore helps companies run cleaner operations with remote teams, outsourcing workflows, and practical business technology.
+          </p>
         </div>
       </Container>
 
