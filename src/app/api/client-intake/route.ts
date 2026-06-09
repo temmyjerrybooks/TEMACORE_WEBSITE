@@ -43,8 +43,8 @@ export async function POST(request: Request) {
       .select("id")
       .single();
 
-    if (leadError) {
-      return jsonError(leadError.message, 500);
+    if (leadError || !lead) {
+      return jsonError(leadError?.message ?? "Unable to create lead.", 500);
     }
 
     const { error: intakeError } = await supabase.from("client_intakes").insert({

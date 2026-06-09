@@ -105,6 +105,7 @@ export type Database = {
           status?: LeadStatus;
         };
         Update: Partial<Omit<Lead, "id" | "created_at">>;
+        Relationships: [];
       };
       client_intakes: {
         Row: ClientIntake;
@@ -112,6 +113,15 @@ export type Database = {
           status?: IntakeStatus;
         };
         Update: Partial<Omit<ClientIntake, "id" | "created_at">>;
+        Relationships: [
+          {
+            foreignKeyName: "client_intakes_lead_id_fkey";
+            columns: ["lead_id"];
+            isOneToOne: false;
+            referencedRelation: "leads";
+            referencedColumns: ["id"];
+          }
+        ];
       };
       project_requests: {
         Row: ProjectRequest;
@@ -119,6 +129,15 @@ export type Database = {
           status?: ProjectRequestStatus;
         };
         Update: Partial<Omit<ProjectRequest, "id" | "created_at">>;
+        Relationships: [
+          {
+            foreignKeyName: "project_requests_lead_id_fkey";
+            columns: ["lead_id"];
+            isOneToOne: false;
+            referencedRelation: "leads";
+            referencedColumns: ["id"];
+          }
+        ];
       };
       talent_applications: {
         Row: TalentApplication;
@@ -126,12 +145,24 @@ export type Database = {
           status?: TalentApplicationStatus;
         };
         Update: Partial<Omit<TalentApplication, "id" | "created_at">>;
+        Relationships: [];
       };
       admin_users: {
         Row: AdminUser;
         Insert: Omit<AdminUser, "id" | "created_at" | "updated_at">;
         Update: Partial<Omit<AdminUser, "id" | "created_at">>;
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: {
+      lead_status: LeadStatus;
+      intake_status: IntakeStatus;
+      project_request_status: ProjectRequestStatus;
+      talent_application_status: TalentApplicationStatus;
+      admin_role: AdminRole;
+    };
+    CompositeTypes: Record<string, never>;
   };
 };
