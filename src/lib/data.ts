@@ -368,7 +368,6 @@ export function getServiceBySlug(slug: string) {
 }
 
 export const trustItems = [
-  "US-registered company",
   "North America, UK, and Europe focus",
   "Managed remote delivery",
   "Operations and technology together",
