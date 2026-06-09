@@ -82,12 +82,6 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
-            <p className="text-sm font-semibold text-white">Admin route prepared</p>
-            <Link href={routes.admin} className="mt-2 inline-block text-sm text-blue-200 hover:text-white">
-              Dashboard placeholder
-            </Link>
-          </div>
         </div>
       </Container>
 
