@@ -35,6 +35,7 @@ export function LoginForm({ isConfigured }: LoginFormProps) {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
+              email: formData.get("email"),
               password: formData.get("password")
             })
           });
@@ -56,6 +57,21 @@ export function LoginForm({ isConfigured }: LoginFormProps) {
         }
       }}
     >
+      <div>
+        <label className="text-sm font-bold text-ink" htmlFor="email">
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          disabled={!isConfigured || status === "submitting"}
+          className="mt-2 min-h-12 w-full rounded-md border border-line bg-white px-4 text-sm font-semibold text-ink outline-none transition focus:border-blue001"
+          required
+        />
+      </div>
+
       <div>
         <label className="text-sm font-bold text-ink" htmlFor="password">
           Password

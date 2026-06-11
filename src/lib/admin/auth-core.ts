@@ -58,15 +58,24 @@ function toAdminSession(data: SupabaseTokenResponse): AdminAuthResult {
   };
 }
 
-export async function signInAdminWithPassword(password: string): Promise<AdminAuthResult> {
+export async function signInAdminWithPassword(email: string, password: string): Promise<AdminAuthResult> {
   const config = getSupabaseAuthConfig();
-  const email = getAdminEmail();
+  const adminEmail = getAdminEmail();
+  const submittedEmail = email.trim().toLowerCase();
 
-  if (!config.isConfigured || !config.supabaseUrl || !config.anonKey || !email) {
+  if (!config.isConfigured || !config.supabaseUrl || !config.anonKey || !adminEmail) {
     return {
       ok: false,
       status: 503,
       message: "Admin access is not available."
+    };
+  }
+
+  if (submittedEmail !== adminEmail) {
+    return {
+      ok: false,
+      status: 401,
+      message: "Unable to sign in with the provided credentials."
     };
   }
 
@@ -77,7 +86,7 @@ export async function signInAdminWithPassword(password: string): Promise<AdminAu
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      email,
+      email: submittedEmail,
       password
     }),
     cache: "no-store"
