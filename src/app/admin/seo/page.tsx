@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
+import { requireAdminSession } from "@/lib/admin/session";
 import { buildMetadata } from "@/lib/seo";
 import {
   mockContentRecommendations,
@@ -49,7 +50,9 @@ const aiReadinessChecklist = [
   "SEO Agent is recommendation-only and does not auto-publish content"
 ];
 
-export default function SeoAgentPage() {
+export default async function SeoAgentPage() {
+  await requireAdminSession();
+
   return (
     <>
       <PageHero

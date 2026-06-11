@@ -30,6 +30,7 @@ RESEND_API_KEY=
 NOTIFICATION_EMAIL_FROM=
 NOTIFICATION_EMAIL_TO=
 INDEXNOW_KEY=
+ADMIN_EMAIL=info@temacore.com
 ```
 
 ## Supabase Activation
@@ -41,9 +42,17 @@ INDEXNOW_KEY=
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY`
-5. Redeploy the project.
+   - `ADMIN_EMAIL`, set to `info@temacore.com`
+5. In Supabase Auth, create the admin user with the same email as `ADMIN_EMAIL`. Public signup is not used by the website.
+6. Redeploy the project.
 
 The public forms submit through server API routes so the service role key stays server-side.
+
+## Admin Access
+
+The admin panel is available at `/admin/login`. It uses Supabase Auth through server API routes and stores the admin session in httpOnly cookies.
+
+Only the email configured in `ADMIN_EMAIL` can access `/admin`, `/admin/seo`, or future `/admin/*` routes. The service role key is used only on the server for dashboard data reads and is never exposed to client-side code.
 
 ## Email Notifications
 
