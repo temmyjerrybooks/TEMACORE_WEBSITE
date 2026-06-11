@@ -34,13 +34,16 @@ export function ProjectRequestForm() {
 
           form.reset();
           setStatus("success");
-          setMessage("Project request submitted successfully. Temacore will review the scope.");
+          setMessage(
+            "Thank you for contacting TEMACORE. We have received your project request and the TEMACORE Team will review it shortly. If your inquiry is urgent, please email info@temacore.com."
+          );
         } catch (error) {
           setStatus("error");
           setMessage(error instanceof Error ? error.message : "Unable to submit project request.");
         }
       }}
     >
+      <input type="text" name="_temacore_confirm" tabIndex={-1} autoComplete="off" className="hidden" />
       <div className="grid gap-5 md:grid-cols-2">
         <FormField label="Company name" name="company_name" placeholder="Company name" required />
         <FormField label="Work email" name="contact_email" type="email" placeholder="name@company.com" required />

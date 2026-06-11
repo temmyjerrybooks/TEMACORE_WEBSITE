@@ -3,12 +3,14 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TalentApplicationForm } from "@/components/forms/talent-application-form";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Join Our Talent Pool",
   description:
-    "Join Temacore's remote talent pool for operations, customer support, virtual assistant, back-office, CRM, and software roles."
-};
+    "Join Temacore's remote talent pool for operations, customer support, virtual assistant, back-office, CRM, and software roles.",
+  path: "/careers"
+});
 
 export default function CareersPage() {
   return (

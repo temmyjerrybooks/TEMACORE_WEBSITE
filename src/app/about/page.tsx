@@ -5,12 +5,14 @@ import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CTASection } from "@/components/sections/home-sections";
 import { site, whyTemacore } from "@/lib/data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "About Temacore",
   description:
-    "Learn how Temacore combines global remote operations, outsourcing systems, and business technology for companies in North America, the UK, and Europe."
-};
+    "Learn how Temacore combines global remote operations, outsourcing systems, and business technology for companies in North America, the UK, and Europe.",
+  path: "/about"
+});
 
 export default function AboutPage() {
   return (

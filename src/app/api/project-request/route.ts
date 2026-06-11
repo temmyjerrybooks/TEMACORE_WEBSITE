@@ -5,6 +5,8 @@ import {
   optionalFormText,
   requireFields
 } from "@/lib/api/form-data";
+import { detectBasicSpam, rateLimitPlaceholder } from "@/lib/api/security";
+import { sendWebsiteAlert } from "@/lib/alerts/website-alerts";
 import { getSupabaseAdminClient } from "@/lib/db/supabase";
 import { sendSubmissionNotification } from "@/lib/email/notifications";
 import type { ProjectRequest } from "@/lib/db/types";
@@ -22,7 +24,26 @@ const projectTypeMap: Record<string, ProjectRequest["project_type"]> = {
 
 export async function POST(request: Request) {
   try {
+    const rateLimit = rateLimitPlaceholder(request);
+
+    if (!rateLimit.allowed) {
+      return jsonError(rateLimit.reason ?? "Please wait before submitting again.", 429);
+    }
+
     const formData = await request.formData();
+    const spamCheck = detectBasicSpam(formData);
+
+    if (spamCheck.detected) {
+      await sendWebsiteAlert({
+        alertType: "Suspicious form spam",
+        message: spamCheck.reason ?? "Project request spam signal detected.",
+        severity: "Medium",
+        context: [{ label: "Route", value: "/api/project-request" }]
+      });
+
+      return jsonError("Unable to accept this submission.", 400);
+    }
+
     const missing = requireFields(formData, [
       "company_name",
       "contact_email",
@@ -49,10 +70,17 @@ export async function POST(request: Request) {
     });
 
     if (error) {
+      await sendWebsiteAlert({
+        alertType: "Form submission failure",
+        message: error.message,
+        severity: "High",
+        context: [{ label: "Route", value: "/api/project-request" }]
+      });
+
       return jsonError(error.message, 500);
     }
 
-    await sendSubmissionNotification({
+    const notificationSent = await sendSubmissionNotification({
       subject: "New TEMACORE project request",
       heading: "New project request submitted",
       fields: [
@@ -66,9 +94,25 @@ export async function POST(request: Request) {
       ]
     });
 
+    if (!notificationSent) {
+      await sendWebsiteAlert({
+        alertType: "Email sending failure",
+        message: "Project request saved, but notification email was not sent.",
+        severity: "Medium",
+        context: [{ label: "Route", value: "/api/project-request" }]
+      });
+    }
+
     return NextResponse.json({ ok: true });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unable to submit project request.";
+
+    await sendWebsiteAlert({
+      alertType: "API route error",
+      message,
+      severity: "High",
+      context: [{ label: "Route", value: "/api/project-request" }]
+    }).catch(() => undefined);
 
     return jsonError(message, 500);
   }

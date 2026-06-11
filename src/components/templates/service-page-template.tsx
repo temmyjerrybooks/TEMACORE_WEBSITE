@@ -1,14 +1,17 @@
-import { CheckCircle2 } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CTASection } from "@/components/sections/home-sections";
-import type { Service } from "@/lib/data";
+import { getRelatedServices, getServiceFaqs, type Service } from "@/lib/data";
 import { routes } from "@/lib/navigation";
 
 export function ServicePageTemplate({ service }: { service: Service }) {
   const Icon = service.icon;
+  const faqs = getServiceFaqs(service.slug);
+  const relatedServices = getRelatedServices(service.slug);
 
   return (
     <>
@@ -124,6 +127,58 @@ export function ServicePageTemplate({ service }: { service: Service }) {
           </div>
         </Container>
       </section>
+
+      {relatedServices.length > 0 ? (
+        <section className="bg-white py-20 md:py-24">
+          <Container>
+            <SectionHeading
+              eyebrow="Related services"
+              title="Connected ways Temacore can support the same workflow."
+              body="Many operational and technology needs overlap. These related services may be useful depending on the scope."
+              align="center"
+            />
+            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+              {relatedServices.map((relatedService) => (
+                <Link
+                  key={relatedService.slug}
+                  href={`${routes.services}/${relatedService.slug}`}
+                  className="group rounded-lg border border-line bg-paper p-5 transition hover:-translate-y-1 hover:border-blue001/25 hover:bg-white"
+                >
+                  <h3 className="text-base font-black text-ink">{relatedService.title}</h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">
+                    {relatedService.summary}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue001">
+                    View service
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
+      {faqs.length > 0 ? (
+        <section className="bg-paper py-20 md:py-24">
+          <Container>
+            <SectionHeading
+              eyebrow="FAQ"
+              title={`Questions about ${service.shortTitle}.`}
+              body="These answers help clarify how Temacore scopes and delivers this service without making unsupported guarantees."
+              align="center"
+            />
+            <div className="mx-auto mt-12 grid max-w-4xl gap-4">
+              {faqs.map((faq) => (
+                <details key={faq.question} className="rounded-lg border border-line bg-white p-5">
+                  <summary className="text-base font-black text-ink">{faq.question}</summary>
+                  <p className="mt-4 text-sm leading-6 text-slate-600">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <CTASection
         title={`Need ${service.shortTitle} support?`}

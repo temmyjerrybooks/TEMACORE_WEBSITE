@@ -34,13 +34,16 @@ export function TalentApplicationForm() {
 
           form.reset();
           setStatus("success");
-          setMessage("Application submitted successfully. Temacore will review your profile.");
+          setMessage(
+            "Thank you for contacting TEMACORE. We have received your application and the TEMACORE Team will review it shortly. If your inquiry is urgent, please email info@temacore.com."
+          );
         } catch (error) {
           setStatus("error");
           setMessage(error instanceof Error ? error.message : "Unable to submit application.");
         }
       }}
     >
+      <input type="text" name="_temacore_confirm" tabIndex={-1} autoComplete="off" className="hidden" />
       <div className="grid gap-5 md:grid-cols-2">
         <FormField label="Full name" name="full_name" placeholder="Full name" required />
         <FormField label="Email" name="email" type="email" placeholder="name@email.com" required />

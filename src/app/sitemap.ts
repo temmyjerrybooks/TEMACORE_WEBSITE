@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
-import { services, site } from "@/lib/data";
+import { services } from "@/lib/data";
 import { routes } from "@/lib/navigation";
+import { getSiteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = site.domain.replace(/\/$/, "");
+  const base = getSiteUrl();
   const staticRoutes = [
     routes.home,
     routes.about,

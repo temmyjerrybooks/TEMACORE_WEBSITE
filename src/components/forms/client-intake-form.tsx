@@ -35,13 +35,16 @@ export function ClientIntakeForm() {
 
           form.reset();
           setStatus("success");
-          setMessage("Intake submitted successfully. TEMACORE Team will review it and follow up.");
+          setMessage(
+            "Thank you for contacting TEMACORE. We have received your intake and the TEMACORE Team will review it shortly. If your inquiry is urgent, please email info@temacore.com."
+          );
         } catch (error) {
           setStatus("error");
           setMessage(error instanceof Error ? error.message : "Unable to submit intake.");
         }
       }}
     >
+      <input type="text" name="_temacore_confirm" tabIndex={-1} autoComplete="off" className="hidden" />
       <div className="grid gap-5 md:grid-cols-2">
         <FormField label="Company name" name="company_name" placeholder="Acme Operations LLC" required />
         <FormField label="Website" name="website" type="url" placeholder="https://example.com" />

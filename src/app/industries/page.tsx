@@ -5,12 +5,14 @@ import { InfoCard } from "@/components/ui/info-card";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { industries } from "@/lib/data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Industries We Serve",
   description:
-    "Temacore supports professional services, SaaS, healthcare support, real estate, ecommerce, finance, and other service-heavy industries."
-};
+    "Temacore supports professional services, SaaS, healthcare support, real estate, ecommerce, finance, and other service-heavy industries.",
+  path: "/industries"
+});
 
 export default function IndustriesPage() {
   return (

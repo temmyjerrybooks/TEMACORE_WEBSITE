@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import { sanitizeInput } from "@/lib/api/security";
 
 export function formText(formData: FormData, key: string) {
   const value = formData.get(key);
 
-  return typeof value === "string" ? value.trim() : "";
+  return typeof value === "string" ? sanitizeInput(value) : "";
 }
 
 export function optionalFormText(formData: FormData, key: string) {
@@ -16,7 +17,7 @@ export function formTextArray(formData: FormData, key: string) {
   return formData
     .getAll(key)
     .filter((value): value is string => typeof value === "string")
-    .map((value) => value.trim())
+    .map((value) => sanitizeInput(value))
     .filter(Boolean);
 }
 

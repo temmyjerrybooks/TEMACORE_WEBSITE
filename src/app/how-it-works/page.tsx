@@ -3,12 +3,14 @@ import { CTASection, HowItWorksSection } from "@/components/sections/home-sectio
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "How It Works",
   description:
-    "See how Temacore scopes workflows, designs operating models, deploys remote teams, and optimizes business operations."
-};
+    "See how Temacore scopes workflows, designs operating models, deploys remote teams, and optimizes business operations.",
+  path: "/how-it-works"
+});
 
 export default function HowItWorksPage() {
   return (

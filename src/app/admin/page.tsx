@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { LockKeyhole, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { LockKeyhole, SearchCheck, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Admin Dashboard",
-  description: "Protected Temacore admin dashboard placeholder."
-};
+  description: "Protected Temacore admin dashboard placeholder.",
+  path: "/admin",
+  noIndex: true
+});
 
 export default function AdminPage() {
   return (
@@ -39,6 +43,12 @@ export default function AdminPage() {
                   <li>Client intake queue</li>
                   <li>Project request review</li>
                   <li>Talent application screening</li>
+                  <li>
+                    <Link href="/admin/seo" className="inline-flex items-center gap-2 font-bold text-white hover:text-blue-100">
+                      <SearchCheck className="h-4 w-4" aria-hidden="true" />
+                      SEO Agent dashboard
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>

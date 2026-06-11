@@ -3,12 +3,14 @@ import { ProjectRequestForm } from "@/components/forms/project-request-form";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Project Request Form",
   description:
-    "Request a Temacore client portal, CRM system, workflow dashboard, automation tool, or custom business application."
-};
+    "Request a Temacore client portal, CRM system, workflow dashboard, automation tool, mobile application, or custom business application.",
+  path: "/project-request"
+});
 
 export default function ProjectRequestPage() {
   return (

@@ -33,6 +33,8 @@ export type TalentApplicationStatus =
   | "archived";
 
 export type AdminRole = "owner" | "admin" | "manager" | "viewer";
+export type SeoWorkflowStatus = "New" | "In Review" | "In Progress" | "Fixed" | "Ignored";
+export type SeoSeverity = "Low" | "Medium" | "High" | "Critical";
 
 export type TimestampedRecord = {
   id: string;
@@ -96,6 +98,65 @@ export type AdminUser = TimestampedRecord & {
   is_active: boolean;
 };
 
+export type SeoAudit = {
+  id: string;
+  audit_date: string;
+  overall_score: number;
+  pages_checked: number;
+  issues_found: number;
+  created_at: string;
+};
+
+export type SeoIssue = {
+  id: string;
+  audit_id?: string | null;
+  page_url: string;
+  issue_type: string;
+  issue_message: string;
+  severity: SeoSeverity;
+  status: SeoWorkflowStatus;
+  created_at: string;
+};
+
+export type KeywordOpportunity = {
+  id: string;
+  keyword: string;
+  target_page: string;
+  search_intent: string;
+  priority: SeoSeverity;
+  recommendation: string;
+  status: SeoWorkflowStatus;
+  created_at: string;
+};
+
+export type ContentRecommendation = {
+  id: string;
+  page_url: string;
+  recommendation_type: string;
+  title: string;
+  description: string;
+  status: SeoWorkflowStatus;
+  created_at: string;
+};
+
+export type IndexedUrl = {
+  id: string;
+  url: string;
+  source: string;
+  status: SeoWorkflowStatus;
+  last_checked_at?: string | null;
+  created_at: string;
+};
+
+export type WebsiteAlert = {
+  id: string;
+  alert_type: string;
+  message: string;
+  severity: SeoSeverity;
+  status: SeoWorkflowStatus;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -151,6 +212,65 @@ export type Database = {
         Row: AdminUser;
         Insert: Omit<AdminUser, "id" | "created_at" | "updated_at">;
         Update: Partial<Omit<AdminUser, "id" | "created_at">>;
+        Relationships: [];
+      };
+      seo_audits: {
+        Row: SeoAudit;
+        Insert: Omit<SeoAudit, "id" | "created_at" | "audit_date"> & {
+          audit_date?: string;
+        };
+        Update: Partial<Omit<SeoAudit, "id" | "created_at">>;
+        Relationships: [];
+      };
+      seo_issues: {
+        Row: SeoIssue;
+        Insert: Omit<SeoIssue, "id" | "created_at" | "severity" | "status"> & {
+          severity?: SeoSeverity;
+          status?: SeoWorkflowStatus;
+        };
+        Update: Partial<Omit<SeoIssue, "id" | "created_at">>;
+        Relationships: [
+          {
+            foreignKeyName: "seo_issues_audit_id_fkey";
+            columns: ["audit_id"];
+            isOneToOne: false;
+            referencedRelation: "seo_audits";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      keyword_opportunities: {
+        Row: KeywordOpportunity;
+        Insert: Omit<KeywordOpportunity, "id" | "created_at" | "priority" | "status"> & {
+          priority?: SeoSeverity;
+          status?: SeoWorkflowStatus;
+        };
+        Update: Partial<Omit<KeywordOpportunity, "id" | "created_at">>;
+        Relationships: [];
+      };
+      content_recommendations: {
+        Row: ContentRecommendation;
+        Insert: Omit<ContentRecommendation, "id" | "created_at" | "status"> & {
+          status?: SeoWorkflowStatus;
+        };
+        Update: Partial<Omit<ContentRecommendation, "id" | "created_at">>;
+        Relationships: [];
+      };
+      indexed_urls: {
+        Row: IndexedUrl;
+        Insert: Omit<IndexedUrl, "id" | "created_at" | "status"> & {
+          status?: SeoWorkflowStatus;
+        };
+        Update: Partial<Omit<IndexedUrl, "id" | "created_at">>;
+        Relationships: [];
+      };
+      website_alerts: {
+        Row: WebsiteAlert;
+        Insert: Omit<WebsiteAlert, "id" | "created_at" | "severity" | "status"> & {
+          severity?: SeoSeverity;
+          status?: SeoWorkflowStatus;
+        };
+        Update: Partial<Omit<WebsiteAlert, "id" | "created_at">>;
         Relationships: [];
       };
     };

@@ -4,12 +4,14 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { services } from "@/lib/data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Explore Temacore services across BPO, remote teams, customer support, back-office operations, custom application development, and business automation."
-};
+    "Explore Temacore services across BPO, remote teams, customer support, virtual assistant services, CRM development, client portals, application development, and business automation.",
+  path: "/services"
+});
 
 export default function ServicesPage() {
   return (

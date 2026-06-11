@@ -5,16 +5,21 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { site } from "@/lib/data";
+import { buildMetadata } from "@/lib/seo";
+import { contactPointSchema } from "@/lib/seo-schema";
+import { JsonLd } from "@/components/seo/json-ld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Contact Temacore",
   description:
-    "Contact Temacore to discuss BPO, remote operations teams, customer support outsourcing, back-office operations, application development, and automation."
-};
+    "Contact Temacore to discuss BPO, remote operations teams, customer support outsourcing, back-office operations, application development, and automation.",
+  path: "/contact"
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactPointSchema()} />
       <PageHero
         eyebrow="Contact"
         title="Book a consultation with Temacore."

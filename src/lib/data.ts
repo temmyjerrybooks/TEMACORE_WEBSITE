@@ -33,9 +33,15 @@ export type ServiceSlug =
   | "business-process-outsourcing"
   | "remote-teams"
   | "customer-support"
+  | "virtual-assistant-services"
   | "back-office-operations"
+  | "lead-generation-appointment-setting"
   | "custom-application-development"
-  | "business-automation";
+  | "mobile-application-development"
+  | "crm-development"
+  | "client-portal-development"
+  | "business-automation"
+  | "data-reporting-dashboards";
 
 export type Metric = {
   value: string;
@@ -122,7 +128,7 @@ export const services: Service[] = [
       "Temacore helps companies assemble reliable remote teams that operate as an extension of the client organization. We handle role design, candidate screening, onboarding structure, performance tracking, and day-to-day management support.",
     icon: UsersRound,
     metrics: [
-      { value: "1-10+", label: "seat team models" },
+      { value: "Seats", label: "role-based team models" },
       { value: "US/EU", label: "coverage ready" },
       { value: "KPI", label: "managed delivery" }
     ],
@@ -360,6 +366,306 @@ export const services: Service[] = [
       "Exception handling rules",
       "Automation performance report"
     ]
+  },
+  {
+    slug: "virtual-assistant-services",
+    title: "Virtual Assistant Services",
+    shortTitle: "Virtual Assistants",
+    eyebrow: "Executive and admin support",
+    summary:
+      "Provide dependable remote assistant support for scheduling, inbox coordination, CRM updates, research, and administrative follow-through.",
+    description:
+      "Temacore virtual assistant services help teams reduce administrative load while keeping communication, scheduling, and routine coordination organized through documented workflows.",
+    icon: UsersRound,
+    metrics: [
+      { value: "Admin", label: "daily support" },
+      { value: "CRM", label: "record updates" },
+      { value: "Desk", label: "task coordination" }
+    ],
+    outcomes: [
+      "More consistent administrative follow-through",
+      "Cleaner inbox, calendar, and CRM coordination",
+      "Less context switching for internal teams",
+      "A documented assistant workflow that can scale"
+    ],
+    capabilities: [
+      "Inbox and calendar coordination",
+      "CRM updates and contact records",
+      "Research and list preparation",
+      "Meeting preparation and follow-up",
+      "Administrative task tracking"
+    ],
+    process: [
+      {
+        title: "Define assistant responsibilities",
+        body: "We clarify recurring tasks, communication expectations, tools, access needs, and approval rules."
+      },
+      {
+        title: "Build the task playbook",
+        body: "We create checklists and handoff rules so assistant work stays clear and repeatable."
+      },
+      {
+        title: "Run and refine",
+        body: "The assistant executes the workflow while managers review output, blockers, and improvements."
+      }
+    ],
+    deliverables: [
+      "Assistant role profile",
+      "Task checklist",
+      "Communication rules",
+      "Access and approval notes",
+      "Weekly task report"
+    ]
+  },
+  {
+    slug: "lead-generation-appointment-setting",
+    title: "Lead Generation and Appointment Setting",
+    shortTitle: "Lead Follow-Up",
+    eyebrow: "Sales operations support",
+    summary:
+      "Support lead follow-up, appointment setting, CRM updates, prospect research, and structured sales coordination.",
+    description:
+      "Temacore helps teams keep lead follow-up organized with appointment workflows, CRM hygiene, prospect research, and clear escalation rules for qualified opportunities.",
+    icon: CalendarCheck,
+    metrics: [
+      { value: "Lead", label: "follow-up workflows" },
+      { value: "CRM", label: "pipeline updates" },
+      { value: "Calls", label: "appointment coordination" }
+    ],
+    outcomes: [
+      "Fewer missed lead follow-ups",
+      "More organized appointment coordination",
+      "Cleaner CRM activity records",
+      "Better handoffs between sales and operations"
+    ],
+    capabilities: [
+      "Prospect research and list preparation",
+      "Lead follow-up workflows",
+      "Appointment setting coordination",
+      "CRM updates and activity logging",
+      "Qualified lead escalation"
+    ],
+    process: [
+      {
+        title: "Define qualification rules",
+        body: "We document lead sources, follow-up steps, appointment criteria, and escalation requirements."
+      },
+      {
+        title: "Prepare outreach operations",
+        body: "We align scripts, templates, CRM fields, and daily work queues."
+      },
+      {
+        title: "Track and report",
+        body: "We monitor follow-up activity, booking status, and exceptions without inventing performance claims."
+      }
+    ],
+    deliverables: [
+      "Lead workflow map",
+      "Follow-up script notes",
+      "CRM field checklist",
+      "Appointment status tracker",
+      "Activity report"
+    ]
+  },
+  {
+    slug: "mobile-application-development",
+    title: "Mobile Application Development",
+    shortTitle: "Mobile Apps",
+    eyebrow: "Business mobile software",
+    summary:
+      "Build mobile applications that support business workflows, customer access, team operations, and data-driven services.",
+    description:
+      "Temacore develops mobile application experiences for companies that need practical business tools, customer-facing access, workflow visibility, and secure integration with backend systems.",
+    icon: Code2,
+    metrics: [
+      { value: "iOS", label: "mobile experience" },
+      { value: "Android", label: "mobile experience" },
+      { value: "API", label: "backend integration" }
+    ],
+    outcomes: [
+      "Mobile access for customers, teams, or field workflows",
+      "A clearer application scope before development begins",
+      "Backend integration planning for business data",
+      "A release path that supports iteration"
+    ],
+    capabilities: [
+      "Mobile product scoping",
+      "User experience planning",
+      "Frontend and backend development",
+      "API integration",
+      "Testing and deployment preparation"
+    ],
+    process: [
+      {
+        title: "Scope the mobile workflow",
+        body: "We define users, features, data flows, devices, and business rules."
+      },
+      {
+        title: "Design and build",
+        body: "We create the app experience and connect it to the required backend systems."
+      },
+      {
+        title: "Test and prepare release",
+        body: "We test core flows, permissions, and deployment requirements before launch."
+      }
+    ],
+    deliverables: [
+      "Mobile requirements brief",
+      "User flow map",
+      "Application build",
+      "Integration notes",
+      "Release checklist"
+    ]
+  },
+  {
+    slug: "crm-development",
+    title: "CRM Development",
+    shortTitle: "CRM Development",
+    eyebrow: "Sales and customer systems",
+    summary:
+      "Design CRM systems for contacts, pipelines, lead follow-up, appointment status, reporting, and customer operations.",
+    description:
+      "Temacore builds CRM systems and CRM workflows that help teams track customer relationships, sales activity, support context, and management reporting without relying on scattered spreadsheets.",
+    icon: Database,
+    metrics: [
+      { value: "CRM", label: "records and pipeline" },
+      { value: "Ops", label: "workflow tracking" },
+      { value: "Reports", label: "management visibility" }
+    ],
+    outcomes: [
+      "Centralized contact and activity records",
+      "Clearer pipeline and follow-up ownership",
+      "Better visibility into customer and sales workflows",
+      "A CRM structure aligned to real team behavior"
+    ],
+    capabilities: [
+      "CRM data model design",
+      "Lead and pipeline workflows",
+      "Contact and account records",
+      "Reporting views",
+      "CRM automation planning"
+    ],
+    process: [
+      {
+        title: "Audit the current CRM flow",
+        body: "We review fields, stages, handoffs, reporting needs, and existing tool limitations."
+      },
+      {
+        title: "Design the CRM structure",
+        body: "We define records, permissions, pipeline stages, and activity rules."
+      },
+      {
+        title: "Build and iterate",
+        body: "We implement the CRM workflow, test common scenarios, and refine based on usage."
+      }
+    ],
+    deliverables: [
+      "CRM requirements brief",
+      "Data model",
+      "Pipeline configuration",
+      "Reporting views",
+      "User workflow documentation"
+    ]
+  },
+  {
+    slug: "client-portal-development",
+    title: "Client Portal Development",
+    shortTitle: "Client Portals",
+    eyebrow: "Client-facing systems",
+    summary:
+      "Build secure client portals for requests, files, status updates, approvals, communication, and service visibility.",
+    description:
+      "Temacore develops client portals that give businesses and their clients a clearer place to manage requests, documents, updates, approvals, and operational visibility.",
+    icon: Layers3,
+    metrics: [
+      { value: "Portal", label: "client access" },
+      { value: "Files", label: "document flow" },
+      { value: "Status", label: "request visibility" }
+    ],
+    outcomes: [
+      "A clearer client experience for requests and updates",
+      "Reduced dependence on scattered email threads",
+      "Role-aware access planning",
+      "Better visibility into service progress"
+    ],
+    capabilities: [
+      "Client request workflows",
+      "Document and file access",
+      "Status dashboards",
+      "Approval workflows",
+      "Role-based portal planning"
+    ],
+    process: [
+      {
+        title: "Define portal users",
+        body: "We clarify client roles, internal roles, permissions, and the workflows the portal must support."
+      },
+      {
+        title: "Map requests and records",
+        body: "We design the request types, status fields, files, notifications, and reporting views."
+      },
+      {
+        title: "Build the portal",
+        body: "We develop the interface, connect the data model, and prepare a release path."
+      }
+    ],
+    deliverables: [
+      "Portal requirements brief",
+      "Permission model",
+      "Request workflow map",
+      "Client portal build",
+      "Launch checklist"
+    ]
+  },
+  {
+    slug: "data-reporting-dashboards",
+    title: "Data Analytics and Reporting Dashboards",
+    shortTitle: "Data Dashboards",
+    eyebrow: "Reporting and visibility",
+    summary:
+      "Create dashboards and reporting workflows that help teams monitor operations, workload, status, and business performance signals.",
+    description:
+      "Temacore builds practical reporting dashboards for teams that need clearer visibility into tasks, pipelines, support queues, operations, and management decisions.",
+    icon: ChartNoAxesColumnIncreasing,
+    metrics: [
+      { value: "BI", label: "reporting views" },
+      { value: "Data", label: "organized inputs" },
+      { value: "Ops", label: "performance signals" }
+    ],
+    outcomes: [
+      "Clearer reporting for recurring operations",
+      "Less manual spreadsheet consolidation",
+      "Better visibility into status and workload",
+      "Dashboards aligned to business decisions"
+    ],
+    capabilities: [
+      "Dashboard requirements planning",
+      "Data source mapping",
+      "Operational reporting views",
+      "Workflow status dashboards",
+      "Management reporting"
+    ],
+    process: [
+      {
+        title: "Define reporting questions",
+        body: "We identify what managers need to see, how often, and which source data supports it."
+      },
+      {
+        title: "Structure the data",
+        body: "We map inputs, clean fields, and design dashboard views around operational use."
+      },
+      {
+        title: "Build and review",
+        body: "We create dashboards and refine them around the decisions they need to support."
+      }
+    ],
+    deliverables: [
+      "Reporting requirements",
+      "Data source map",
+      "Dashboard build",
+      "Metric definitions",
+      "Review checklist"
+    ]
   }
 ];
 
@@ -375,11 +681,129 @@ export const trustItems = [
 ];
 
 export const homeStats: Metric[] = [
-  { value: "6", label: "core service lines" },
+  { value: "12", label: "core service lines" },
   { value: "3", label: "market regions supported" },
-  { value: "24h", label: "response target for new inquiries" },
+  { value: "Intake", label: "structured start for new inquiries" },
   { value: "1", label: "partner for people, process, and systems" }
 ];
+
+export type ServiceFaq = {
+  question: string;
+  answer: string;
+};
+
+const relatedServiceMap: Record<ServiceSlug, ServiceSlug[]> = {
+  "business-process-outsourcing": [
+    "customer-support",
+    "virtual-assistant-services",
+    "back-office-operations",
+    "lead-generation-appointment-setting"
+  ],
+  "remote-teams": [
+    "virtual-assistant-services",
+    "customer-support",
+    "back-office-operations",
+    "client-portal-development"
+  ],
+  "customer-support": [
+    "business-process-outsourcing",
+    "remote-teams",
+    "crm-development",
+    "business-automation"
+  ],
+  "virtual-assistant-services": [
+    "remote-teams",
+    "back-office-operations",
+    "lead-generation-appointment-setting",
+    "client-portal-development"
+  ],
+  "back-office-operations": [
+    "business-process-outsourcing",
+    "virtual-assistant-services",
+    "crm-development",
+    "data-reporting-dashboards"
+  ],
+  "lead-generation-appointment-setting": [
+    "crm-development",
+    "remote-teams",
+    "business-automation",
+    "customer-support"
+  ],
+  "custom-application-development": [
+    "crm-development",
+    "client-portal-development",
+    "business-automation",
+    "mobile-application-development"
+  ],
+  "mobile-application-development": [
+    "custom-application-development",
+    "client-portal-development",
+    "crm-development",
+    "business-automation"
+  ],
+  "crm-development": [
+    "custom-application-development",
+    "client-portal-development",
+    "business-automation",
+    "data-reporting-dashboards"
+  ],
+  "client-portal-development": [
+    "custom-application-development",
+    "crm-development",
+    "business-automation",
+    "data-reporting-dashboards"
+  ],
+  "business-automation": [
+    "custom-application-development",
+    "crm-development",
+    "client-portal-development",
+    "data-reporting-dashboards"
+  ],
+  "data-reporting-dashboards": [
+    "business-automation",
+    "crm-development",
+    "client-portal-development",
+    "back-office-operations"
+  ]
+};
+
+export function getRelatedServices(slug: ServiceSlug) {
+  const relatedSlugs = relatedServiceMap[slug] ?? [];
+
+  return relatedSlugs
+    .map((relatedSlug) => getServiceBySlug(relatedSlug))
+    .filter((service): service is Service => Boolean(service));
+}
+
+export function getServiceFaqs(slug: ServiceSlug): ServiceFaq[] {
+  const service = getServiceBySlug(slug);
+
+  if (!service) {
+    return [];
+  }
+
+  return [
+    {
+      question: `What is ${service.title}?`,
+      answer: service.summary
+    },
+    {
+      question: `Who is ${service.title} for?`,
+      answer:
+        "This service is for businesses that need clearer operational capacity, better workflow ownership, or practical technology support without adding unnecessary internal complexity."
+    },
+    {
+      question: "How does Temacore start an engagement?",
+      answer:
+        "Temacore starts by reviewing the workflow, tools, roles, risks, and expected outcomes before recommending a managed delivery model."
+    },
+    {
+      question: "How can a business request this service?",
+      answer:
+        "Businesses can use the client intake form, project request form, or contact page to share their requirements with the TEMACORE Team."
+    }
+  ];
+}
 
 export const industries = [
   {

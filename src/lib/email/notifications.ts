@@ -65,7 +65,7 @@ export async function sendSubmissionNotification(payload: NotificationPayload) {
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
-    return;
+    return false;
   }
 
   const from = process.env.NOTIFICATION_EMAIL_FROM ?? "TEMACORE <onboarding@resend.dev>";
@@ -84,11 +84,22 @@ export async function sendSubmissionNotification(payload: NotificationPayload) {
       text: buildText(payload),
       html: buildHtml(payload)
     })
+  }).catch((error) => {
+    console.error("Email notification request failed", error);
+
+    return null;
   });
+
+  if (!response) {
+    return false;
+  }
 
   if (!response.ok) {
     const errorBody = await response.text().catch(() => "");
 
     console.error("Email notification failed", response.status, errorBody);
+    return false;
   }
+
+  return true;
 }

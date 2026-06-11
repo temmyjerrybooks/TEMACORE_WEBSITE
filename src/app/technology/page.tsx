@@ -6,12 +6,14 @@ import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { technologySolutions } from "@/lib/data";
 import { routes } from "@/lib/navigation";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Technology Solutions",
   description:
-    "Temacore builds client portals, CRM systems, workflow dashboards, and automation tools for business operations."
-};
+    "Temacore builds client portals, CRM systems, workflow dashboards, automation tools, mobile applications, and custom business applications.",
+  path: "/technology"
+});
 
 export default function TechnologyPage() {
   return (

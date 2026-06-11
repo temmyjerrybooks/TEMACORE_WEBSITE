@@ -3,12 +3,14 @@ import { ClientIntakeForm } from "@/components/forms/client-intake-form";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Client Intake Form",
   description:
-    "Start a Temacore client intake for BPO, remote teams, customer support, back-office operations, application development, or automation."
-};
+    "Start a Temacore client intake for BPO, remote teams, customer support, back-office operations, application development, or automation.",
+  path: "/client-intake"
+});
 
 export default function ClientIntakePage() {
   return (
