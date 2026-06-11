@@ -28,9 +28,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
 NOTIFICATION_EMAIL_FROM=
-NOTIFICATION_EMAIL_TO=
 INDEXNOW_KEY=
 ADMIN_EMAIL=info@temacore.com
+SEO_AUDIT_SECRET=
+CRON_SECRET=
 ```
 
 ## Supabase Activation
@@ -54,13 +55,32 @@ The admin panel is available at `/admin/login`. It uses Supabase Auth through se
 
 Only the email configured in `ADMIN_EMAIL` can access `/admin`, `/admin/seo`, or future `/admin/*` routes. The service role key is used only on the server for dashboard data reads and is never exposed to client-side code.
 
+## SEO Audit Engine
+
+The protected SEO Agent can run a real internal audit from `/admin/seo`. It checks sitemap.xml, robots.txt, llms.txt, page metadata, JSON-LD, internal links, image alt text, and Basic Response Performance.
+
+Manual audit route:
+
+- `POST /api/admin/seo/run-audit`
+- Requires a valid admin session cookie.
+- If admin auth is unavailable, it can be protected with `x-seo-audit-secret` matching `SEO_AUDIT_SECRET`.
+
+Scheduled audit placeholder:
+
+- `GET /api/cron/seo-audit`
+- Requires `CRON_SECRET` through `x-cron-secret` or `Authorization: Bearer <secret>`.
+- Add a Vercel Cron schedule later when you are ready to activate it.
+
+The audit stores real results in the Supabase SEO tables from `src/lib/db/seo-schema.sql`. It does not use Search Console, Bing Webmaster Tools, paid SEO tools, or fake SEO metrics.
+
 ## Email Notifications
 
 Form notification emails use Resend. In Vercel, add:
 
 - `RESEND_API_KEY`
-- `NOTIFICATION_EMAIL_TO`, for example `info@temacore.com`
 - `NOTIFICATION_EMAIL_FROM`, for example `TEMACORE <info@temacore.com>`
+
+Notification recipients are locked to `info@temacore.com`.
 
 If `RESEND_API_KEY` is not set, form submissions still save to Supabase but no email is sent.
 

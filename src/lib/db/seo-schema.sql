@@ -68,7 +68,10 @@ alter table public.website_alerts enable row level security;
 
 create index if not exists seo_issues_audit_id_idx on public.seo_issues(audit_id);
 create index if not exists seo_issues_status_idx on public.seo_issues(status);
+create index if not exists seo_audits_audit_date_idx on public.seo_audits(audit_date desc);
+create index if not exists seo_issues_severity_idx on public.seo_issues(severity);
 create index if not exists keyword_opportunities_status_idx on public.keyword_opportunities(status);
 create index if not exists content_recommendations_status_idx on public.content_recommendations(status);
 create index if not exists indexed_urls_status_idx on public.indexed_urls(status);
 create index if not exists website_alerts_status_idx on public.website_alerts(status);
+create index if not exists website_alerts_severity_idx on public.website_alerts(severity);

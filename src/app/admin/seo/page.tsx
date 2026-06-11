@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Children, type ReactNode } from "react";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -13,127 +13,127 @@ import {
   Rss,
   ShieldCheck
 } from "lucide-react";
+import { RunSeoAuditButton } from "@/components/admin/run-seo-audit-button";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { requireAdminSession } from "@/lib/admin/session";
+import { getSeoAgentDashboardData } from "@/lib/seo-agent/dashboard-data";
 import { buildMetadata } from "@/lib/seo";
-import {
-  mockContentRecommendations,
-  mockKeywordOpportunities,
-  mockSeoAgentSummary,
-  mockSeoIssues,
-  mockWebsiteAlerts
-} from "@/lib/seo-agent/mock-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "SEO Agent",
-  description: "Protected future SEO Agent dashboard for Temacore.",
+  description: "Protected Temacore SEO Agent dashboard.",
   path: "/admin/seo",
   noIndex: true
 });
 
-const statusCards = [
-  { label: "Sitemap", value: "Available", icon: Rss },
-  { label: "Robots.txt", value: "Available", icon: ShieldCheck },
-  { label: "llms.txt", value: "Available", icon: Bot },
-  { label: "Structured data", value: "Added", icon: ListChecks },
-  { label: "Metadata", value: "Configured", icon: FileSearch },
-  { label: "Broken links", value: "Audit pending", icon: Link2 },
-  { label: "Page speed", value: "Audit pending", icon: Gauge }
-];
+export const dynamic = "force-dynamic";
 
-const aiReadinessChecklist = [
-  "Public pages have crawlable metadata and canonical URLs",
-  "Sitemap, robots.txt, and llms.txt are available",
-  "Core service pages include structured service and FAQ content",
-  "Admin route is prepared for future protected audits",
-  "SEO Agent is recommendation-only and does not auto-publish content"
-];
+const statusIcons = {
+  Sitemap: Rss,
+  "Robots.txt": ShieldCheck,
+  "llms.txt": Bot,
+  Metadata: FileSearch,
+  "Structured Data": ListChecks,
+  "Broken Links": Link2,
+  "Basic Response Performance": Gauge
+};
+
+function formatDate(value?: string | null) {
+  if (!value) {
+    return "Awaiting First Audit";
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  }).format(new Date(value));
+}
 
 export default async function SeoAgentPage() {
   await requireAdminSession();
+  const dashboard = await getSeoAgentDashboardData();
+  const hasAudit = Boolean(dashboard.latestAudit);
 
   return (
     <>
       <PageHero
         eyebrow="Protected admin"
-        title="SEO Agent foundation."
-        body="This protected future route is prepared to audit metadata, links, structured data, crawler files, content recommendations, AI-search readiness, and technical website alerts. It does not auto-publish content."
+        title="SEO Agent dashboard."
+        body="Run internal SEO checks for sitemap health, robots.txt, llms.txt, metadata, structured data, internal links, image alt text, and basic response performance."
       />
 
       <section className="bg-paper py-20 md:py-24">
         <Container className="space-y-8">
           <div className="rounded-lg border border-line bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)]">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue002">
                   SEO Agent
                 </p>
                 <h2 className="mt-3 text-3xl font-black text-ink">Audit and recommendation dashboard</h2>
                 <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                  This module is structured as a protected admin surface for future Supabase-backed audits and alerts.
+                  The SEO Agent foundation is configured. Live audit results will appear here after the first crawler/audit job is connected and executed.
                 </p>
               </div>
-              <Link
-                href="/admin"
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-line bg-white px-5 py-3 text-sm font-bold text-blue001 transition hover:border-blue001"
-              >
-                Back to Admin
-              </Link>
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <Link
+                  href="/admin"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-line bg-white px-5 py-3 text-sm font-bold text-blue001 transition hover:border-blue001"
+                >
+                  Back to Admin
+                </Link>
+                <RunSeoAuditButton enabled={dashboard.runAuditEnabled} />
+              </div>
             </div>
+          </div>
+
+          {dashboard.setupMessage ? (
+            <div className="rounded-lg border border-warm/30 bg-warm/10 p-5">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="mt-0.5 h-5 w-5 text-warm" aria-hidden="true" />
+                <p className="text-sm font-semibold leading-6 text-ink">{dashboard.setupMessage}</p>
+              </div>
+            </div>
+          ) : null}
+
+          <div className="grid gap-5 md:grid-cols-4">
+            <SummaryCard
+              icon={BarChart3}
+              tone="dark"
+              value={hasAudit ? `${dashboard.latestAudit?.overall_score}/100` : "Awaiting First Audit"}
+              label="Overall SEO health score"
+            />
+            <SummaryCard
+              icon={FileSearch}
+              value={hasAudit ? String(dashboard.latestAudit?.pages_checked ?? 0) : "Awaiting First Audit"}
+              label="Pages checked"
+            />
+            <SummaryCard
+              icon={AlertTriangle}
+              value={hasAudit ? String(dashboard.latestAudit?.issues_found ?? 0) : "Awaiting First Audit"}
+              label={hasAudit ? "Total issues found" : "No live audit has been run yet"}
+            />
+            <SummaryCard
+              icon={CheckCircle2}
+              value={formatDate(dashboard.latestAudit?.audit_date)}
+              label="Latest audit date"
+            />
           </div>
 
           <div className="grid gap-5 md:grid-cols-4">
-            <div className="rounded-lg bg-blue001 p-6 text-white md:col-span-1">
-              <BarChart3 className="h-6 w-6 text-blue-100" aria-hidden="true" />
-              <p className="mt-5 text-4xl font-black">{mockSeoAgentSummary.overallScore}</p>
-              <p className="mt-2 text-sm text-blue-100/80">Overall SEO health score</p>
-            </div>
-            <div className="rounded-lg border border-line bg-white p-6">
-              <FileSearch className="h-6 w-6 text-blue002" aria-hidden="true" />
-              <p className="mt-5 text-3xl font-black text-ink">{mockSeoAgentSummary.pagesChecked}</p>
-              <p className="mt-2 text-sm text-slate-600">Pages configured for audit</p>
-            </div>
-            <div className="rounded-lg border border-line bg-white p-6">
-              <AlertTriangle className="h-6 w-6 text-warm" aria-hidden="true" />
-              <p className="mt-5 text-3xl font-black text-ink">{mockSeoAgentSummary.issuesFound}</p>
-              <p className="mt-2 text-sm text-slate-600">Issues queued for review</p>
-            </div>
-            <div className="rounded-lg border border-line bg-white p-6">
-              <CheckCircle2 className="h-6 w-6 text-signal" aria-hidden="true" />
-              <p className="mt-5 text-lg font-black text-ink">{mockSeoAgentSummary.aiSearchReadiness}</p>
-              <p className="mt-2 text-sm text-slate-600">AI search readiness status</p>
-            </div>
-          </div>
-
-          <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="rounded-lg border border-line bg-white p-6">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue002">
-                Latest audit date
-              </p>
-              <p className="mt-3 text-2xl font-black text-ink">{mockSeoAgentSummary.latestAuditDate}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                Connect scheduled checks after authentication and Supabase admin storage are active.
-              </p>
-            </div>
-            <div className="rounded-lg border border-line bg-white p-6">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue002">
-                AI search readiness checklist
-              </p>
-              <div className="mt-5 grid gap-3">
-                {aiReadinessChecklist.map((item) => (
-                  <div key={item} className="flex items-start gap-3 rounded-md bg-paper p-3">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-signal" aria-hidden="true" />
-                    <p className="text-sm font-semibold leading-6 text-slate-700">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <SeverityCard label="Critical issues" value={dashboard.counts.critical} tone="critical" hasAudit={hasAudit} />
+            <SeverityCard label="High issues" value={dashboard.counts.high} tone="high" hasAudit={hasAudit} />
+            <SeverityCard label="Medium issues" value={dashboard.counts.medium} tone="medium" hasAudit={hasAudit} />
+            <SeverityCard label="Low issues" value={dashboard.counts.low} tone="low" hasAudit={hasAudit} />
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {statusCards.map((card) => {
-              const Icon = card.icon;
+            {dashboard.statusCards.map((card) => {
+              const Icon = statusIcons[card.label as keyof typeof statusIcons] ?? FileSearch;
 
               return (
                 <div key={card.label} className="rounded-lg border border-line bg-white p-5">
@@ -147,28 +147,66 @@ export default async function SeoAgentPage() {
             })}
           </div>
 
+          <div className="grid gap-8 xl:grid-cols-[1.3fr_0.7fr]">
+            <AdminPanel
+              title="Latest issues"
+              description="Real audit issues from the latest stored SEO audit."
+              emptyText={hasAudit ? "No Issues Found Yet" : "Awaiting First Audit"}
+            >
+              {dashboard.latestIssues.map((issue) => (
+                <AdminRow
+                  key={issue.id}
+                  title={issue.issue_type}
+                  meta={`${issue.severity} - ${issue.status}`}
+                  body={`${issue.page_url}: ${issue.issue_message}`}
+                />
+              ))}
+            </AdminPanel>
+
+            <AdminPanel
+              title="Website alerts"
+              description="High-priority SEO and website alerts stored for admin review."
+              emptyText="No Issues Found Yet"
+            >
+              {dashboard.alerts.map((alert) => (
+                <AdminRow
+                  key={alert.id}
+                  title={alert.alert_type}
+                  meta={`${alert.severity} - ${alert.status}`}
+                  body={alert.message}
+                />
+              ))}
+            </AdminPanel>
+          </div>
+
           <div className="grid gap-8 lg:grid-cols-2">
-            <AdminPanel title="Technical SEO Issues">
-              {mockSeoIssues.map((issue) => (
-                <AdminRow key={issue.id} title={issue.issue_type} meta={`${issue.page_url} - ${issue.severity}`} body={issue.issue_message} />
+            <AdminPanel
+              title="Site-based recommendations"
+              description="Recommendations generated from site checks only, not Search Console or traffic data."
+              emptyText={hasAudit ? "No Issues Found Yet" : "Awaiting First Audit"}
+            >
+              {dashboard.recommendations.map((item) => (
+                <AdminRow
+                  key={item.id}
+                  title={item.title}
+                  meta={`${item.recommendation_type} - ${item.status}`}
+                  body={`${item.page_url}: ${item.description}`}
+                />
               ))}
             </AdminPanel>
 
-            <AdminPanel title="Keyword Opportunities">
-              {mockKeywordOpportunities.map((item) => (
-                <AdminRow key={item.id} title={item.keyword} meta={`${item.target_page} - ${item.priority}`} body={item.recommendation} />
-              ))}
-            </AdminPanel>
-
-            <AdminPanel title="Content Recommendations">
-              {mockContentRecommendations.map((item) => (
-                <AdminRow key={item.id} title={item.title} meta={item.page_url} body={item.description} />
-              ))}
-            </AdminPanel>
-
-            <AdminPanel title="Website Alerts">
-              {mockWebsiteAlerts.map((item) => (
-                <AdminRow key={item.id} title={item.alert_type} meta={item.severity} body={item.message} />
+            <AdminPanel
+              title="Keyword opportunities"
+              description="Site-based opportunities only. No search volume, rankings, clicks, or impressions are inferred."
+              emptyText={hasAudit ? "No Issues Found Yet" : "Awaiting First Audit"}
+            >
+              {dashboard.keywordOpportunities.map((item) => (
+                <AdminRow
+                  key={item.id}
+                  title={item.keyword}
+                  meta={`${item.priority} - ${item.status}`}
+                  body={`${item.target_page}: ${item.recommendation}`}
+                />
               ))}
             </AdminPanel>
           </div>
@@ -178,11 +216,74 @@ export default async function SeoAgentPage() {
   );
 }
 
-function AdminPanel({ title, children }: { title: string; children: ReactNode }) {
+function SummaryCard({
+  icon: Icon,
+  value,
+  label,
+  tone = "light"
+}: {
+  icon: typeof BarChart3;
+  value: string;
+  label: string;
+  tone?: "dark" | "light";
+}) {
+  return (
+    <div className={`rounded-lg p-6 ${tone === "dark" ? "bg-blue001 text-white" : "border border-line bg-white"}`}>
+      <Icon className={`h-6 w-6 ${tone === "dark" ? "text-blue-100" : "text-blue002"}`} aria-hidden="true" />
+      <p className={`mt-5 text-3xl font-black ${tone === "dark" ? "text-white" : "text-ink"}`}>{value}</p>
+      <p className={`mt-2 text-sm ${tone === "dark" ? "text-blue-100/80" : "text-slate-600"}`}>{label}</p>
+    </div>
+  );
+}
+
+function SeverityCard({
+  label,
+  value,
+  tone,
+  hasAudit
+}: {
+  label: string;
+  value: number;
+  tone: "critical" | "high" | "medium" | "low";
+  hasAudit: boolean;
+}) {
+  const toneClass = {
+    critical: "bg-red-50 text-red-700",
+    high: "bg-warm/10 text-warm",
+    medium: "bg-blue001/10 text-blue001",
+    low: "bg-signal/10 text-signal"
+  }[tone];
+
+  return (
+    <div className="rounded-lg border border-line bg-white p-5">
+      <span className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.12em] ${toneClass}`}>
+        {label}
+      </span>
+      <p className="mt-5 text-3xl font-black text-ink">{hasAudit ? value : "Awaiting First Audit"}</p>
+    </div>
+  );
+}
+
+function AdminPanel({
+  title,
+  description,
+  emptyText,
+  children
+}: {
+  title: string;
+  description: string;
+  emptyText: string;
+  children: ReactNode;
+}) {
+  const childArray = Children.toArray(children);
+
   return (
     <div className="rounded-lg border border-line bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,0.05)]">
       <h2 className="text-xl font-black text-ink">{title}</h2>
-      <div className="mt-5 grid gap-4">{children}</div>
+      <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+      <div className="mt-5 grid gap-4">
+        {childArray.length > 0 ? childArray : <p className="rounded-md bg-paper p-4 text-sm font-bold text-slate-600">{emptyText}</p>}
+      </div>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { site } from "@/lib/data";
+
 type NotificationField = {
   label: string;
   value?: string | string[] | null;
@@ -68,8 +70,8 @@ export async function sendSubmissionNotification(payload: NotificationPayload) {
     return false;
   }
 
-  const from = process.env.NOTIFICATION_EMAIL_FROM ?? "TEMACORE <info@temacore.com>";
-  const to = process.env.NOTIFICATION_EMAIL_TO ?? "info@temacore.com";
+  const from = process.env.NOTIFICATION_EMAIL_FROM ?? `TEMACORE <${site.email}>`;
+  const to = site.email;
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
