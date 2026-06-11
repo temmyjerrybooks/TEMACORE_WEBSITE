@@ -29,7 +29,6 @@ SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
 NOTIFICATION_EMAIL_FROM=
 INDEXNOW_KEY=
-ADMIN_EMAIL=info@temacore.com
 SEO_AUDIT_SECRET=
 CRON_SECRET=
 ```
@@ -43,17 +42,15 @@ CRON_SECRET=
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY`
-   - `ADMIN_EMAIL`, set to `info@temacore.com`
-5. In Supabase Auth, create the admin user with the same email as `ADMIN_EMAIL`. Public signup is not used by the website.
+   - the private admin identity setting
+5. Configure the authorized admin account privately in Supabase Auth.
 6. Redeploy the project.
 
 The public forms submit through server API routes so the service role key stays server-side.
 
 ## Admin Access
 
-The admin panel is available at `/admin/login`. It uses Supabase Auth through server API routes and stores the admin session in httpOnly cookies.
-
-Only the email configured in `ADMIN_EMAIL` can access `/admin`, `/admin/seo`, or future `/admin/*` routes. The service role key is used only on the server for dashboard data reads and is never exposed to client-side code.
+The admin panel is restricted to authorized operators and protected through server-side checks. Do not publish admin credentials or operational access details.
 
 ## SEO Audit Engine
 
@@ -62,13 +59,12 @@ The protected SEO Agent can run a real internal audit from `/admin/seo`. It chec
 Manual audit route:
 
 - `POST /api/admin/seo/run-audit`
-- Requires a valid admin session cookie.
-- If admin auth is unavailable, it can be protected with `x-seo-audit-secret` matching `SEO_AUDIT_SECRET`.
+- Requires authorized server-side access.
 
 Scheduled audit placeholder:
 
 - `GET /api/cron/seo-audit`
-- Requires `CRON_SECRET` through `x-cron-secret` or `Authorization: Bearer <secret>`.
+- Requires private cron authorization.
 - Add a Vercel Cron schedule later when you are ready to activate it.
 
 The audit stores real results in the Supabase SEO tables from `src/lib/db/seo-schema.sql`. It does not use Search Console, Bing Webmaster Tools, paid SEO tools, or fake SEO metrics.

@@ -13,7 +13,7 @@ function isAuthorizedCronRequest(request: Request) {
     return {
       ok: false,
       status: 503,
-      message: "CRON_SECRET is not configured."
+      message: "Scheduled audit execution is not available in this environment."
     };
   }
 

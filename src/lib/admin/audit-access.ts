@@ -33,7 +33,7 @@ export async function verifyAuditRequestAccess(request: Request | NextRequest): 
     return {
       ok: false,
       status: 503,
-      message: "SEO_AUDIT_SECRET is not configured and no valid admin session was found."
+      message: "SEO audit execution is not available in this environment."
     };
   }
 

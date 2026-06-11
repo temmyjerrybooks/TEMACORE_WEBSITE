@@ -14,7 +14,6 @@ import {
 import { LogoutButton } from "@/components/admin/logout-button";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
-import { getAdminEmail } from "@/lib/admin/config";
 import { getAdminDashboardData, type AdminDashboardSection } from "@/lib/admin/dashboard-data";
 import { requireAdminSession } from "@/lib/admin/session";
 import { buildMetadata } from "@/lib/seo";
@@ -36,7 +35,7 @@ const sectionIcons = {
 };
 
 export default async function AdminPage() {
-  const session = await requireAdminSession();
+  await requireAdminSession();
   const dashboard = await getAdminDashboardData();
 
   return (
@@ -54,10 +53,9 @@ export default async function AdminPage() {
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-md bg-blue001 text-white">
                   <ShieldCheck className="h-7 w-7" aria-hidden="true" />
                 </div>
-                <h2 className="text-3xl font-black text-ink">Signed in as {session.email}</h2>
+                <h2 className="text-3xl font-black text-ink">Signed in</h2>
                 <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
-                  Admin access is restricted to {getAdminEmail()}. Public signup is disabled, and admin
-                  records are loaded server-side only.
+                  Admin records are loaded in a restricted workspace for authorized operators.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row md:items-center">
@@ -95,7 +93,7 @@ export default async function AdminPage() {
               </div>
               <div>
                 <h2 className="text-xl font-black text-ink">Settings</h2>
-                <p className="text-sm text-slate-600">Environment readiness without exposing secret values.</p>
+                <p className="text-sm text-slate-600">Operational readiness checks without exposing secret values.</p>
               </div>
             </div>
             <div className="mt-6 grid gap-3 md:grid-cols-2">

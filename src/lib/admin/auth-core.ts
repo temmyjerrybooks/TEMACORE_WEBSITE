@@ -42,7 +42,7 @@ function toAdminSession(data: SupabaseTokenResponse): AdminAuthResult {
     return {
       ok: false,
       status: 403,
-      message: "This email is not authorized for Temacore admin access."
+      message: "Unable to sign in with the provided credentials."
     };
   }
 
@@ -58,22 +58,15 @@ function toAdminSession(data: SupabaseTokenResponse): AdminAuthResult {
   };
 }
 
-export async function signInAdminWithPassword(email: string, password: string): Promise<AdminAuthResult> {
+export async function signInAdminWithPassword(password: string): Promise<AdminAuthResult> {
   const config = getSupabaseAuthConfig();
+  const email = getAdminEmail();
 
-  if (!config.isConfigured || !config.supabaseUrl || !config.anonKey) {
+  if (!config.isConfigured || !config.supabaseUrl || !config.anonKey || !email) {
     return {
       ok: false,
       status: 503,
-      message: "Supabase Auth is not configured yet."
-    };
-  }
-
-  if (email.trim().toLowerCase() !== getAdminEmail()) {
-    return {
-      ok: false,
-      status: 403,
-      message: "This email is not authorized for Temacore admin access."
+      message: "Admin access is not available."
     };
   }
 
@@ -94,7 +87,7 @@ export async function signInAdminWithPassword(email: string, password: string): 
     return {
       ok: false,
       status: response.status === 400 ? 401 : response.status,
-      message: "Invalid admin email or password."
+      message: "Unable to sign in with the provided credentials."
     };
   }
 
@@ -137,7 +130,7 @@ export async function validateAdminAccessToken(accessToken?: string): Promise<Ad
     return {
       ok: false,
       status: 403,
-      message: "This session is not authorized for Temacore admin access."
+      message: "Admin session is not authorized."
     };
   }
 

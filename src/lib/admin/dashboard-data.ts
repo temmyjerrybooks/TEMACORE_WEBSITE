@@ -229,17 +229,17 @@ async function getWebsiteAlertsSection(): Promise<AdminDashboardSection> {
 export async function getAdminDashboardData(): Promise<AdminDashboardData> {
   const adminConfig = getSupabaseAdminConfig();
   const settings = [
-    { label: "NEXT_PUBLIC_SUPABASE_URL", isConfigured: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) },
-    { label: "NEXT_PUBLIC_SUPABASE_ANON_KEY", isConfigured: Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) },
-    { label: "SUPABASE_SERVICE_ROLE_KEY", isConfigured: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY) },
-    { label: "ADMIN_EMAIL", isConfigured: Boolean(process.env.ADMIN_EMAIL) }
+    { label: "Supabase project connection", isConfigured: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) },
+    { label: "Browser auth key", isConfigured: Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) },
+    { label: "Server data access", isConfigured: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY) },
+    { label: "Admin identity", isConfigured: Boolean(process.env.ADMIN_EMAIL) }
   ];
 
   if (!adminConfig.isConfigured) {
     return {
       isConfigured: false,
       setupMessage:
-        "Add NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to load admin dashboard records.",
+        "Admin data access is not fully configured for this environment.",
       settings,
       sections: [
         emptySection("Leads", "Latest captured sales and contact leads."),

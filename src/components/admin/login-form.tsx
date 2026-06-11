@@ -5,10 +5,9 @@ import { useRouter } from "next/navigation";
 
 type LoginFormProps = {
   isConfigured: boolean;
-  adminEmail: string;
 };
 
-export function LoginForm({ isConfigured, adminEmail }: LoginFormProps) {
+export function LoginForm({ isConfigured }: LoginFormProps) {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -36,7 +35,6 @@ export function LoginForm({ isConfigured, adminEmail }: LoginFormProps) {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              email: formData.get("email"),
               password: formData.get("password")
             })
           });
@@ -58,22 +56,6 @@ export function LoginForm({ isConfigured, adminEmail }: LoginFormProps) {
         }
       }}
     >
-      <div>
-        <label className="text-sm font-bold text-ink" htmlFor="email">
-          Admin email
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          defaultValue={adminEmail}
-          autoComplete="email"
-          disabled={!isConfigured || status === "submitting"}
-          className="mt-2 min-h-12 w-full rounded-md border border-line bg-white px-4 text-sm font-semibold text-ink outline-none transition focus:border-blue001"
-          required
-        />
-      </div>
-
       <div>
         <label className="text-sm font-bold text-ink" htmlFor="password">
           Password

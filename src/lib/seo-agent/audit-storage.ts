@@ -62,7 +62,7 @@ export async function runAndStoreSeoAudit() {
 
   if (!config.isConfigured) {
     throw new Error(
-      "Supabase is not connected yet. Add NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY, then run src/lib/db/seo-schema.sql."
+      "Supabase is not connected yet. Add the required server-side Supabase settings, then run src/lib/db/seo-schema.sql."
     );
   }
 
