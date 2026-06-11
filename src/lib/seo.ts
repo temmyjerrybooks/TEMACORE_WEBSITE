@@ -5,7 +5,13 @@ export const defaultSeoDescription =
   "Temacore helps businesses in North America, the UK, and Europe build reliable remote operations teams and custom business applications through a managed BPO and technology delivery model.";
 
 export function getSiteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? site.domain).replace(/\/$/, "");
+  const configuredUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.domain).replace(/\/$/, "");
+
+  if (configuredUrl === "https://temacore.com") {
+    return "https://www.temacore.com";
+  }
+
+  return configuredUrl;
 }
 
 export function absoluteUrl(path = "/") {

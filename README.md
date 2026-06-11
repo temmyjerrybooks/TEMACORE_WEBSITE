@@ -22,7 +22,7 @@ npm run dev
 This project is ready for Vercel. Add environment variables later when Supabase is connected:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://temacore.com
+NEXT_PUBLIC_SITE_URL=https://www.temacore.com
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
@@ -51,7 +51,7 @@ Form notification emails use Resend. In Vercel, add:
 
 - `RESEND_API_KEY`
 - `NOTIFICATION_EMAIL_TO`, for example `info@temacore.com`
-- `NOTIFICATION_EMAIL_FROM`, for example `TEMACORE <noreply@temacore.com>`
+- `NOTIFICATION_EMAIL_FROM`, for example `TEMACORE <info@temacore.com>`
 
 If `RESEND_API_KEY` is not set, form submissions still save to Supabase but no email is sent.
 
@@ -59,7 +59,7 @@ If `RESEND_API_KEY` is not set, form submissions still save to Supabase but no e
 
 The site includes reusable metadata helpers, sitemap generation, robots.txt, llms.txt, JSON-LD schema helpers, service FAQs, related service links, and a protected future SEO Agent route at `/admin/seo`.
 
-Set `NEXT_PUBLIC_SITE_URL=https://temacore.com` in Vercel so canonical URLs, sitemap URLs, robots.txt, and llms.txt use the production domain.
+Set `NEXT_PUBLIC_SITE_URL=https://www.temacore.com` in Vercel so canonical URLs, sitemap URLs, robots.txt, and llms.txt use the production domain currently serving the site.
 
 `src/lib/indexnow.ts` contains a disabled-by-default IndexNow helper. To enable it later, add `INDEXNOW_KEY`, publish the matching key file at `/{key}.txt`, and call `submitIndexNowUrls()` from a trusted server workflow after publishing or updating pages.
 

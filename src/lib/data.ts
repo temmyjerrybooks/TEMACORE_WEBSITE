@@ -24,7 +24,7 @@ export const site = {
   name: "Temacore",
   legalDescriptor: "US-registered global operations and technology company",
   email: "info@temacore.com",
-  domain: "https://temacore.com/",
+  domain: "https://www.temacore.com/",
   description:
     "Temacore builds remote operations teams, outsourcing systems, customer support workflows, and custom business technology for companies in North America, the UK, and Europe."
 };

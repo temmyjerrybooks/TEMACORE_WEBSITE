@@ -68,7 +68,7 @@ export async function sendSubmissionNotification(payload: NotificationPayload) {
     return false;
   }
 
-  const from = process.env.NOTIFICATION_EMAIL_FROM ?? "TEMACORE <onboarding@resend.dev>";
+  const from = process.env.NOTIFICATION_EMAIL_FROM ?? "TEMACORE <info@temacore.com>";
   const to = process.env.NOTIFICATION_EMAIL_TO ?? "info@temacore.com";
 
   const response = await fetch("https://api.resend.com/emails", {
