@@ -20,7 +20,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Temacore"
         title="A global operations and technology partner built for modern business execution."
-        body={`${site.name} is a ${site.legalDescriptor}. We help companies build dependable operating capacity with remote teams, outsourcing workflows, business applications, and automation.`}
+        body={`${site.name} is a ${site.legalDescriptor}. We help companies build dependable operating capacity with remote teams, outsourcing workflows, business applications, automation, insurance technology platforms, and developing AI-assisted workflow intelligence.`}
       />
 
       <section className="bg-white py-20 md:py-24">

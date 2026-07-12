@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/lib/data";
 
 export const defaultSeoDescription =
-  "Temacore helps businesses in North America, the UK, and Europe build reliable remote operations teams and custom business applications through a managed BPO and technology delivery model.";
+  "Temacore combines managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence for organizations building smarter service delivery.";
 
 export function getSiteUrl() {
   const configuredUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.domain).replace(/\/$/, "");

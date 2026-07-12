@@ -1,11 +1,15 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  Bot,
+  BriefcaseBusiness,
   CheckCircle2,
   CircleDot,
+  Code2,
   Gauge,
   LockKeyhole,
   RadioTower,
+  ShieldCheck,
   Sparkles
 } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button-link";
@@ -42,17 +46,17 @@ export function HomeHero() {
             US-registered global operations partner
           </p>
           <h1 className="text-4xl font-black tracking-tight md:text-6xl lg:text-7xl">
-            Build cleaner operations with teams and systems that actually run.
+            AI-Powered Operations, Insurance and Technology Infrastructure
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50/90 md:text-xl">
-            Temacore provides managed BPO, remote operations teams, customer support, back-office execution, and custom business applications for companies serving North America, the UK, and Europe.
+            Temacore combines managed BPO services, custom business applications, insurance technology platforms and AI-assisted workflow intelligence to help organizations build smarter operations.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={routes.contact} variant="light">
-              Book a Consultation
+            <ButtonLink href={routes.platforms} variant="light">
+              Explore Our Platforms
             </ButtonLink>
-            <ButtonLink href={routes.services} variant="outline" className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001">
-              View Services
+            <ButtonLink href={routes.contact} variant="outline" className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001">
+              Book a Consultation
             </ButtonLink>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -73,9 +77,9 @@ export function HomeHero() {
 
 function DashboardVisual() {
   const queue = [
-    { label: "Lead follow-up", value: "94%", tone: "bg-signal" },
-    { label: "Support queue", value: "82%", tone: "bg-blue002" },
-    { label: "Back-office tasks", value: "76%", tone: "bg-warm" }
+    { label: "Workflow status", value: "In review", width: "84%", tone: "bg-signal" },
+    { label: "Quality review", value: "Monitored", width: "76%", tone: "bg-blue002" },
+    { label: "Human review", value: "Active", width: "68%", tone: "bg-warm" }
   ];
 
   return (
@@ -89,7 +93,7 @@ function DashboardVisual() {
           </div>
           <div className="flex items-center gap-2 rounded-md bg-signal/15 px-3 py-2 text-xs font-bold text-emerald-200">
             <CircleDot className="h-3.5 w-3.5" aria-hidden="true" />
-            Live SLA
+            Workflow Status
           </div>
         </div>
 
@@ -107,7 +111,7 @@ function DashboardVisual() {
                     <span>{item.value}</span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-                    <div className={`${item.tone} h-full rounded-full`} style={{ width: item.value }} />
+                    <div className={`${item.tone} h-full rounded-full`} style={{ width: item.width }} />
                   </div>
                 </div>
               ))}
@@ -120,8 +124,8 @@ function DashboardVisual() {
                 <p className="text-sm font-black">Coverage</p>
                 <RadioTower className="h-5 w-5 text-blue002" aria-hidden="true" />
               </div>
-              <p className="mt-4 text-3xl font-black">3 regions</p>
-              <p className="mt-1 text-xs text-slate-500">North America, UK, Europe</p>
+              <p className="mt-4 text-3xl font-black">Global delivery</p>
+              <p className="mt-1 text-xs text-slate-500">Operations, technology, and insurance workflows</p>
             </div>
             <div className="rounded-md border border-white/10 bg-ink p-4">
               <div className="flex items-center justify-between">
@@ -204,6 +208,63 @@ export function ServicesOverview({ showAll = false }: { showAll?: boolean }) {
               body={service.summary}
               meta={service.eyebrow}
             />
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+export function EcosystemSection() {
+  const ecosystem = [
+    {
+      title: "Managed BPO Services",
+      body: "Managed operations support for recurring customer, back-office, CRM, and follow-up workflows.",
+      icon: BriefcaseBusiness,
+      href: `${routes.services}/business-process-outsourcing`
+    },
+    {
+      title: "Custom Business Applications",
+      body: "Practical portals, CRM systems, dashboards, and automation designed around real operating work.",
+      icon: Code2,
+      href: routes.technology
+    },
+    {
+      title: "Life Insurance Technology",
+      body: "Technology designed to support life insurance onboarding, policy workflows, operations, and reporting.",
+      icon: ShieldCheck,
+      href: routes.insurtech
+    },
+    {
+      title: "General Insurance Technology",
+      body: "Workflow support for general insurance records, applications, claims operations, and visibility.",
+      icon: ShieldCheck,
+      href: routes.insurtech
+    },
+    {
+      title: "AI Workflow Intelligence",
+      body: "A developing AI-assisted layer for workflow intelligence, operational support, and human review.",
+      icon: Bot,
+      href: routes.ai
+    }
+  ];
+
+  return (
+    <section className="bg-white py-20 md:py-24">
+      <Container>
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeading
+            eyebrow="Connected ecosystem"
+            title="Built Across Operations, Insurance and AI"
+            body="Temacore brings managed operations, custom business applications, insurance technology, and AI-assisted workflow intelligence together within one connected ecosystem."
+          />
+          <ButtonLink href={routes.venture} variant="outline" className="w-fit">
+            Venture Overview
+          </ButtonLink>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {ecosystem.map((item) => (
+            <InfoCard key={item.title} {...item} />
           ))}
         </div>
       </Container>

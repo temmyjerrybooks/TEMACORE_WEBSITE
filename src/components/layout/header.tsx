@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, ShieldCheck, X } from "lucide-react";
-import { routes, mainNavigation } from "@/lib/navigation";
+import { routes, mainNavigation, platformNavigation } from "@/lib/navigation";
 import { services } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "@/components/ui/button-link";
@@ -84,6 +84,39 @@ export function Header() {
                           </Link>
                         );
                       })}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            if (item.href === routes.platforms) {
+              return (
+                <div key={item.href} className="group relative">
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "inline-flex items-center gap-1 rounded-md px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-blue001/5 hover:text-blue001",
+                      isActive(item.href) && "bg-blue001/10 text-blue001"
+                    )}
+                  >
+                    Platforms
+                    <ChevronDown className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <div className="invisible absolute left-1/2 top-full w-[540px] -translate-x-1/2 pt-3 opacity-0 transition duration-200 group-hover:visible group-hover:opacity-100">
+                    <div className="grid grid-cols-2 gap-3 rounded-lg border border-line bg-white p-4 shadow-[0_24px_80px_rgba(15,23,42,0.16)]">
+                      {platformNavigation.map((platform) => (
+                        <Link
+                          key={platform.href}
+                          href={platform.href}
+                          className="rounded-md p-3 transition hover:bg-paper"
+                        >
+                          <span className="block text-sm font-bold text-ink">{platform.label}</span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-500">
+                            {platform.description}
+                          </span>
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -180,6 +213,13 @@ export function Header() {
                     {item.label}
                   </Link>
                 ))}
+                <Link
+                  href={routes.howItWorks}
+                  onClick={() => setMobileOpen(false)}
+                  className="rounded-md px-3 py-3 text-base font-bold text-ink hover:bg-paper"
+                >
+                  How It Works
+                </Link>
               </nav>
 
               <div className="mt-6 border-t border-line pt-5">
@@ -195,6 +235,24 @@ export function Header() {
                       className="rounded-md px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-paper hover:text-blue001"
                     >
                       {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-6 border-t border-line pt-5">
+                <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
+                  Platforms
+                </p>
+                <div className="grid gap-1">
+                  {platformNavigation.map((platform) => (
+                    <Link
+                      key={platform.href}
+                      href={platform.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="rounded-md px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-paper hover:text-blue001"
+                    >
+                      {platform.label}
                     </Link>
                   ))}
                 </div>

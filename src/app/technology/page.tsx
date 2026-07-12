@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/sections/home-sections";
+import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { InfoCard } from "@/components/ui/info-card";
 import { PageHero } from "@/components/ui/page-hero";
@@ -35,6 +36,14 @@ export default function TechnologyPage() {
             {technologySolutions.map((solution) => (
               <InfoCard key={solution.title} icon={solution.icon} title={solution.title} body={solution.body} />
             ))}
+          </div>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href={routes.insurtech} variant="outline">
+              Explore Insurance Technology
+            </ButtonLink>
+            <ButtonLink href={routes.ai} variant="outline">
+              AI Workflow Intelligence
+            </ButtonLink>
           </div>
         </Container>
       </section>

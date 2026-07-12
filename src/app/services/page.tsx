@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { ServicesOverview, CTASection } from "@/components/sections/home-sections";
+import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { services } from "@/lib/data";
+import { routes } from "@/lib/navigation";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -39,6 +41,14 @@ export default function ServicesPage() {
                 <p className="mt-3 text-sm leading-6 text-slate-600">{service.description}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href={routes.platforms} variant="outline">
+              Explore Our Platforms
+            </ButtonLink>
+            <ButtonLink href={routes.ai} variant="outline">
+              Explore AI Workflow Intelligence
+            </ButtonLink>
           </div>
         </Container>
       </section>

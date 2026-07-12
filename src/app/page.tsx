@@ -3,6 +3,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import {
   ApplicationDevelopmentSection,
   CTASection,
+  EcosystemSection,
   HomeHero,
   HowItWorksSection,
   IndustriesPreview,
@@ -28,6 +29,7 @@ export default function HomePage() {
       <HomeHero />
       <TrustBar />
       <ServicesOverview />
+      <EcosystemSection />
       <OperationsSection />
       <ApplicationDevelopmentSection />
       <IndustriesPreview />

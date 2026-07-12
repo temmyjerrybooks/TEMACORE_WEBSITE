@@ -37,6 +37,34 @@ export function websiteSchema() {
   };
 }
 
+export function webPageSchema({
+  name,
+  description,
+  path
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url: absoluteUrl(path),
+    isPartOf: {
+      "@type": "WebSite",
+      name: site.name,
+      url: getSiteUrl()
+    },
+    about: {
+      "@type": "Organization",
+      name: site.name,
+      url: getSiteUrl()
+    }
+  };
+}
+
 export function serviceSchema(service: Service) {
   return {
     "@context": "https://schema.org",

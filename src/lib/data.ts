@@ -26,7 +26,7 @@ export const site = {
   email: "info@temacore.com",
   domain: "https://www.temacore.com/",
   description:
-    "Temacore builds remote operations teams, outsourcing systems, customer support workflows, and custom business technology for companies in North America, the UK, and Europe."
+    "Temacore combines managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence for organizations building smarter service delivery."
 };
 
 export type ServiceSlug =
