@@ -89,3 +89,20 @@ Set `NEXT_PUBLIC_SITE_URL=https://www.temacore.com` in Vercel so canonical URLs,
 `src/lib/indexnow.ts` contains a disabled-by-default IndexNow helper. To enable it later, add `INDEXNOW_KEY`, publish the matching key file at `/{key}.txt`, and call `submitIndexNowUrls()` from a trusted server workflow after publishing or updating pages.
 
 The `topsborg-reference/` folder is ignored and should remain local only.
+
+## Investor Presentation Assets
+
+`/investors` is an unlisted, noindex investor-presentation route. It is intentionally excluded from the public sitemap and `llms.txt`.
+
+Export the supplied investor deck as the following production assets before setting `investorDeckAssets.ready` and `investorDeckAssets.pdfAvailable` to `true` in `src/lib/investor-deck.ts`:
+
+```text
+public/investor-deck/
+  cover.webp                         2560 × 1440
+  slide-01.webp through slide-15.webp 2560 × 1440 each
+  temacore-investor-deck.pdf
+```
+
+Use the original deck as the source of truth. Do not publish the editable PowerPoint file. If the exported assets are unavailable, the production page shows a safe contact state instead of broken images; development additionally shows the expected asset manifest.
+
+For optional, privacy-conscious deck analytics, run `src/lib/db/investor-deck-schema.sql` after Supabase is configured. The public viewer continues to work if Supabase or the analytics table is unavailable. The current access-protection helper is intentionally inactive: publicly served assets cannot be truly protected until they move to authenticated/private storage or server-delivered asset routes.

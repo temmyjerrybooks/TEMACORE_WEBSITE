@@ -226,6 +226,38 @@ async function getWebsiteAlertsSection(): Promise<AdminDashboardSection> {
   };
 }
 
+async function getInvestorPresentationSection(): Promise<AdminDashboardSection> {
+  const supabase = getSupabaseAdminClient();
+  const [{ count, error: countError }, { data, error }] = await Promise.all([
+    supabase.from("investor_deck_events").select("id", { count: "exact", head: true }),
+    supabase
+      .from("investor_deck_events")
+      .select("event_name, slide_number, created_at")
+      .order("created_at", { ascending: false })
+      .limit(5)
+  ]);
+
+  if (countError || error) {
+    return sectionError(
+      "Investor presentation",
+      "Anonymous investor deck engagement activity.",
+      countError?.message ?? error?.message ?? "Unable to load investor presentation activity.",
+      "/admin/investors"
+    );
+  }
+
+  return {
+    title: "Investor presentation",
+    description: "Anonymous investor deck engagement activity.",
+    href: "/admin/investors",
+    countLabel: countLabel(count),
+    items: (data ?? []).map((event) => ({
+      title: event.event_name.replaceAll("_", " "),
+      meta: `${event.slide_number ? `Slide ${event.slide_number} - ` : ""}${formatDate(event.created_at)}`
+    }))
+  };
+}
+
 export async function getAdminDashboardData(): Promise<AdminDashboardData> {
   const adminConfig = getSupabaseAdminConfig();
   const settings = [
@@ -247,6 +279,7 @@ export async function getAdminDashboardData(): Promise<AdminDashboardData> {
         emptySection("Project requests", "Custom application, CRM, portal, and automation requests."),
         emptySection("Talent applications", "Talent pool applications and screening queue."),
         emptySection("SEO Agent", "SEO audit issues and recommendations.", "/admin/seo"),
+        emptySection("Investor presentation", "Anonymous investor deck engagement activity.", "/admin/investors"),
         emptySection("Website alerts", "Technical, email, API, and security alert queue.")
       ]
     };
@@ -258,6 +291,7 @@ export async function getAdminDashboardData(): Promise<AdminDashboardData> {
     getProjectRequestsSection(),
     getTalentApplicationsSection(),
     getSeoAgentSection(),
+    getInvestorPresentationSection(),
     getWebsiteAlertsSection()
   ]);
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bot, Code2, HeartPulse, Layers3, ShieldCheck, UsersRound } from "lucide-react";
+import { Bot, Code2, HeartPulse, Layers3, Presentation, ShieldCheck, UsersRound } from "lucide-react";
 import { CTASection } from "@/components/sections/home-sections";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ButtonLink } from "@/components/ui/button-link";
@@ -188,6 +188,12 @@ export default function VenturePage() {
               icon={Layers3}
               title="About Temacore"
               body="Learn more about Temacore's operating and technology direction."
+            />
+            <InfoCard
+              href={routes.investors}
+              icon={Presentation}
+              title="Investor Presentation"
+              body="Open Temacore's unlisted investor presentation for a deeper view of the platform direction."
             />
           </div>
         </Container>

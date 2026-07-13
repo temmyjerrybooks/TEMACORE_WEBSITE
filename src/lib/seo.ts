@@ -25,7 +25,11 @@ type SeoMetadataInput = {
   description?: string;
   path?: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
   noIndex?: boolean;
+  noArchive?: boolean;
 };
 
 export function buildMetadata({
@@ -33,7 +37,11 @@ export function buildMetadata({
   description = defaultSeoDescription,
   path = "/",
   image = "/logo.png",
-  noIndex = false
+  imageWidth = 1024,
+  imageHeight = 1024,
+  imageAlt = "TEMACORE logo",
+  noIndex = false,
+  noArchive = false
 }: SeoMetadataInput): Metadata {
   const canonical = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
@@ -52,9 +60,9 @@ export function buildMetadata({
       images: [
         {
           url: imageUrl,
-          width: 1024,
-          height: 1024,
-          alt: "TEMACORE logo"
+          width: imageWidth,
+          height: imageHeight,
+          alt: imageAlt
         }
       ],
       type: "website"
@@ -67,7 +75,8 @@ export function buildMetadata({
     },
     robots: {
       index: !noIndex,
-      follow: !noIndex
+      follow: !noIndex,
+      noarchive: noArchive
     }
   };
 }

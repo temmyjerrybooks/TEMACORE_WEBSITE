@@ -6,6 +6,7 @@ import {
   ClipboardList,
   Contact,
   FileText,
+  Presentation,
   SearchCheck,
   Settings,
   ShieldCheck,
@@ -31,6 +32,7 @@ const sectionIcons = {
   "Project requests": BriefcaseBusiness,
   "Talent applications": UserRoundCheck,
   "SEO Agent": SearchCheck,
+  "Investor presentation": Presentation,
   "Website alerts": AlertTriangle
 };
 

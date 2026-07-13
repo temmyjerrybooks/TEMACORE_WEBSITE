@@ -157,6 +157,27 @@ export type WebsiteAlert = {
   created_at: string;
 };
 
+export type InvestorDeckEventName =
+  | "investor_deck_page_view"
+  | "investor_deck_started"
+  | "investor_deck_slide_viewed"
+  | "investor_deck_halfway_reached"
+  | "investor_deck_completed"
+  | "investor_deck_pdf_downloaded"
+  | "investor_deck_contact_clicked"
+  | "investor_deck_fullscreen_opened"
+  | "investor_deck_autoplay_started";
+
+export type InvestorDeckEvent = {
+  id: string;
+  session_id: string;
+  event_name: InvestorDeckEventName;
+  slide_number?: number | null;
+  referrer?: string | null;
+  user_agent_category?: "desktop" | "mobile" | "tablet" | null;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -271,6 +292,12 @@ export type Database = {
           status?: SeoWorkflowStatus;
         };
         Update: Partial<Omit<WebsiteAlert, "id" | "created_at">>;
+        Relationships: [];
+      };
+      investor_deck_events: {
+        Row: InvestorDeckEvent;
+        Insert: Omit<InvestorDeckEvent, "id" | "created_at">;
+        Update: Partial<Omit<InvestorDeckEvent, "id" | "created_at">>;
         Relationships: [];
       };
     };
