@@ -48,7 +48,7 @@ export default function PlatformsPage() {
         title="Operations, software, insurance, and intelligence built to work together."
         body="Temacore connects managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence so organizations can build more coordinated service delivery."
       >
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
             Discuss a Platform Project
           </ButtonLink>
@@ -58,6 +58,13 @@ export default function PlatformsPage() {
             className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
           >
             Explore Insurance Technology
+          </ButtonLink>
+          <ButtonLink
+            href={routes.whitepaper}
+            variant="outline"
+            className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
+          >
+            Read Our Whitepaper
           </ButtonLink>
         </div>
       </PageHero>

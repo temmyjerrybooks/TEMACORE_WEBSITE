@@ -178,6 +178,27 @@ export type InvestorDeckEvent = {
   created_at: string;
 };
 
+export type WhitepaperEventName =
+  | "whitepaper_page_view"
+  | "whitepaper_started"
+  | "whitepaper_page_viewed"
+  | "whitepaper_halfway_reached"
+  | "whitepaper_completed"
+  | "whitepaper_pdf_downloaded"
+  | "whitepaper_contact_clicked"
+  | "whitepaper_fullscreen_opened"
+  | "whitepaper_view_mode_changed";
+
+export type WhitepaperEvent = {
+  id: string;
+  session_id: string;
+  event_name: WhitepaperEventName;
+  page_number?: number | null;
+  referrer?: string | null;
+  user_agent_category?: "desktop" | "mobile" | "tablet" | null;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -298,6 +319,12 @@ export type Database = {
         Row: InvestorDeckEvent;
         Insert: Omit<InvestorDeckEvent, "id" | "created_at">;
         Update: Partial<Omit<InvestorDeckEvent, "id" | "created_at">>;
+        Relationships: [];
+      };
+      whitepaper_events: {
+        Row: WhitepaperEvent;
+        Insert: Omit<WhitepaperEvent, "id" | "created_at">;
+        Update: Partial<Omit<WhitepaperEvent, "id" | "created_at">>;
         Relationships: [];
       };
     };

@@ -95,6 +95,46 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
   };
 }
 
+export function whitepaperSchema({
+  headline,
+  description,
+  path,
+  coverImage,
+  pdfUrl
+}: {
+  headline: string;
+  description: string;
+  path: string;
+  coverImage: string;
+  pdfUrl: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline,
+    description,
+    url: absoluteUrl(path),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(path)
+    },
+    image: absoluteUrl(coverImage),
+    datePublished: "2026-07",
+    version: "1.0",
+    publisher: {
+      "@type": "Organization",
+      name: "Temacore LLC",
+      url: getSiteUrl(),
+      logo: absoluteUrl("/logo.png")
+    },
+    associatedMedia: {
+      "@type": "MediaObject",
+      contentUrl: absoluteUrl(pdfUrl),
+      encodingFormat: "application/pdf"
+    }
+  };
+}
+
 export function faqSchema(service: Service) {
   const faqs = getServiceFaqs(service.slug);
 

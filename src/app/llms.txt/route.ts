@@ -50,6 +50,7 @@ ${serviceLinks}
 - Platforms: ${absoluteUrl(routes.platforms)}
 - AI Workflow Intelligence: ${absoluteUrl(routes.ai)}
 - Insurance Technology: ${absoluteUrl(routes.insurtech)}
+- Connected Operations Intelligence Whitepaper: ${absoluteUrl(routes.whitepaper)}
 - Industries: ${absoluteUrl(routes.industries)}
 - Venture: ${absoluteUrl(routes.venture)}
 - How It Works: ${absoluteUrl(routes.howItWorks)}

@@ -69,7 +69,7 @@ export default function VenturePage() {
         title="Connected infrastructure for operations, insurance, and AI."
         body="Temacore builds the operational, software, insurance, and intelligence infrastructure businesses need to deliver services more efficiently."
       >
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.platforms} variant="light">
             Explore the Platform Ecosystem
           </ButtonLink>
@@ -79,6 +79,13 @@ export default function VenturePage() {
             className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
           >
             Contact Temacore
+          </ButtonLink>
+          <ButtonLink
+            href={routes.whitepaper}
+            variant="outline"
+            className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
+          >
+            Connected Operations Intelligence
           </ButtonLink>
         </div>
       </PageHero>

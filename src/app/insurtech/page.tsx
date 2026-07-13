@@ -82,7 +82,7 @@ export default function InsurtechPage() {
         title="Technology platforms for insurance operations."
         body="Temacore has developed technology platforms for life insurance and general insurance operations. They are designed to support clearer workflows, records, documents, and operational visibility while exact implementation is scoped to the organization and use case."
       >
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
             Discuss an Insurance Project
           </ButtonLink>
@@ -92,6 +92,13 @@ export default function InsurtechPage() {
             className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
           >
             Talk to Temacore
+          </ButtonLink>
+          <ButtonLink
+            href={routes.whitepaper}
+            variant="outline"
+            className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
+          >
+            Read Our Whitepaper
           </ButtonLink>
         </div>
       </PageHero>

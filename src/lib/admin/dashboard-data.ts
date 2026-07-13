@@ -258,6 +258,38 @@ async function getInvestorPresentationSection(): Promise<AdminDashboardSection> 
   };
 }
 
+async function getWhitepaperSection(): Promise<AdminDashboardSection> {
+  const supabase = getSupabaseAdminClient();
+  const [{ count, error: countError }, { data, error }] = await Promise.all([
+    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }),
+    supabase
+      .from("whitepaper_events")
+      .select("event_name, page_number, created_at")
+      .order("created_at", { ascending: false })
+      .limit(5)
+  ]);
+
+  if (countError || error) {
+    return sectionError(
+      "Whitepaper",
+      "Anonymous whitepaper reading activity.",
+      countError?.message ?? error?.message ?? "Unable to load whitepaper activity.",
+      "/admin/whitepaper"
+    );
+  }
+
+  return {
+    title: "Whitepaper",
+    description: "Anonymous whitepaper reading activity.",
+    href: "/admin/whitepaper",
+    countLabel: countLabel(count),
+    items: (data ?? []).map((event) => ({
+      title: event.event_name.replaceAll("_", " "),
+      meta: `${event.page_number ? `Page ${event.page_number} - ` : ""}${formatDate(event.created_at)}`
+    }))
+  };
+}
+
 export async function getAdminDashboardData(): Promise<AdminDashboardData> {
   const adminConfig = getSupabaseAdminConfig();
   const settings = [
@@ -280,6 +312,13 @@ export async function getAdminDashboardData(): Promise<AdminDashboardData> {
         emptySection("Talent applications", "Talent pool applications and screening queue."),
         emptySection("SEO Agent", "SEO audit issues and recommendations.", "/admin/seo"),
         emptySection("Investor presentation", "Anonymous investor deck engagement activity.", "/admin/investors"),
+        {
+          title: "Whitepaper",
+          description: "Anonymous whitepaper reading activity.",
+          href: "/admin/whitepaper",
+          countLabel: "Unavailable",
+          items: []
+        },
         emptySection("Website alerts", "Technical, email, API, and security alert queue.")
       ]
     };
@@ -292,6 +331,7 @@ export async function getAdminDashboardData(): Promise<AdminDashboardData> {
     getTalentApplicationsSection(),
     getSeoAgentSection(),
     getInvestorPresentationSection(),
+    getWhitepaperSection(),
     getWebsiteAlertsSection()
   ]);
 

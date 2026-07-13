@@ -6,6 +6,7 @@ export const routes = {
   ai: "/ai",
   insurtech: "/insurtech",
   investors: "/investors",
+  whitepaper: "/whitepaper",
   industries: "/industries",
   venture: "/venture",
   howItWorks: "/how-it-works",

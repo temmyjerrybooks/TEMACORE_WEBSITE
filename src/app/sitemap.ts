@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.platforms,
     routes.ai,
     routes.insurtech,
+    routes.whitepaper,
     routes.industries,
     routes.venture,
     routes.howItWorks,

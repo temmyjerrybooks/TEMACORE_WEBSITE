@@ -33,6 +33,7 @@ const sectionIcons = {
   "Talent applications": UserRoundCheck,
   "SEO Agent": SearchCheck,
   "Investor presentation": Presentation,
+  Whitepaper: FileText,
   "Website alerts": AlertTriangle
 };
 

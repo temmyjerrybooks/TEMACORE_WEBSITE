@@ -49,7 +49,7 @@ export default function AiPage() {
         title="AI-assisted workflow intelligence with people accountable for the decisions."
         body="Temacore is building an AI intelligence layer intended to support BPO services, insurance platforms, and custom applications. The direction is practical: help teams review information, improve workflow visibility, and act with stronger context."
       >
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
             Discuss an AI Workflow
           </ButtonLink>
@@ -59,6 +59,13 @@ export default function AiPage() {
             className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
           >
             Explore Insurance Technology
+          </ButtonLink>
+          <ButtonLink
+            href={routes.whitepaper}
+            variant="outline"
+            className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001"
+          >
+            Explore the Operating Model
           </ButtonLink>
         </div>
       </PageHero>
