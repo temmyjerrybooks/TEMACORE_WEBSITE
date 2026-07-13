@@ -209,6 +209,14 @@ export default function InsurtechPage() {
               body="Explore custom applications, client portals, CRM systems, dashboards, and workflow automation."
             />
           </div>
+          <div className="mt-8 flex flex-col gap-4 rounded-lg border border-line bg-paper p-6 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-3xl text-sm leading-6 text-slate-600">
+              Learn about the founder perspective connecting insurance systems, operations automation, and responsible technology delivery.
+            </p>
+            <ButtonLink href={routes.founder} variant="outline" className="shrink-0">
+              Meet the Founder
+            </ButtonLink>
+          </div>
         </Container>
       </section>
 

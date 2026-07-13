@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Mail, Presentation } from "lucide-react";
 import { InvestorDeckViewer } from "@/components/investors/investor-deck-viewer";
 import { ButtonLink } from "@/components/ui/button-link";
@@ -13,6 +14,7 @@ import {
 import { routes } from "@/lib/navigation";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/data";
+import { founderProfile } from "@/lib/founder-profile";
 
 const description =
   "View Temacore's investor presentation covering its managed operations, custom applications, insurance technology platforms and AI-assisted workflow intelligence.";
@@ -55,7 +57,11 @@ export default function InvestorsPage() {
         <Container>
           {investorDeckAssets.ready ? <InvestorDeckViewer /> : <InvestorDeckAssetNotice />}
         <p className="mx-auto mt-6 max-w-4xl text-center text-xs leading-5 text-slate-500">
-          This presentation is shared as an unlisted investor resource. It is not indexed in Temacore&apos;s public sitemap or AI-search resource file.
+          This presentation is shared as an unlisted investor resource. It is not indexed in Temacore&apos;s public sitemap or AI-search resource file. Learn about {" "}
+          <Link href={routes.founder} className="font-semibold text-blue001 underline-offset-4 hover:underline">
+            {founderProfile.name}, Temacore&apos;s founder
+          </Link>
+          {" "}and the perspective behind the platform direction.
         </p>
         </Container>
       </section>

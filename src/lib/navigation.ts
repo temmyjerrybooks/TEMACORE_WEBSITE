@@ -7,6 +7,7 @@ export const routes = {
   insurtech: "/insurtech",
   investors: "/investors",
   whitepaper: "/whitepaper",
+  founder: "/founder",
   industries: "/industries",
   venture: "/venture",
   howItWorks: "/how-it-works",
@@ -52,6 +53,7 @@ export const platformNavigation = [
 export const footerNavigation = {
   company: [
     { label: "About Temacore", href: routes.about },
+    { label: "Meet the Founder", href: routes.founder },
     { label: "How It Works", href: routes.howItWorks },
     { label: "Industries", href: routes.industries },
     { label: "Careers", href: routes.careers }

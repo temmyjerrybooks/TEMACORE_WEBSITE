@@ -136,6 +136,14 @@ export default function AiPage() {
               body="The aim is to support accountable decision-makers with context and recommendations, not to make final regulated decisions automatically."
             />
           </div>
+          <div className="mt-8 flex flex-col gap-4 rounded-lg border border-line bg-white p-6 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-3xl text-sm leading-6 text-slate-600">
+              See the founder perspective behind Temacore&apos;s human-in-the-loop approach to AI-assisted workflow intelligence.
+            </p>
+            <ButtonLink href={routes.founder} variant="outline" className="shrink-0">
+              Meet the Founder
+            </ButtonLink>
+          </div>
         </Container>
       </section>
 

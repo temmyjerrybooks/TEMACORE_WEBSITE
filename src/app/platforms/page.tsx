@@ -5,7 +5,8 @@ import {
   Code2,
   FileCheck2,
   Layers3,
-  ShieldCheck
+  ShieldCheck,
+  UserRound
 } from "lucide-react";
 import { CTASection } from "@/components/sections/home-sections";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -107,6 +108,12 @@ export default function PlatformsPage() {
               title="AI Workflow Intelligence"
               body="Temacore is building AI-assisted systems for workflow intelligence, decision support, and operational recommendations with people reviewing accountable decisions."
               href={routes.ai}
+            />
+            <InfoCard
+              icon={UserRound}
+              title="Founder Perspective"
+              body="Meet the founder connecting operating workflows, custom systems, insurance technology, and AI-assisted workflow intelligence."
+              href={routes.founder}
             />
           </div>
         </Container>

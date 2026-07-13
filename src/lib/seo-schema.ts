@@ -135,6 +135,67 @@ export function whitepaperSchema({
   };
 }
 
+export function founderProfilePageSchema({
+  name,
+  description,
+  path
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  const url = absoluteUrl(path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${url}#profile`,
+    name,
+    description,
+    url,
+    mainEntity: {
+      "@id": `${url}#person`
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      name: site.name,
+      url: getSiteUrl()
+    }
+  };
+}
+
+export function founderPersonSchema({
+  name,
+  title,
+  path,
+  sameAs,
+  knowsAbout
+}: {
+  name: string;
+  title: string;
+  path: string;
+  sameAs: string[];
+  knowsAbout: string[];
+}) {
+  const url = absoluteUrl(path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${url}#person`,
+    name,
+    jobTitle: title,
+    url,
+    sameAs,
+    worksFor: {
+      "@type": "Organization",
+      name: "Temacore LLC",
+      url: getSiteUrl()
+    },
+    knowsAbout
+  };
+}
+
 export function faqSchema(service: Service) {
   const faqs = getServiceFaqs(service.slug);
 

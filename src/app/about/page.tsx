@@ -3,8 +3,10 @@ import { Container } from "@/components/ui/container";
 import { InfoCard } from "@/components/ui/info-card";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ButtonLink } from "@/components/ui/button-link";
 import { CTASection } from "@/components/sections/home-sections";
 import { site, whyTemacore } from "@/lib/data";
+import { routes } from "@/lib/navigation";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -21,7 +23,11 @@ export default function AboutPage() {
         eyebrow="About Temacore"
         title="A global operations and technology partner built for modern business execution."
         body={`${site.name} is a ${site.legalDescriptor}. We help companies build dependable operating capacity with remote teams, outsourcing workflows, business applications, automation, insurance technology platforms, and developing AI-assisted workflow intelligence.`}
-      />
+      >
+        <ButtonLink href={routes.founder} variant="light">
+          Meet the Founder
+        </ButtonLink>
+      </PageHero>
 
       <section className="bg-white py-20 md:py-24">
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
