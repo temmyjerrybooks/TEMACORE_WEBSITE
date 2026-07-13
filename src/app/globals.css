@@ -222,3 +222,40 @@ summary {
 .animate-scan {
   animation: scan 8s linear infinite;
 }
+
+.investor-deck-fullscreen-root:fullscreen,
+.investor-deck-fullscreen-root:-webkit-full-screen {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+  padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+  border: 0;
+  border-radius: 0;
+  background: var(--color-ink);
+  box-shadow: none;
+}
+
+.investor-deck-fullscreen-root:fullscreen .investor-deck-stage,
+.investor-deck-fullscreen-root:-webkit-full-screen .investor-deck-stage {
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.investor-deck-fullscreen-root:fullscreen .investor-deck-slide-frame,
+.investor-deck-fullscreen-root:-webkit-full-screen .investor-deck-slide-frame {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.investor-deck-fullscreen-root:fullscreen .investor-deck-normal-controls,
+.investor-deck-fullscreen-root:-webkit-full-screen .investor-deck-normal-controls {
+  position: relative;
+  z-index: 30;
+  flex: 0 0 auto;
+  margin-top: 0.75rem;
+}

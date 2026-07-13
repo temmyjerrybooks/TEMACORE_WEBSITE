@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
-import { Download, Mail, TriangleAlert } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, Mail, TriangleAlert } from "lucide-react";
 import { investorDeckAssets, investorDeckSlideCount, investorDeckSlides } from "@/lib/investor-deck";
 import { site } from "@/lib/data";
 import { trackInvestorDeckEvent } from "./analytics";
@@ -13,10 +13,58 @@ import { InvestorDeckThumbnails } from "./investor-deck-thumbnails";
 
 const autoplayIntervalMs = 8000;
 
+const fullscreenPreviousStyle: CSSProperties = {
+  left: "max(0.75rem, env(safe-area-inset-left, 0px))"
+};
+
+const fullscreenNextStyle: CSSProperties = {
+  right: "max(0.75rem, env(safe-area-inset-right, 0px))"
+};
+
+const fullscreenNavigationButtonClass =
+  "pointer-events-auto absolute top-1/2 z-30 inline-flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-footer/85 text-white shadow-[0_12px_30px_rgba(11,16,32,0.34)] backdrop-blur transition hover:bg-white hover:text-blue001 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-40 md:h-16 md:w-16";
+
 type NavigationSource = "manual" | "thumbnail" | "restart" | "autoplay";
+
+type WebkitFullscreenDocument = Document & {
+  webkitFullscreenElement?: Element | null;
+  webkitExitFullscreen?: () => Promise<void> | void;
+};
+
+type WebkitFullscreenElement = HTMLElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void;
+};
 
 function isInteractiveTarget(target: EventTarget | null) {
   return target instanceof Element && Boolean(target.closest("button, a, input, textarea, select, [contenteditable='true']"));
+}
+
+function getFullscreenElement() {
+  const fullscreenDocument = document as WebkitFullscreenDocument;
+
+  return document.fullscreenElement ?? fullscreenDocument.webkitFullscreenElement ?? null;
+}
+
+async function exitFullscreen() {
+  const fullscreenDocument = document as WebkitFullscreenDocument;
+  const exit = document.exitFullscreen ?? fullscreenDocument.webkitExitFullscreen;
+
+  if (!exit) {
+    throw new Error("Full screen is not available in this browser.");
+  }
+
+  await Promise.resolve(exit.call(document));
+}
+
+async function requestFullscreen(element: HTMLElement) {
+  const fullscreenElement = element as WebkitFullscreenElement;
+  const request = element.requestFullscreen ?? fullscreenElement.webkitRequestFullscreen;
+
+  if (!request) {
+    throw new Error("Full screen is not available in this browser.");
+  }
+
+  await Promise.resolve(request.call(element));
 }
 
 export function InvestorDeckViewer() {
@@ -117,7 +165,7 @@ export function InvestorDeckViewer() {
 
   useEffect(() => {
     const handleFullscreenChange = () => {
-      const active = document.fullscreenElement === viewerRef.current;
+      const active = getFullscreenElement() === viewerRef.current;
 
       if (fullscreenWasActive.current && !active) {
         setIsAutoplaying(false);
@@ -128,9 +176,11 @@ export function InvestorDeckViewer() {
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
 
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
     };
   }, []);
 
@@ -143,9 +193,9 @@ export function InvestorDeckViewer() {
           return;
         }
 
-        if (document.fullscreenElement) {
+        if (getFullscreenElement() === viewerRef.current) {
           event.preventDefault();
-          void document.exitFullscreen().catch(() => undefined);
+          void exitFullscreen().catch(() => undefined);
           return;
         }
       }
@@ -225,17 +275,17 @@ export function InvestorDeckViewer() {
   const handleToggleFullscreen = async () => {
     trackStart();
 
-    if (document.fullscreenElement) {
-      await document.exitFullscreen().catch(() => setFullscreenMessage("Unable to exit full screen."));
+    if (getFullscreenElement() === viewerRef.current) {
+      await exitFullscreen().catch(() => setFullscreenMessage("Unable to exit full screen."));
       return;
     }
 
-    if (!viewerRef.current?.requestFullscreen) {
+    if (!viewerRef.current) {
       setFullscreenMessage("Full screen is not available in this browser.");
       return;
     }
 
-    await viewerRef.current.requestFullscreen().then(
+    await requestFullscreen(viewerRef.current).then(
       () => trackInvestorDeckEvent("investor_deck_fullscreen_opened", activeSlideNumber),
       () => setFullscreenMessage("Full screen could not be opened in this browser.")
     );
@@ -262,30 +312,37 @@ export function InvestorDeckViewer() {
       </h2>
       <div
         ref={viewerRef}
-        className="relative overflow-hidden rounded-lg border border-white/15 bg-footer p-3 shadow-[0_32px_100px_rgba(15,23,42,0.25)] md:p-5"
+        data-testid="investor-deck-fullscreen-root"
+        className="investor-deck-fullscreen-root relative overflow-hidden rounded-lg border border-white/15 bg-footer p-3 shadow-[0_32px_100px_rgba(15,23,42,0.25)] md:p-5"
       >
-        <div className="relative overflow-hidden rounded-md bg-ink" onTouchStart={(event) => {
-          const touch = event.touches[0];
-          touchStart.current = { x: touch.clientX, y: touch.clientY };
-        }} onTouchEnd={(event) => {
-          const touch = event.changedTouches[0];
-          const start = touchStart.current;
-          touchStart.current = null;
+        <div
+          id="investor-deck-slide-stage"
+          data-testid="investor-deck-stage"
+          className="investor-deck-stage relative overflow-hidden rounded-md bg-ink"
+          onTouchStart={(event) => {
+            const touch = event.touches[0];
+            touchStart.current = { x: touch.clientX, y: touch.clientY };
+          }}
+          onTouchEnd={(event) => {
+            const touch = event.changedTouches[0];
+            const start = touchStart.current;
+            touchStart.current = null;
 
-          if (!start) {
-            return;
-          }
+            if (!start) {
+              return;
+            }
 
-          const horizontalDistance = touch.clientX - start.x;
-          const verticalDistance = touch.clientY - start.y;
+            const horizontalDistance = touch.clientX - start.x;
+            const verticalDistance = touch.clientY - start.y;
 
-          if (Math.abs(horizontalDistance) < 48 || Math.abs(horizontalDistance) <= Math.abs(verticalDistance)) {
-            return;
-          }
+            if (Math.abs(horizontalDistance) < 48 || Math.abs(horizontalDistance) <= Math.abs(verticalDistance)) {
+              return;
+            }
 
-          goToSlide(activeIndex + (horizontalDistance < 0 ? 1 : -1), "manual");
-        }}>
-          <div className="relative aspect-video w-full">
+            goToSlide(activeIndex + (horizontalDistance < 0 ? 1 : -1), "manual");
+          }}
+        >
+          <div className="investor-deck-slide-frame relative aspect-video w-full">
             {currentSlideFailed ? (
               <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
                 <div className="max-w-md rounded-md border border-white/15 bg-white/5 p-6 text-white">
@@ -313,15 +370,43 @@ export function InvestorDeckViewer() {
             )}
             {!isCurrentSlideLoaded && !currentSlideFailed ? <InvestorDeckLoadingState /> : null}
           </div>
+
+          {isFullscreen && !isThumbnailOpen ? (
+            <div className="pointer-events-none absolute inset-0 z-30" role="group" aria-label="Full screen slide navigation">
+              <button
+                type="button"
+                onClick={() => goToSlide(activeIndex - 1, "manual")}
+                disabled={isFirstSlide}
+                className={fullscreenNavigationButtonClass}
+                style={fullscreenPreviousStyle}
+                aria-label="Previous slide"
+                aria-controls="investor-deck-slide-stage"
+              >
+                <ChevronLeft className="h-6 w-6" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={() => goToSlide(activeIndex + 1, "manual")}
+                disabled={isLastSlide}
+                className={fullscreenNavigationButtonClass}
+                style={fullscreenNextStyle}
+                aria-label="Next slide"
+                aria-controls="investor-deck-slide-stage"
+              >
+                <ChevronRight className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+          ) : null}
         </div>
 
-        <div className="mt-4 grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+        <div className="investor-deck-normal-controls mt-4 grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <InvestorDeckProgress activeSlide={activeSlideNumber} slideCount={investorDeckSlideCount} />
           <InvestorDeckControls
             isFirstSlide={isFirstSlide}
             isLastSlide={isLastSlide}
             isAutoplaying={isAutoplaying}
             isFullscreen={isFullscreen}
+            hideSlideNavigation={isFullscreen}
             canDownload={investorDeckAssets.pdfAvailable}
             onPrevious={() => goToSlide(activeIndex - 1, "manual")}
             onNext={() => goToSlide(activeIndex + 1, "manual")}
@@ -348,6 +433,7 @@ export function InvestorDeckViewer() {
           slides={investorDeckSlides}
           activeIndex={activeIndex}
           isOpen={isThumbnailOpen}
+          isFullscreen={isFullscreen}
           onClose={() => setIsThumbnailOpen(false)}
           onSelect={(index) => goToSlide(index, "thumbnail")}
         />

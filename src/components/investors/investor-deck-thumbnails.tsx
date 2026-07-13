@@ -8,6 +8,7 @@ type InvestorDeckThumbnailsProps = {
   slides: InvestorDeckSlide[];
   activeIndex: number;
   isOpen: boolean;
+  isFullscreen: boolean;
   onClose: () => void;
   onSelect: (index: number) => void;
 };
@@ -16,6 +17,7 @@ export function InvestorDeckThumbnails({
   slides,
   activeIndex,
   isOpen,
+  isFullscreen,
   onClose,
   onSelect
 }: InvestorDeckThumbnailsProps) {
@@ -28,6 +30,7 @@ export function InvestorDeckThumbnails({
       className="absolute inset-x-0 bottom-0 z-20 max-h-[72%] overflow-y-auto border-t border-white/15 bg-footer/95 p-4 backdrop-blur-xl md:p-6"
       role="region"
       aria-labelledby="investor-slide-overview-title"
+      style={isFullscreen ? { paddingBottom: "max(1rem, env(safe-area-inset-bottom, 0px))" } : undefined}
     >
       <div className="mb-4 flex items-center justify-between gap-4">
         <p id="investor-slide-overview-title" className="text-sm font-black text-white">
