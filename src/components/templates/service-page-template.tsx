@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { CTASection } from "@/components/sections/home-sections";
 import { getRelatedServices, getServiceFaqs, type Service } from "@/lib/data";
 import { routes } from "@/lib/navigation";
+import { serviceAiDirection } from "@/lib/ai-direction";
 
 export function ServicePageTemplate({ service }: { service: Service }) {
   const Icon = service.icon;
@@ -125,6 +126,24 @@ export function ServicePageTemplate({ service }: { service: Service }) {
               </div>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className="bg-white py-20 md:py-24">
+        <Container>
+          <SectionHeading
+            eyebrow="AI-enhanced service direction"
+            title={`How AI could strengthen ${service.shortTitle}.`}
+            body={serviceAiDirection[service.slug]}
+          />
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-slate-600">
+            These are opportunities within Temacore&apos;s developing AI architecture.
+            Specific AI features require scoping and validation and are not included
+            as production capabilities unless confirmed for your engagement.
+          </p>
+          <ButtonLink href={routes.ai} variant="outline" className="mt-6">
+            Explore Temacore AI
+          </ButtonLink>
         </Container>
       </section>
 

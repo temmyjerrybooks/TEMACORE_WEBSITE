@@ -1,3 +1,4 @@
+import { CapabilityStatus } from "@/components/sections/capability-status";
 import type { Metadata } from "next";
 import {
   Bot,
@@ -20,7 +21,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const description =
-  "Explore Temacore's connected ecosystem of managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence.";
+  "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Platforms",
@@ -46,8 +47,8 @@ export default function PlatformsPage() {
       <JsonLd data={jsonLd} />
       <PageHero
         eyebrow="Platform ecosystem"
-        title="Operations, software, insurance, and intelligence built to work together."
-        body="Temacore connects managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence so organizations can build more coordinated service delivery."
+        title="The software foundation for reusable vertical AI."
+        body="Temacore is building a shared AI architecture on enterprise software and workflow infrastructure. Life and General Insurance platforms are an initial product foundation, alongside managed operations and strategic FinTech opportunities."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
@@ -111,9 +112,9 @@ export default function PlatformsPage() {
             />
             <InfoCard
               icon={UserRound}
-              title="Founder Perspective"
-              body="Meet the founder connecting operating workflows, custom systems, insurance technology, and AI-assisted workflow intelligence."
-              href={routes.founder}
+              title="FinTech Opportunity"
+              body="Financial services share document volumes, manual review, disconnected systems, and administrative bottlenecks. Our architecture offers a direction for assistance and automation, subject to validation and human controls."
+              href={routes.industries}
             />
           </div>
         </Container>
@@ -148,6 +149,8 @@ export default function PlatformsPage() {
           </div>
         </Container>
       </section>
+
+      <CapabilityStatus />
 
       <CTASection
         title="Planning an operations, platform, or insurance technology initiative?"

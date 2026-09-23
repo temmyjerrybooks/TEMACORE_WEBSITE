@@ -17,7 +17,7 @@ import { site } from "@/lib/data";
 import { founderProfile } from "@/lib/founder-profile";
 
 const description =
-  "View Temacore's investor presentation covering its managed operations, custom applications, insurance technology platforms and AI-assisted workflow intelligence.";
+  "Explore Temacore's vertical AI direction across insurance, FinTech, and managed operations, built on enterprise software and workflow infrastructure.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Temacore Investor Presentation",
@@ -36,8 +36,8 @@ export default function InvestorsPage() {
     <>
       <PageHero
         eyebrow="Temacore investor presentation"
-        title="Building AI-Powered Operations, Insurance and Technology Infrastructure"
-        body="Explore Temacore's connected ecosystem across managed operations, custom business applications, insurance technology platforms and AI-assisted workflow intelligence."
+        title="Building Vertical AI and Intelligent Workflow Infrastructure"
+        body="Temacore is an AI-first technology company. Explore the enterprise software, insurance platforms, managed operations, and developing intelligence layer behind its broader platform direction, including strategic FinTech opportunities."
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <ButtonLink href="#investor-presentation" variant="light">

@@ -11,7 +11,7 @@ const urbanist = Urbanist({
 });
 
 const rootMetadata = buildMetadata({
-  title: "Temacore | Global Operations and Technology Partner",
+  title: "Temacore | AI Technology and Intelligent Operations",
   description: site.description,
   path: "/"
 });
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ...rootMetadata,
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Temacore | Global Operations and Technology Partner",
+    default: "Temacore | AI Technology and Intelligent Operations",
     template: "%s | Temacore"
   },
   applicationName: "Temacore",

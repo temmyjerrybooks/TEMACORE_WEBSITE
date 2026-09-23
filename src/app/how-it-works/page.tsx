@@ -1,3 +1,4 @@
+import { AiFlywheel } from "@/components/sections/ai-flywheel";
 import type { Metadata } from "next";
 import { CTASection, HowItWorksSection } from "@/components/sections/home-sections";
 import { Container } from "@/components/ui/container";
@@ -51,6 +52,8 @@ export default function HowItWorksPage() {
           </div>
         </Container>
       </section>
+      <AiFlywheel />
+
       <CTASection />
     </>
   );

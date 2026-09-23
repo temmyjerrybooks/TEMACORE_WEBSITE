@@ -1,3 +1,4 @@
+import { CapabilityStatus } from "@/components/sections/capability-status";
 import type { Metadata } from "next";
 import {
   Bot,
@@ -79,8 +80,8 @@ export default function InsurtechPage() {
       <JsonLd data={jsonLd} />
       <PageHero
         eyebrow="Insurance technology"
-        title="Technology platforms for insurance operations."
-        body="Temacore has developed technology platforms for life insurance and general insurance operations. They are designed to support clearer workflows, records, documents, and operational visibility while exact implementation is scoped to the organization and use case."
+        title="An insurance operating system foundation for vertical AI."
+        body="Temacore has developed technology platforms for life insurance and general insurance operations. These products are an initial proof point for our broader vertical AI direction: digitize complex industry workflows, structure the software and data, then progressively add intelligent assistance. Implementation is scoped to the organization and use case."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
@@ -165,7 +166,7 @@ export default function InsurtechPage() {
       <section className="bg-white py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="AI-assisted insurance operations"
+            eyebrow="In development: AI-assisted insurance operations"
             title="Workflow intelligence with human review."
             body="Temacore is building AI-assisted systems intended to support insurance operations. The direction is human-in-the-loop: AI-assisted decision support with human review for regulated decisions."
             align="center"
@@ -219,6 +220,8 @@ export default function InsurtechPage() {
           </div>
         </Container>
       </section>
+
+      <CapabilityStatus />
 
       <CTASection
         title="Exploring an insurance technology workflow?"

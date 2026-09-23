@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Industries We Serve",
   description:
-    "Temacore supports professional services, SaaS, healthcare support, real estate, ecommerce, finance, and other service-heavy industries.",
+    "Temacore builds for insurance, financial services, and managed operations, with workflow architecture applicable across other complex industries.",
   path: "/industries"
 });
 
@@ -19,8 +19,8 @@ export default function IndustriesPage() {
     <>
       <PageHero
         eyebrow="Industries"
-        title="Operational support for companies where follow-through matters."
-        body="Temacore works across service-heavy industries that depend on accurate records, timely follow-up, customer support, and repeatable back-office execution."
+        title="Shared AI architecture. Industry-specific workflows."
+        body="Insurance, FinTech, and BPO are our strongest strategic verticals. The common foundation is enterprise software, structured data, and developing AI workflow intelligence, adapted to each industry and its human decision points."
       />
       <section className="bg-white py-20 md:py-24">
         <Container>

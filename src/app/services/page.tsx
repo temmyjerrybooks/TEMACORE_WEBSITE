@@ -21,7 +21,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="All services"
         title="Business operations and technology services built to work together."
-        body="Temacore helps companies delegate recurring work, improve client operations, and build the systems needed for stronger execution."
+        body="Temacore combines managed operations and enterprise software to improve recurring work. Our developing AI layer is intended to enhance these services through assistance and automation, with people responsible for review, exceptions, and decisions."
       />
       <ServicesOverview showAll />
       <section className="bg-white py-20 md:py-24">

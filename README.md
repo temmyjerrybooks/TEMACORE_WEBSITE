@@ -1,6 +1,6 @@
 # Temacore Website
 
-Premium corporate website for Temacore, a US-registered global operations and technology company.
+Premium corporate website for Temacore, a US-registered AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure.
 
 ## Stack
 

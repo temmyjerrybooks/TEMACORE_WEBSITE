@@ -85,7 +85,7 @@ export function Footer() {
             ))}
           </ul>
           <p className="mt-6 text-sm leading-6 text-slate-400">
-            Temacore helps companies run cleaner operations with remote teams, outsourcing workflows, and practical business technology.
+            Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.
           </p>
         </div>
       </Container>

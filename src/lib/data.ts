@@ -22,11 +22,11 @@ import {
 
 export const site = {
   name: "Temacore",
-  legalDescriptor: "US-registered global operations and technology company",
+  legalDescriptor: "US-registered AI-first technology company",
   email: "info@temacore.com",
   domain: "https://www.temacore.com/",
   description:
-    "Temacore combines managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence for organizations building smarter service delivery."
+    "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations."
 };
 
 export type ServiceSlug =
@@ -75,7 +75,7 @@ export const services: Service[] = [
     summary:
       "Run recurring business workflows through trained teams, documented SOPs, QA controls, and clear performance reporting.",
     description:
-      "Temacore designs and manages operational workflows for companies that need reliable execution without expanding internal headcount. We combine process documentation, trained offshore and remote operators, supervision, and management visibility.",
+      "Temacore runs recurring business operations through trained teams, documented processes, quality checks, and reporting. Managed operations is also a deployment environment for our evolving AI architecture: we identify repetitive work, build software around it, and progressively introduce automation while people handle judgment, exceptions, relationships, and approvals.",
     icon: BriefcaseBusiness,
     metrics: [
       { value: "SOP", label: "documented delivery" },
@@ -806,6 +806,9 @@ export function getServiceFaqs(slug: ServiceSlug): ServiceFaq[] {
 }
 
 export const industries = [
+  { title: "Insurance / InsurTech", body: "Life and General Insurance platforms provide a foundation for digitizing complex industry workflows, with AI-assisted operations in development.", icon: ShieldCheck },
+  { title: "Financial Services / FinTech", body: "A strategic vertical for document intelligence, reconciliation assistance, customer support, and compliance-support workflows. These are opportunities for the architecture, subject to scope and human approval, rather than claims of deployed financial products.", icon: LineChart },
+  { title: "BPO / Managed Operations", body: "A commercial service and a deployment environment for AI: combine people, software, automation, and developing intelligence to address repetitive work while retaining human judgment.", icon: UsersRound },
   {
     title: "Professional Services",
     body: "Admin support, client follow-up, CRM hygiene, reporting, and operating dashboards for advisory and agency teams.",
@@ -867,24 +870,25 @@ export const howItWorksSteps = [
 ];
 
 export const whyTemacore = [
+  { title: "AI workflow intelligence", body: "We are developing reusable intelligence across enterprise processes, with patterns that can be adapted to adjacent industries as they are validated.", icon: Bot },
   {
-    title: "Operations first, technology enabled",
-    body: "We do not treat outsourcing and software as separate worlds. People, process, dashboards, and automation are designed together.",
+    title: "Vertical AI grounded in industry workflows",
+    body: "We build our AI direction around real processes and domain knowledge, with Life and General Insurance platforms as an initial vertical software foundation.",
     icon: Workflow
   },
   {
-    title: "Built for executive visibility",
-    body: "Clients get clear work queues, quality signals, reporting cadence, and escalation paths instead of a black-box vendor model.",
+    title: "Operating knowledge from real work",
+    body: "Managed operations exposes repetitive tasks, document flows, handoffs, and decision points that can guide software and AI development.",
     icon: LineChart
   },
   {
-    title: "Designed for distributed teams",
-    body: "Temacore is structured for remote delivery, cross-time-zone communication, and dependable operational coverage.",
+    title: "Enterprise software as the foundation",
+    body: "Applications, APIs, portals, and structured data provide the systems needed for meaningful workflow automation.",
     icon: Network
   },
   {
-    title: "Security-aware by default",
-    body: "Role-based access, least-privilege thinking, status controls, audit trails, and future Supabase RLS are planned into the architecture.",
+    title: "Human and AI operating model",
+    body: "Our AI direction includes role-based controls, traceability, review, and escalation. People retain responsibility for complex decisions and regulated approvals.",
     icon: ShieldCheck
   }
 ];

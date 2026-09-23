@@ -43,13 +43,13 @@ export function HomeHero() {
         <div className="max-w-3xl">
           <p className="mb-5 inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-100">
             <Sparkles className="h-4 w-4 text-warm" aria-hidden="true" />
-            US-registered global operations partner
+            AI-first technology company
           </p>
           <h1 className="text-4xl font-black tracking-tight md:text-6xl lg:text-7xl">
-            AI-Powered Operations, Insurance and Technology Infrastructure
+            AI Infrastructure for Complex Business Operations
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50/90 md:text-xl">
-            Temacore combines managed BPO services, custom business applications, insurance technology platforms and AI-assisted workflow intelligence to help organizations build smarter operations.
+            Temacore builds vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, financial services, and business operations. We combine industry platforms and managed operations with an evolving AI layer to digitize workflows and progressively automate repetitive work.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href={routes.platforms} variant="light">
@@ -89,7 +89,7 @@ function DashboardVisual() {
         <div className="flex items-center justify-between rounded-md border border-white/10 bg-ink/80 px-4 py-3">
           <div>
             <p className="text-sm font-bold">Temacore Command Center</p>
-            <p className="text-xs text-blue-100/70">Operations, support, and automation health</p>
+            <p className="text-xs text-blue-100/70">Illustrative workflow concept</p>
           </div>
           <div className="flex items-center gap-2 rounded-md bg-signal/15 px-3 py-2 text-xs font-bold text-emerald-200">
             <CircleDot className="h-3.5 w-3.5" aria-hidden="true" />
@@ -188,7 +188,7 @@ export function ServicesOverview({ showAll = false }: { showAll?: boolean }) {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow="Core services"
-            title="Operations support and business technology under one roof."
+            title="Enterprise software and operating expertise, connected by AI."
             body="Temacore helps companies decide what should be delegated, what should be automated, and what should be built into a better system."
           />
           {!showAll ? (
@@ -217,9 +217,10 @@ export function ServicesOverview({ showAll = false }: { showAll?: boolean }) {
 
 export function EcosystemSection() {
   const ecosystem = [
+    { title: "FinTech / Financial Services", body: "A strategic opportunity for document intelligence, financial administration, and decision support with human controls. Capabilities are scoped opportunities, not a deployed financial product claim.", icon: Gauge, href: routes.industries },
     {
       title: "Managed BPO Services",
-      body: "Managed operations support for recurring customer, back-office, CRM, and follow-up workflows.",
+      body: "A commercial service and an environment for developing AI around real customer, document, and back-office workflows.",
       icon: BriefcaseBusiness,
       href: `${routes.services}/business-process-outsourcing`
     },
@@ -255,8 +256,8 @@ export function EcosystemSection() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow="Connected ecosystem"
-            title="Built Across Operations, Insurance and AI"
-            body="Temacore brings managed operations, custom business applications, insurance technology, and AI-assisted workflow intelligence together within one connected ecosystem."
+            title="One AI architecture. Three strategic verticals."
+            body="Insurance, FinTech, and BPO are strategic applications of Temacore AI. Enterprise software structures the work and data; our developing intelligence layer is designed to support review, routing, and repeatable tasks across them."
           />
           <ButtonLink href={routes.venture} variant="outline" className="w-fit">
             Venture Overview
@@ -280,7 +281,7 @@ export function OperationsSection() {
           <SectionHeading
             eyebrow="BPO and remote delivery"
             title="A managed operating layer for the work your team should not chase manually."
-            body="Temacore combines documented workflows, trained operators, quality checks, and client-facing reporting so outsourcing feels controlled instead of loose."
+            body="Temacore combines people, software, automation, and developing AI. Our managed teams deliver recurring work today and help identify what can be automated next, so people can focus on judgment, exceptions, relationships, and review."
           />
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href={`${routes.services}/business-process-outsourcing`}>
@@ -370,8 +371,8 @@ export function IndustriesPreview() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow="Industries"
-            title="Flexible delivery for service-heavy businesses."
-            body="The model works best where customer experience, repeatable admin, reliable follow-up, and clear records matter."
+            title="Vertical expertise, reusable workflow intelligence."
+            body="Insurance, financial services, and managed operations lead the opportunity, with applicability across eCommerce, professional services, and other workflow-intensive industries."
           />
           <ButtonLink href={routes.industries} variant="outline" className="w-fit">
             Industries We Serve
@@ -426,8 +427,8 @@ export function WhyChooseUsSection() {
       <Container>
         <SectionHeading
           eyebrow="Why Temacore"
-          title="A stronger partner for companies that need execution, not another loose vendor."
-          body="The operating model is built around accountability: clear roles, documented processes, measurable output, and technology that supports the work."
+          title="Domain knowledge, operations, software, data, and AI."
+          body="Our advantage comes from understanding the work, building its digital foundation, and developing intelligence that can be reused with human oversight."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {whyTemacore.map((item) => (

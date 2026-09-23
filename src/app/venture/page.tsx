@@ -1,3 +1,4 @@
+import { AiFlywheel } from "@/components/sections/ai-flywheel";
 import type { Metadata } from "next";
 import { Bot, Code2, HeartPulse, Layers3, Presentation, ShieldCheck, UserRound, UsersRound } from "lucide-react";
 import { CTASection } from "@/components/sections/home-sections";
@@ -12,7 +13,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const pageDescription =
-  "Learn how Temacore connects managed operations, custom software, insurance technology, and developing AI-assisted workflow intelligence.";
+  "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Venture Overview",
@@ -21,6 +22,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const productAreas = [
+  { title: "FinTech Opportunity", body: "A strategic vertical for applying workflow intelligence to document-heavy financial operations, customer support, and administrative review. Specific capabilities remain subject to development and validation.", icon: Layers3 },
   {
     title: "Managed BPO Services",
     body: "Temacore provides managed BPO services and remote operations support for recurring business workflows.",
@@ -66,8 +68,8 @@ export default function VenturePage() {
       <JsonLd data={jsonLd} />
       <PageHero
         eyebrow="Venture overview"
-        title="Connected infrastructure for operations, insurance, and AI."
-        body="Temacore builds the operational, software, insurance, and intelligence infrastructure businesses need to deliver services more efficiently."
+        title="Building vertical AI for complex industries."
+        body="Temacore is an AI-first technology company combining enterprise software, operating expertise, and a developing intelligence layer. Insurance, financial services, and managed operations are strategic verticals for reusable workflow infrastructure."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.platforms} variant="light">
@@ -95,7 +97,7 @@ export default function VenturePage() {
           <SectionHeading
             eyebrow="What Temacore is building"
             title="One connected operating ecosystem."
-            body="Temacore combines managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence within one connected ecosystem."
+            body="Managed operations reveals the workflow; enterprise software structures the process and data; AI is being developed to support and automate repeatable work. Reusing validated patterns across industries is the long-term platform opportunity."
             align="center"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -116,7 +118,7 @@ export default function VenturePage() {
       <section className="bg-paper py-20 md:py-24">
         <Container>
           <SectionHeading
-            eyebrow="Current product areas"
+            eyebrow="Products, services, and strategic opportunities"
             title="Built across delivery, systems, insurance, and intelligence."
             body="The ecosystem includes established operating and software services, developed insurance platforms, and an AI workflow layer that is currently in development."
             align="center"
@@ -133,8 +135,8 @@ export default function VenturePage() {
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <SectionHeading
             eyebrow="Strategic differentiation"
-            title="Delivery capacity and technology designed to connect."
-            body="Temacore combines operational delivery capacity, custom software development, insurance-specific platforms, and a developing AI intelligence layer."
+            title="An architecture that can grow across industries."
+            body="Life and General Insurance platforms demonstrate the software foundation for the vertical AI thesis. BPO supplies operational insight and a deployment environment; FinTech offers adjacent workflows. The aim is reusable platforms and intelligence, with adoption and commercial models validated over time."
           />
           <div className="grid gap-4 sm:grid-cols-2">
             {[
@@ -211,6 +213,8 @@ export default function VenturePage() {
           </div>
         </Container>
       </section>
+
+      <AiFlywheel />
 
       <CTASection
         title="Start a conversation with Temacore."

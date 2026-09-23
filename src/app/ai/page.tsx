@@ -1,3 +1,5 @@
+import { AiFlywheel } from "@/components/sections/ai-flywheel";
+import { CapabilityStatus } from "@/components/sections/capability-status";
 import type { Metadata } from "next";
 import {
   Bot,
@@ -20,7 +22,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const description =
-  "Learn how Temacore is building AI-assisted workflow intelligence to support BPO operations, insurance technology, and custom business applications with human review.";
+  "Explore Temacore AI: a developing shared intelligence layer for insurance, FinTech, managed operations, and enterprise applications with human oversight.";
 
 export const metadata: Metadata = buildMetadata({
   title: "AI Workflow Intelligence",
@@ -47,7 +49,7 @@ export default function AiPage() {
       <PageHero
         eyebrow="AI workflow intelligence"
         title="AI-assisted workflow intelligence with people accountable for the decisions."
-        body="Temacore is building an AI intelligence layer intended to support BPO services, insurance platforms, and custom applications. The direction is practical: help teams review information, improve workflow visibility, and act with stronger context."
+        body="Temacore AI is the shared intelligence layer we are developing across insurance, financial services, managed operations, and enterprise applications. Reusable workflow architecture connects software, structured data, and AI assistance to real industry processes."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
@@ -74,15 +76,16 @@ export default function AiPage() {
         <Container>
           <SectionHeading
             eyebrow="AI across the ecosystem"
-            title="An intelligence layer intended to support the work, not replace accountable people."
-            body="Temacore is developing AI-assisted capabilities that can help teams organize information, surface relevant context, and support repeatable workflows across operations, insurance, and business applications."
+            title="Vertical AI built around real industry workflows."
+            body="Temacore is developing AI-assisted capabilities that can help teams organize information, surface relevant context, and support repeatable workflows across insurance, financial services, managed operations, and business applications."
             align="center"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
+            <InfoCard icon={ChartNoAxesColumnIncreasing} title="AI for FinTech" body="Strategic opportunities include document intelligence, reconciliation assistance, internal knowledge retrieval, compliance-support workflows, and financial administration. These are potential applications, with human review and regulated approvals retained by authorized people." href={routes.industries} />
             <InfoCard
               icon={FileCheck2}
               title="AI for Insurance"
-              body="Temacore is building AI-assisted models intended to help with document classification, data extraction, application review support, policy workflows, quote preparation, claims triage, customer service, and reporting insight."
+              body="AI-assisted insurance workflows are in development. Candidate uses include document classification, extraction, underwriting assistance, claims triage, policy servicing, agent support, and reporting. Availability is validated for each implementation."
               href={routes.insurtech}
             />
             <InfoCard
@@ -146,6 +149,10 @@ export default function AiPage() {
           </div>
         </Container>
       </section>
+
+      <CapabilityStatus />
+
+      <AiFlywheel />
 
       <CTASection
         title="Want to explore an AI-assisted workflow?"

@@ -9,9 +9,9 @@ export function GET() {
 
   const body = `# Temacore
 
-Temacore is a US-registered global operations and technology solutions company helping businesses in North America, the UK, and Europe build reliable remote operations teams and custom business applications through a managed BPO and technology delivery model.
+Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.
 
-Temacore combines managed operations, custom business applications, insurance technology platforms, and AI-assisted workflow intelligence within one connected ecosystem. Temacore builds the operational, software, insurance, and intelligence infrastructure businesses need to deliver services more efficiently.
+AI is the shared intelligence layer under development across the ecosystem. Life and General Insurance platforms are an initial software foundation. FinTech is a strategic vertical opportunity. Managed operations is both a commercial business line and a deployment environment for progressive automation.
 
 ## Who Temacore Serves
 
@@ -23,6 +23,10 @@ Temacore supports businesses that need reliable operational capacity, customer s
 - Custom business applications: web and mobile applications, CRM systems, client portals, internal dashboards, workflow automation, and reporting systems.
 - Insurance technology: Temacore has developed life insurance and general insurance technology platforms designed to support digital workflows, records, document handling, role-based operations, reporting, and visibility.
 - AI workflow intelligence: Temacore is building AI-assisted, human-in-the-loop workflow intelligence designed to provide decision support, operational recommendations, and reviewable assistance. It is not presented as making final regulated decisions.
+
+## Capability Status
+
+Existing offerings include managed operations, enterprise software services, and developed Life and General Insurance platforms. Live capabilities must be confirmed for the specific implementation. AI workflow intelligence is in development; candidate use cases are not claims of production deployment. Future opportunities include broader FinTech applications and reuse across adjacent industries, with human review, traceability, role-based controls, and regulated approvals retained by authorized people.
 
 ## Core Service Categories
 

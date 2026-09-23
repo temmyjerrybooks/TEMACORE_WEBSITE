@@ -419,7 +419,7 @@ async function checkLlms(
 
   if (
     !llms.body.includes(
-      "Temacore is a US-registered global operations and technology solutions company"
+      "Temacore is an AI-first technology company"
     )
   ) {
     issues.push(makeIssue(llms.url, "llms.txt", "llms.txt is missing the approved Temacore company summary.", "High"));

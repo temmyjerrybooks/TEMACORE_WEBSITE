@@ -12,7 +12,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "About Temacore",
   description:
-    "Learn how Temacore combines global remote operations, outsourcing systems, and business technology for companies in North America, the UK, and Europe.",
+    "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.",
   path: "/about"
 });
 
@@ -21,8 +21,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Temacore"
-        title="A global operations and technology partner built for modern business execution."
-        body={`${site.name} is a ${site.legalDescriptor}. We help companies build dependable operating capacity with remote teams, outsourcing workflows, business applications, automation, insurance technology platforms, and developing AI-assisted workflow intelligence.`}
+        title="An AI technology company built around complex business operations."
+        body={`${site.name} is a ${site.legalDescriptor}. We build vertical AI, enterprise software, and workflow infrastructure. Life and General Insurance platforms provide an initial InsurTech foundation; FinTech and managed operations offer further applications for the same evolving intelligence layer.`}
       >
         <ButtonLink href={routes.founder} variant="light">
           Meet the Founder
@@ -33,8 +33,8 @@ export default function AboutPage() {
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <SectionHeading
             eyebrow="Operating philosophy"
-            title="Temacore exists for the work between strategy and delivery."
-            body="Many companies know what needs to improve, but lack the team capacity, process structure, or internal tools to make the work run consistently. Temacore fills that gap with managed operations and practical technology."
+            title="Understand the operation. Build the system. Add intelligence."
+            body="Direct operating experience reveals repetitive tasks, data dependencies, and human decision points. We digitize those workflows, structure their data, and progressively develop AI assistance. Validated patterns can then inform reusable architecture across industries."
           />
           <div className="grid gap-5 md:grid-cols-2">
             {[

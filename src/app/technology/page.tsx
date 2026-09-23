@@ -22,7 +22,7 @@ export default function TechnologyPage() {
       <PageHero
         eyebrow="Technology solutions"
         title="Software built around the way your business actually operates."
-        body="Temacore develops practical business applications, portals, CRM systems, dashboards, and automation tools that support real teams and recurring workflows."
+        body="Temacore builds enterprise applications, portals, APIs, CRM systems, and dashboards around real workflows. Structured data, integrations, and role-based controls establish the foundation for automation and AI assistance where appropriate; AI scope is agreed and validated for each project."
       />
       <section className="bg-white py-20 md:py-24">
         <Container>

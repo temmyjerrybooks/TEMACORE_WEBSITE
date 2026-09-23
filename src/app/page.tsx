@@ -1,3 +1,4 @@
+import { AiFlywheel } from "@/components/sections/ai-flywheel";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -5,7 +6,6 @@ import {
   CTASection,
   EcosystemSection,
   HomeHero,
-  HowItWorksSection,
   IndustriesPreview,
   OperationsSection,
   ServicesOverview,
@@ -17,7 +17,7 @@ import { buildMetadata } from "@/lib/seo";
 import { organizationSchema, websiteSchema } from "@/lib/seo-schema";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Temacore | BPO, Remote Teams, Support, and Business Technology",
+  title: "Temacore | Vertical AI and Enterprise Workflow Infrastructure",
   description: site.description,
   path: "/"
 });
@@ -28,12 +28,12 @@ export default function HomePage() {
       <JsonLd data={[organizationSchema(), websiteSchema()]} />
       <HomeHero />
       <TrustBar />
-      <ServicesOverview />
       <EcosystemSection />
+      <ServicesOverview />
       <OperationsSection />
       <ApplicationDevelopmentSection />
       <IndustriesPreview />
-      <HowItWorksSection />
+      <AiFlywheel />
       <WhyChooseUsSection />
       <CTASection />
     </>
