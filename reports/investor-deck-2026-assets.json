@@ -1,0 +1,211 @@
+{
+  "pdfSha256": "c195ba3c4d6f0f60e74434fd9505b2b077661e9f6d83f3adb46453d33db40f61",
+  "pptxSha256": "f8e7516f0b83e408aa07cbc49e81d0e01e0d289e3d882488824508d3f2e9715f",
+  "revision": "2026-c195ba3c",
+  "sourcePdfBytes": 826332,
+  "sourceSlideCount": 15,
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "contentParity": [
+    {
+      "slide": 1,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 2,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 3,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 4,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 5,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 6,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 7,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 8,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 9,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 10,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 11,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 12,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 13,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 14,
+      "normalizedContentEqual": true
+    },
+    {
+      "slide": 15,
+      "normalizedContentEqual": true
+    }
+  ],
+  "assets": [
+    {
+      "slide": 1,
+      "file": "public/investor-deck/2026-c195ba3c/slide-01.webp",
+      "bytes": 537554,
+      "sha256": "ec14877f7eb18e777d60d9c8c2a689e684f57145dc1eebce8bc4f1758958cde5",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 2,
+      "file": "public/investor-deck/2026-c195ba3c/slide-02.webp",
+      "bytes": 425296,
+      "sha256": "04e32f1d897984020a784741175fe11ff661ab26fa01bba32429a4f8b5a831fe",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 3,
+      "file": "public/investor-deck/2026-c195ba3c/slide-03.webp",
+      "bytes": 56606,
+      "sha256": "d840b76f98afed301cf1c385a8161ce9959d4d30e16a5e4e0d1a70ecf60136cb",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 4,
+      "file": "public/investor-deck/2026-c195ba3c/slide-04.webp",
+      "bytes": 594738,
+      "sha256": "ab108ecc5514f7bad8139af36adac5a4c4a426fa89c2a16b9a83bd6495cb2726",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 5,
+      "file": "public/investor-deck/2026-c195ba3c/slide-05.webp",
+      "bytes": 490864,
+      "sha256": "911f4606b1bccebd5321924d25415dc61d1771fbb37ebfbda1b6de60bd7e0b64",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 6,
+      "file": "public/investor-deck/2026-c195ba3c/slide-06.webp",
+      "bytes": 566442,
+      "sha256": "5fd2239608e415a38e22282fe5ea4a78a075e187305190f7070a423159593511",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 7,
+      "file": "public/investor-deck/2026-c195ba3c/slide-07.webp",
+      "bytes": 564038,
+      "sha256": "112b5ab79eb3571d32ef220abb611b23f66b93aeba0ee0444397d08e241d4e85",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 8,
+      "file": "public/investor-deck/2026-c195ba3c/slide-08.webp",
+      "bytes": 59058,
+      "sha256": "29d60a5963060865193647bb45973157ad9961b93c7910fe933b4ae22b53c834",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 9,
+      "file": "public/investor-deck/2026-c195ba3c/slide-09.webp",
+      "bytes": 54284,
+      "sha256": "fa7ce935767c88647ef3c240f90aaa2ea6c042a1bbbb5a320713d5bf9fb50401",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 10,
+      "file": "public/investor-deck/2026-c195ba3c/slide-10.webp",
+      "bytes": 61884,
+      "sha256": "72b2084d94cc482cd209d42779adcf4b04c11c637d9a1858bc8b627ae7ff2d20",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 11,
+      "file": "public/investor-deck/2026-c195ba3c/slide-11.webp",
+      "bytes": 51782,
+      "sha256": "6d3b0d9a6fc15113aa74d8bdb66616053bb57da025269233f2f551b1882e7d8b",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 12,
+      "file": "public/investor-deck/2026-c195ba3c/slide-12.webp",
+      "bytes": 46566,
+      "sha256": "91aec1f3247fdc78e70d1046032eb6103f87e601ae79f1e4481ae87ed453e224",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 13,
+      "file": "public/investor-deck/2026-c195ba3c/slide-13.webp",
+      "bytes": 56518,
+      "sha256": "992f24c2105e8a4ae9aa9d01a973a2e2d2255cdaaf9d70bcf98f31da2cd0a12a",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 14,
+      "file": "public/investor-deck/2026-c195ba3c/slide-14.webp",
+      "bytes": 50612,
+      "sha256": "b2d4512bcd2d72f553995a49ddb94a4ecc6d080a71a357a97e8ef9e11aa9a31f",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    },
+    {
+      "slide": 15,
+      "file": "public/investor-deck/2026-c195ba3c/slide-15.webp",
+      "bytes": 1158742,
+      "sha256": "f4f7e3e6d158b08e382a76f6a8dca1344853be6916fd4cc9acf5764a4f7865f7",
+      "width": 2560,
+      "height": 1440,
+      "pixelIdenticalToPdfRaster": true
+    }
+  ],
+  "totalSlideBytes": 4774984
+}

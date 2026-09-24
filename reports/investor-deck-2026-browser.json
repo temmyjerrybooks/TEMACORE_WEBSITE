@@ -1,0 +1,216 @@
+{
+  "date": "2026-09-24",
+  "base": "http://localhost:3100",
+  "status": "passed",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "reducedMotion": false,
+      "slidesVerified": 15,
+      "navigationPassed": true,
+      "noHorizontalOverflow": true,
+      "normalControlsAtLeast44Pixels": true,
+      "slideDimensions": [
+        2560,
+        1440
+      ],
+      "objectFit": "contain"
+    },
+    {
+      "width": 1280,
+      "height": 1000,
+      "reducedMotion": false,
+      "slidesVerified": 15,
+      "navigationPassed": true,
+      "noHorizontalOverflow": true,
+      "normalControlsAtLeast44Pixels": true,
+      "slideDimensions": [
+        2560,
+        1440
+      ],
+      "objectFit": "contain"
+    },
+    {
+      "width": 1024,
+      "height": 1000,
+      "reducedMotion": false,
+      "slidesVerified": 15,
+      "navigationPassed": true,
+      "noHorizontalOverflow": true,
+      "normalControlsAtLeast44Pixels": true,
+      "slideDimensions": [
+        2560,
+        1440
+      ],
+      "objectFit": "contain"
+    },
+    {
+      "width": 768,
+      "height": 1000,
+      "reducedMotion": false,
+      "slidesVerified": 15,
+      "navigationPassed": true,
+      "noHorizontalOverflow": true,
+      "normalControlsAtLeast44Pixels": true,
+      "slideDimensions": [
+        2560,
+        1440
+      ],
+      "objectFit": "contain"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "reducedMotion": false,
+      "slidesVerified": 15,
+      "navigationPassed": true,
+      "noHorizontalOverflow": true,
+      "normalControlsAtLeast44Pixels": true,
+      "slideDimensions": [
+        2560,
+        1440
+      ],
+      "objectFit": "contain"
+    },
+    {
+      "width": 375,
+      "height": 844,
+      "reducedMotion": true,
+      "slidesVerified": 15,
+      "navigationPassed": true,
+      "noHorizontalOverflow": true,
+      "normalControlsAtLeast44Pixels": true,
+      "slideDimensions": [
+        2560,
+        1440
+      ],
+      "objectFit": "contain"
+    }
+  ],
+  "metadata": {
+    "title": "Investor Overview: Vertical AI & InsurTech | Temacore",
+    "description": "TEMACORE builds vertical AI software and intelligent workflow infrastructure across InsurTech, FinTech, and complex business operations.",
+    "robots": [
+      "noindex, nofollow, noarchive"
+    ],
+    "canonicals": [
+      "https://www.temacore.com/investors"
+    ],
+    "h1": [
+      "Building Vertical AI and Intelligent Workflow Infrastructure"
+    ],
+    "schemas": [],
+    "schemaErrors": []
+  },
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "analyticsEvents": [
+    "investor_deck_page_view",
+    "investor_deck_slide_viewed",
+    "investor_deck_started",
+    "investor_deck_halfway_reached",
+    "investor_deck_completed",
+    "investor_deck_fullscreen_opened",
+    "investor_deck_autoplay_started",
+    "investor_deck_pdf_downloaded",
+    "investor_deck_contact_clicked"
+  ],
+  "servedAssets": {
+    "rows": [
+      {
+        "file": "slide-01.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-02.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-03.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-04.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-05.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-06.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-07.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-08.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-09.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-10.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-11.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-12.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-13.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-14.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "slide-15.webp",
+        "status": 200,
+        "hashMatches": true
+      },
+      {
+        "file": "TEMACORE_Investor_Deck_2026.pdf",
+        "status": 200,
+        "hashMatches": true
+      }
+    ],
+    "obsoletePathsReturn404": true,
+    "investorsExcludedFromSitemap": true
+  },
+  "baselineGeometryPreserved": true,
+  "fullscreenPassed": true,
+  "autoplayAndPausePassed": true,
+  "actualDownloadHashPassed": true,
+  "swipeWidths": [
+    768,
+    390,
+    375
+  ],
+  "note": "Initial all-width run passed desktop/tablet, then timed out touching the mobile slide after navigation. The test now centers the stage before touch input; targeted 390/375 rerun passed. No viewer interaction change was needed."
+}

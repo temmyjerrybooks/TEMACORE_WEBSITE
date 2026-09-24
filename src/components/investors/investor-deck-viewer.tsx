@@ -295,7 +295,7 @@ export function InvestorDeckViewer() {
     trackInvestorDeckEvent("investor_deck_pdf_downloaded", activeSlideNumber);
     const link = document.createElement("a");
     link.href = investorDeckAssets.pdfSrc;
-    link.download = "temacore-investor-deck.pdf";
+    link.download = investorDeckAssets.pdfDownloadName;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -359,6 +359,7 @@ export function InvestorDeckViewer() {
                 src={activeSlide.src}
                 alt={activeSlide.alt}
                 fill
+                unoptimized
                 priority={activeIndex === 0}
                 sizes="(min-width: 1280px) 1120px, (min-width: 768px) 92vw, 100vw"
                 className="object-contain motion-safe:transition-opacity motion-safe:duration-300"

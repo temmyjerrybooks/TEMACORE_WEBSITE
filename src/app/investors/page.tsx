@@ -7,9 +7,7 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
 import {
   investorDeckAssetRequirements,
-  investorDeckAssets,
-  investorDeckSlideHeight,
-  investorDeckSlideWidth
+  investorDeckAssets
 } from "@/lib/investor-deck";
 import { routes } from "@/lib/navigation";
 import { buildMetadata } from "@/lib/seo";
@@ -17,16 +15,16 @@ import { site } from "@/lib/data";
 import { founderProfile } from "@/lib/founder-profile";
 
 const description =
-  "Explore Temacore's vertical AI direction across insurance, FinTech, and managed operations, built on enterprise software and workflow infrastructure.";
+  "TEMACORE builds vertical AI software and intelligent workflow infrastructure across InsurTech, FinTech, and complex business operations.";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Temacore Investor Presentation",
+  title: "Investor Overview: Vertical AI & InsurTech",
   description,
   path: routes.investors,
-  image: investorDeckAssets.ready ? investorDeckAssets.coverSrc : "/logo.png",
-  imageWidth: investorDeckAssets.ready ? investorDeckSlideWidth : 1024,
-  imageHeight: investorDeckAssets.ready ? investorDeckSlideHeight : 1024,
-  imageAlt: investorDeckAssets.ready ? "Temacore investor presentation cover" : "TEMACORE logo",
+  image: "/logo.png",
+  imageWidth: 1024,
+  imageHeight: 1024,
+  imageAlt: "TEMACORE logo",
   noIndex: true,
   noArchive: true
 });
@@ -37,7 +35,7 @@ export default function InvestorsPage() {
       <PageHero
         eyebrow="Temacore investor presentation"
         title="Building Vertical AI and Intelligent Workflow Infrastructure"
-        body="Temacore is an AI-first technology company. Explore the enterprise software, insurance platforms, managed operations, and developing intelligence layer behind its broader platform direction, including strategic FinTech opportunities."
+        body="TEMACORE is an AI-first technology company building vertical AI, enterprise software, and intelligent operations. TEMACORE AI is the shared intelligence layer across InsurTech, FinTech, and AI-enhanced BPO."
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <ButtonLink href="#investor-presentation" variant="light">
@@ -91,7 +89,7 @@ function InvestorDeckAssetNotice() {
         <div className="mx-auto mt-8 max-w-2xl rounded-md bg-paper p-4 text-left text-xs leading-5 text-slate-600">
           <p className="font-bold text-ink">Required production asset manifest</p>
           <p className="mt-2">
-            Export {investorDeckAssetRequirements.slideFiles.join(", ")} and {investorDeckAssetRequirements.coverFile} at {investorDeckAssetRequirements.dimensions} WebP, plus {investorDeckAssetRequirements.pdfFile}, into {investorDeckAssetRequirements.directory}.
+            Export {investorDeckAssetRequirements.slideFiles.join(", ")} at {investorDeckAssetRequirements.dimensions} WebP, plus {investorDeckAssetRequirements.pdfFile}, into {investorDeckAssetRequirements.directory}.
           </p>
         </div>
       ) : null}
