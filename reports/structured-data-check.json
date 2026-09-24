@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-09-24T05:48:08.204Z",
+  "pages": 29,
+  "schemaObjects": 54,
+  "serviceNamesMatchRenderedH1": true,
+  "personMatchesVisibleName": true,
+  "breadcrumbsMatchRoutes": true,
+  "addressMatchesFacts": true,
+  "noRatingClaims": true,
+  "privateRoutesExcludedFromSitemap": true,
+  "adminNoindex": true
+}

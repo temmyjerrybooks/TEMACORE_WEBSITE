@@ -46,10 +46,10 @@ export function HomeHero() {
             AI-first technology company
           </p>
           <h1 className="text-4xl font-black tracking-tight md:text-6xl lg:text-7xl">
-            AI Infrastructure for Complex Business Operations
+            Vertical AI for Complex Business Operations
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50/90 md:text-xl">
-            Temacore builds vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, financial services, and business operations. We combine industry platforms and managed operations with an evolving AI layer to digitize workflows and progressively automate repetitive work.
+            Enterprise software, industry platforms, and an evolving AI intelligence layer for InsurTech, FinTech, and BPO. We digitize workflows and progressively automate repetitive work, with people accountable for decisions.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href={routes.platforms} variant="light">
@@ -139,7 +139,7 @@ function DashboardVisual() {
                 </span>
                 <span className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-signal" aria-hidden="true" />
-                  Status fields ready
+                  Human approval checkpoints
                 </span>
               </div>
             </div>
@@ -234,13 +234,13 @@ export function EcosystemSection() {
       title: "Life Insurance Technology",
       body: "Technology designed to support life insurance onboarding, policy workflows, operations, and reporting.",
       icon: ShieldCheck,
-      href: routes.insurtech
+      href: `${routes.insurtech}#life-insurance`
     },
     {
       title: "General Insurance Technology",
       body: "Workflow support for general insurance records, applications, claims operations, and visibility.",
       icon: ShieldCheck,
-      href: routes.insurtech
+      href: `${routes.insurtech}#general-insurance`
     },
     {
       title: "AI Workflow Intelligence",

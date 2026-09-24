@@ -26,7 +26,7 @@ export const founderProfile: FounderProfile = {
   name: "Temitope Abodunde",
   initials: "TA",
   title: "Founder, Temacore LLC",
-  descriptor: "Senior Software Developer - Automation Expert - InsurTech Builder",
+  descriptor: "Software Engineering - Insurance Technology - Workflow Automation",
   email: "info@temacore.com",
   linkedInUrl: "https://www.linkedin.com/in/temitope-abodunde-48730b164",
   githubUrl: "https://github.com/temmyjerrybooks",

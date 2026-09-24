@@ -17,7 +17,7 @@ import { buildMetadata } from "@/lib/seo";
 import { organizationSchema, websiteSchema } from "@/lib/seo-schema";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Temacore | Vertical AI and Enterprise Workflow Infrastructure",
+  title: "TEMACORE | AI, InsurTech, FinTech & Intelligent Operations",
   description: site.description,
   path: "/"
 });

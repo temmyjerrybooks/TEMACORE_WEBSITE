@@ -55,6 +55,8 @@ export type Service = {
   eyebrow: string;
   summary: string;
   description: string;
+  seoTitle?: string;
+  seoDescription?: string;
   icon: LucideIcon;
   metrics: Metric[];
   outcomes: string[];
@@ -69,6 +71,8 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "business-process-outsourcing",
+    seoTitle: "BPO & Intelligent Business Operations",
+    seoDescription: "Managed BPO, remote teams, and documented workflows, with software support and developing AI assistance for repetitive work and human review.",
     title: "Business Process Outsourcing",
     shortTitle: "BPO",
     eyebrow: "Managed operations",
@@ -319,6 +323,8 @@ export const services: Service[] = [
   },
   {
     slug: "business-automation",
+    seoTitle: "Business Process Automation & AI Workflow Development",
+    seoDescription: "Business process automation for tasks, integrations, and reporting, with AI workflow assistance scoped and validated around human approval controls.",
     title: "Business Automation",
     shortTitle: "Automation",
     eyebrow: "Workflow intelligence",
@@ -681,10 +687,10 @@ export const trustItems = [
 ];
 
 export const homeStats: Metric[] = [
-  { value: "12", label: "core service lines" },
-  { value: "3", label: "market regions supported" },
-  { value: "Intake", label: "structured start for new inquiries" },
-  { value: "1", label: "partner for people, process, and systems" }
+  { value: "2", label: "developed platforms: Life + General Insurance" },
+  { value: "Software", label: "enterprise applications and workflow systems" },
+  { value: "AI", label: "shared intelligence layer in development" },
+  { value: "BPO", label: "managed operations and workflow expertise" }
 ];
 
 export type ServiceFaq = {

@@ -20,10 +20,10 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const pageDescription =
-  "Temacore has developed technology platforms for life insurance and general insurance operations, with AI-assisted workflow intelligence in development.";
+  "Life and General Insurance software from Temacore: an insurance operating system foundation, with AI-assisted workflows in development and human oversight.";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Insurance Technology Platforms",
+  title: "InsurTech: Life & General Insurance Software",
   description: pageDescription,
   path: routes.insurtech
 });
@@ -129,7 +129,7 @@ export default function InsurtechPage() {
 
       <section className="bg-paper py-20 md:py-24">
         <Container className="grid gap-12 lg:grid-cols-2">
-          <div>
+          <div id="life-insurance" className="scroll-mt-28">
             <SectionHeading
               eyebrow="Life insurance"
               title="Workflow support that keeps people and records connected."
@@ -145,7 +145,7 @@ export default function InsurtechPage() {
             </div>
           </div>
 
-          <div>
+          <div id="general-insurance" className="scroll-mt-28">
             <SectionHeading
               eyebrow="General insurance"
               title="Operational support for general and business insurance workflows."

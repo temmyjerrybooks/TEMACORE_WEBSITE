@@ -25,7 +25,7 @@ const description =
   "Explore Temacore AI: a developing shared intelligence layer for insurance, FinTech, managed operations, and enterprise applications with human oversight.";
 
 export const metadata: Metadata = buildMetadata({
-  title: "AI Workflow Intelligence",
+  title: "Vertical AI & Workflow Intelligence",
   description,
   path: routes.ai
 });
@@ -81,6 +81,12 @@ export default function AiPage() {
             align="center"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
+            <InfoCard
+              icon={FileCheck2}
+              title="AI for Back-Office Operations"
+              body="Developing workflow intelligence could assist document classification, structured extraction, administrative processing, and exception routing. People would validate records and approve sensitive changes; specific features require implementation-level validation."
+              href={`${routes.services}/back-office-operations`}
+            />
             <InfoCard icon={ChartNoAxesColumnIncreasing} title="AI for FinTech" body="Strategic opportunities include document intelligence, reconciliation assistance, internal knowledge retrieval, compliance-support workflows, and financial administration. These are potential applications, with human review and regulated approvals retained by authorized people." href={routes.industries} />
             <InfoCard
               icon={FileCheck2}

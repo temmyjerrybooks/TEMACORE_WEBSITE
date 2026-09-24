@@ -24,8 +24,8 @@ export default function ClientIntakePage() {
         <Container className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <SectionHeading
             eyebrow="Secure scoping"
-            title="Structured intake for leads, operations, and future admin review."
-            body="This form submits to Supabase with lead status, intake status, and admin workflow tracking."
+            title="A clear starting point for your service requirements."
+            body="Share your workflow and service requirements so our team can review your needs and plan the next step."
           />
           <ClientIntakeForm />
         </Container>

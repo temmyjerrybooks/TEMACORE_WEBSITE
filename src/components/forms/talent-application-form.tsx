@@ -85,7 +85,7 @@ export function TalentApplicationForm() {
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 text-slate-500">
-          Talent applications are stored for Supabase screening and status tracking.
+          Our team reviews applications and follows up when a suitable opportunity is available.
         </p>
         <button
           type="submit"

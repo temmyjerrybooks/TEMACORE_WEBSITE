@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-09-24T00:57:16.038Z",
+  "results": [
+    {
+      "url": "https://www.linkedin.com/in/temitope-abodunde-48730b164",
+      "status": 405,
+      "finalUrl": "https://www.linkedin.com/in/temitope-abodunde-48730b164",
+      "getStatus": 999,
+      "note": "Automated GET restricted; not classified as a broken destination"
+    },
+    {
+      "url": "https://github.com/temmyjerrybooks",
+      "status": 200,
+      "finalUrl": "https://github.com/temmyjerrybooks"
+    }
+  ]
+}

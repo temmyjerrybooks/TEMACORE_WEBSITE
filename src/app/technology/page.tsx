@@ -10,9 +10,9 @@ import { routes } from "@/lib/navigation";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Technology Solutions",
+  title: "Enterprise Software & AI-Ready Workflow Systems",
   description:
-    "Temacore builds client portals, CRM systems, workflow dashboards, automation tools, mobile applications, and custom business applications.",
+    "Enterprise applications, portals, CRM, mobile software, and business process automation: the system foundation for validated enterprise AI workflows.",
   path: "/technology"
 });
 

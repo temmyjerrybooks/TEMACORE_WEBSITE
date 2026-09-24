@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: ServiceRouteProps): Promise<M
   }
 
   return buildMetadata({
-    title: service.title,
-    description: service.summary,
+    title: service.seoTitle ?? service.title,
+    description: service.seoDescription ?? service.summary,
     path: `${routes.services}/${service.slug}`
   });
 }

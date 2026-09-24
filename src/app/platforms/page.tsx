@@ -24,7 +24,7 @@ const description =
   "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Platforms",
+  title: "Vertical AI & Enterprise Software Platforms",
   description,
   path: routes.platforms
 });
@@ -48,7 +48,7 @@ export default function PlatformsPage() {
       <PageHero
         eyebrow="Platform ecosystem"
         title="The software foundation for reusable vertical AI."
-        body="Temacore is building a shared AI architecture on enterprise software and workflow infrastructure. Life and General Insurance platforms are an initial product foundation, alongside managed operations and strategic FinTech opportunities."
+        body="TEMACORE AI is the shared intelligence layer in development across InsurTech, FinTech, and BPO. Enterprise software provides the system layer; structured data, workflows, and automation provide the foundation. Life and General Insurance platforms are an initial product proof point, while managed operations provides workflow knowledge and deployment opportunities."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
@@ -96,13 +96,13 @@ export default function PlatformsPage() {
               icon={FileCheck2}
               title="Life Insurance Technology"
               body="Temacore has developed a life insurance platform designed to support digital workflows, customer onboarding, policy administration support, agent and administrator operations, document handling, and reporting visibility."
-              href={routes.insurtech}
+              href={`${routes.insurtech}#life-insurance`}
             />
             <InfoCard
               icon={Layers3}
               title="General Insurance Technology"
               body="Temacore has developed a general insurance platform designed to support general and business insurance workflows, customer and policy records, quote and application workflow support, claims workflow support, role-based operations, and reporting visibility."
-              href={routes.insurtech}
+              href={`${routes.insurtech}#general-insurance`}
             />
             <InfoCard
               icon={Bot}
@@ -113,7 +113,7 @@ export default function PlatformsPage() {
             <InfoCard
               icon={UserRound}
               title="FinTech Opportunity"
-              body="Financial services share document volumes, manual review, disconnected systems, and administrative bottlenecks. Our architecture offers a direction for assistance and automation, subject to validation and human controls."
+              body="A strategic vertical for financial operations, document intelligence, customer operations, decision support, compliance-support workflows, and administrative automation. These are opportunities for the shared architecture, subject to development, validation, and human controls."
               href={routes.industries}
             />
           </div>

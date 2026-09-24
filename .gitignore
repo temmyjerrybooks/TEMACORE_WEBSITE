@@ -29,3 +29,6 @@ topsborg-reference/
 # system files
 .DS_Store
 Thumbs.db
+
+# Local browser verification screenshots
+reports/browser-*/

@@ -10,7 +10,7 @@ import { routes } from "@/lib/navigation";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About Temacore",
+  title: "About Our AI-First Technology Company",
   description:
     "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.",
   path: "/about"
@@ -41,7 +41,7 @@ export default function AboutPage() {
               "US-registered for international client confidence",
               "Built for remote execution across distributed teams",
               "Focused on measurable operating outcomes",
-              "Structured for future secure data and admin workflows"
+              "Clear responsibilities, review points, and access requirements"
             ].map((item) => (
               <div key={item} className="rounded-lg border border-line bg-paper p-6">
                 <p className="text-lg font-black text-ink">{item}</p>

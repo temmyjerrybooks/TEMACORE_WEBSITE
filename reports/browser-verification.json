@@ -1,0 +1,66 @@
+{
+  "live": {
+    "checkedAt": "2026-09-24T01:00:56.338Z",
+    "base": "https://www.temacore.com",
+    "records": [
+      {
+        "viewport": "desktop",
+        "path": "/",
+        "title": "Temacore | Vertical AI and Enterprise Workflow Infrastructure",
+        "h1": "AI Infrastructure for Complex Business Operations",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "canonical": [
+          "https://www.temacore.com/"
+        ],
+        "hero": "AI-FIRST TECHNOLOGY COMPANY\n\nAI Infrastructure for Complex Business Operations\n\nTemacore builds vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, financial services, and business operations. We combine industry platforms and managed operations with an evolving AI layer to digitize workflows and progressively automate repetitive work.\n\nExplore Our Platforms\nBook a Consultation\n\n12\n\ncore service lines\n\n3\n\nmarket regions supported\n\nIntake\n\nstructured start for new inquiries\n\n1\n\npartner for people, process, and systems\n\nTemacore Command Center\n\nIllustrative workflow concept\n\nWorkflow Status\n\nWorkflow Throughput\n\nWorkflow status\nIn review\nQuality review\nMonitored\nHuman review\nActive\n\nCoverage\n\nGlobal delivery\n\nOperations, technology, and insurance workflows\n\nAccess Control\n\nRole-based work queues\nStatus fields ready\n\nINTAKE - SCOPING - DELIVERY - OPTIMIZATION",
+        "runtimeErrors": []
+      },
+      {
+        "viewport": "mobile",
+        "path": "/",
+        "title": "Temacore | Vertical AI and Enterprise Workflow Infrastructure",
+        "h1": "AI Infrastructure for Complex Business Operations",
+        "width": 390,
+        "scrollWidth": 390,
+        "canonical": [
+          "https://www.temacore.com/"
+        ],
+        "hero": "AI-FIRST TECHNOLOGY COMPANY\n\nAI Infrastructure for Complex Business Operations\n\nTemacore builds vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, financial services, and business operations. We combine industry platforms and managed operations with an evolving AI layer to digitize workflows and progressively automate repetitive work.\n\nExplore Our Platforms\nBook a Consultation\n\n12\n\ncore service lines\n\n3\n\nmarket regions supported\n\nIntake\n\nstructured start for new inquiries\n\n1\n\npartner for people, process, and systems\n\nTemacore Command Center\n\nIllustrative workflow concept\n\nWorkflow Status\n\nWorkflow Throughput\n\nWorkflow status\nIn review\nQuality review\nMonitored\nHuman review\nActive\n\nCoverage\n\nGlobal delivery\n\nOperations, technology, and insurance workflows\n\nAccess Control\n\nRole-based work queues\nStatus fields ready\n\nINTAKE - SCOPING - DELIVERY - OPTIMIZATION",
+        "runtimeErrors": []
+      }
+    ]
+  },
+  "local": {
+    "checkedAt": "2026-09-24T05:48:01.372Z",
+    "base": "http://localhost:3100",
+    "records": [
+      {
+        "viewport": "desktop",
+        "path": "/",
+        "title": "TEMACORE | AI, InsurTech, FinTech & Intelligent Operations",
+        "h1": "Vertical AI for Complex Business Operations",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "canonical": [
+          "https://www.temacore.com/"
+        ],
+        "hero": "AI-FIRST TECHNOLOGY COMPANY\n\nVertical AI for Complex Business Operations\n\nEnterprise software, industry platforms, and an evolving AI intelligence layer for InsurTech, FinTech, and BPO. We digitize workflows and progressively automate repetitive work, with people accountable for decisions.\n\nExplore Our Platforms\nBook a Consultation\n\n2\n\ndeveloped platforms: Life + General Insurance\n\nSoftware\n\nenterprise applications and workflow systems\n\nAI\n\nshared intelligence layer in development\n\nBPO\n\nmanaged operations and workflow expertise\n\nTemacore Command Center\n\nIllustrative workflow concept\n\nWorkflow Status\n\nWorkflow Throughput\n\nWorkflow status\nIn review\nQuality review\nMonitored\nHuman review\nActive\n\nCoverage\n\nGlobal delivery\n\nOperations, technology, and insurance workflows\n\nAccess Control\n\nRole-based work queues\nHuman approval checkpoints\n\nINTAKE - SCOPING - DELIVERY - OPTIMIZATION",
+        "runtimeErrors": []
+      },
+      {
+        "viewport": "mobile",
+        "path": "/",
+        "title": "TEMACORE | AI, InsurTech, FinTech & Intelligent Operations",
+        "h1": "Vertical AI for Complex Business Operations",
+        "width": 390,
+        "scrollWidth": 390,
+        "canonical": [
+          "https://www.temacore.com/"
+        ],
+        "hero": "AI-FIRST TECHNOLOGY COMPANY\n\nVertical AI for Complex Business Operations\n\nEnterprise software, industry platforms, and an evolving AI intelligence layer for InsurTech, FinTech, and BPO. We digitize workflows and progressively automate repetitive work, with people accountable for decisions.\n\nExplore Our Platforms\nBook a Consultation\n\n2\n\ndeveloped platforms: Life + General Insurance\n\nSoftware\n\nenterprise applications and workflow systems\n\nAI\n\nshared intelligence layer in development\n\nBPO\n\nmanaged operations and workflow expertise\n\nTemacore Command Center\n\nIllustrative workflow concept\n\nWorkflow Status\n\nWorkflow Throughput\n\nWorkflow status\nIn review\nQuality review\nMonitored\nHuman review\nActive\n\nCoverage\n\nGlobal delivery\n\nOperations, technology, and insurance workflows\n\nAccess Control\n\nRole-based work queues\nHuman approval checkpoints\n\nINTAKE - SCOPING - DELIVERY - OPTIMIZATION",
+        "runtimeErrors": []
+      }
+    ]
+  }
+}

@@ -87,7 +87,7 @@ export function ClientIntakeForm() {
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 text-slate-500">
-          Submissions are stored for Supabase admin review and status tracking.
+          Our team reviews your submission and tracks the next steps for your inquiry.
         </p>
         <button
           type="submit"

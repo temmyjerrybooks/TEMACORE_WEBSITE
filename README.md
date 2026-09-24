@@ -106,3 +106,29 @@ public/investor-deck/
 Use the original deck as the source of truth. Do not publish the editable PowerPoint file. If the exported assets are unavailable, the production page shows a safe contact state instead of broken images; development additionally shows the expected asset manifest.
 
 For optional, privacy-conscious deck analytics, run `src/lib/db/investor-deck-schema.sql` after Supabase is configured. The public viewer continues to work if Supabase or the analytics table is unavailable. The current access-protection helper is intentionally inactive: publicly served assets cannot be truly protected until they move to authenticated/private storage or server-delivered asset routes.
+
+## Site Verification
+
+Run the audit parser regression tests with `npm test`. After a production build, start the site and inspect its served output:
+
+```powershell
+npm run build
+npm run start -- --port 3100
+node scripts/site-audit.mjs http://localhost:3100 reports/local-after.json
+```
+
+The same read-only audit can verify production:
+
+```powershell
+node scripts/site-audit.mjs https://www.temacore.com reports/live-after.json
+```
+
+It fetches all sitemap pages plus the intentionally unindexed investor page, checks rendered metadata and JSON-LD, checks internal links and anchors, and records route-specific positioning requirements. A report containing issues is evidence for review, not a passing result. External profile links are listed separately because providers may block automated requests.
+
+Optional browser checks use an installed Chromium browser with a temporary profile and no form submissions:
+
+```powershell
+node scripts/browser-check.mjs http://localhost:3100 reports/browser-local-after
+```
+
+The default browser path is Microsoft Edge on Windows. Pass a browser executable as the fourth argument (or set CHROME_PATH), and an optional comma-separated route list as the fifth. Browser checks save screenshots and report viewport overflow and JavaScript exceptions. Screenshot folders remain local.

@@ -30,7 +30,7 @@ export const mainNavigation = [
 export const platformNavigation = [
   {
     label: "Platform Overview",
-    description: "Connected operations, software, insurance, and AI.",
+    description: "Shared AI architecture for InsurTech, FinTech, and BPO.",
     href: routes.platforms
   },
   {

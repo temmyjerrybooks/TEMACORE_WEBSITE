@@ -79,7 +79,7 @@ export function ProjectRequestForm() {
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 text-slate-500">
-          Project requests are stored for Supabase review and status tracking.
+          Our team reviews your project requirements and tracks the next steps for your request.
         </p>
         <button
           type="submit"

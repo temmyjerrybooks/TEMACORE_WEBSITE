@@ -30,7 +30,7 @@ import {
 
 const pageTitle = `${founderProfile.name} | Founder of Temacore`;
 const pageDescription =
-  "Meet Temitope Abodunde, founder of Temacore LLC - senior software developer, automation expert, and builder of connected operations, insurance technology, and AI-assisted workflow systems.";
+  "Meet Temitope Abodunde, founder of Temacore, connecting software engineering, insurance technology, and operations to the company's vertical AI product strategy.";
 
 const intersectionAreas = [
   {
@@ -222,7 +222,7 @@ export default function FounderPage() {
       <PageHero
         eyebrow="Founder of Temacore"
         title={founderProfile.name}
-        body={`${founderProfile.title} - ${founderProfile.descriptor}. With five years of professional experience in insurance technology, he builds practical systems at the intersection of insurance, operations, automation, and software.`}
+        body={`${founderProfile.title} - ${founderProfile.descriptor}. His work across software engineering, insurance technology, and business operations informs Temacore's AI-first product strategy: digitize real workflows, structure their data, and progressively add intelligence with human oversight.`}
       >
         <div className="flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:items-center">
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -254,14 +254,14 @@ export default function FounderPage() {
           <SectionHeading
             eyebrow="Founder overview"
             title="Building connected systems from the work outward."
-            body="Temitope Abodunde founded Temacore to connect operational delivery, custom systems, insurance technology, and practical automation around the work organizations need to run."
+            body="Temitope Abodunde founded Temacore to connect software engineering, industry platforms, and managed operations. That foundation now supports the company's direction in vertical AI across InsurTech, FinTech, and intelligent business operations."
           />
           <div className="space-y-5 text-base leading-7 text-slate-600 md:text-lg">
             <p>
               As Temacore&apos;s sole founder, Temitope works where business requirements meet technical delivery. His perspective combines insurance systems, BPO automation, full-stack software development, and custom business systems.
             </p>
             <p>
-              The focus is practical: understand the workflow, clarify the operating need, and build technology that helps people carry the work forward with stronger visibility and accountability.
+              The AI product strategy starts with understanding the workflow, building its software foundation, and validating assistance around human decision points. Insurance is an initial product foundation; financial services and managed operations offer further applications for reusable intelligence.
             </p>
             <div className="rounded-lg border border-line bg-paper p-6">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue002">

@@ -9,9 +9,9 @@ import { routes } from "@/lib/navigation";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Services",
+  title: "Managed Services & Enterprise Software",
   description:
-    "Explore Temacore services across BPO, remote teams, customer support, virtual assistant services, CRM development, client portals, application development, and business automation.",
+    "People, process, software, and developing AI across BPO, remote teams, customer support, back-office operations, CRM, portals, and enterprise applications.",
   path: "/services"
 });
 
@@ -21,7 +21,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="All services"
         title="Business operations and technology services built to work together."
-        body="Temacore combines managed operations and enterprise software to improve recurring work. Our developing AI layer is intended to enhance these services through assistance and automation, with people responsible for review, exceptions, and decisions."
+        body="Temacore combines people, process, software, and developing AI to improve recurring work. We identify which tasks need human judgment, which need a digital system, and which can be progressively automated. Our teams continue to deliver BPO, customer support, back-office services, and enterprise applications, with people accountable for review and exceptions."
       />
       <ServicesOverview showAll />
       <section className="bg-white py-20 md:py-24">
