@@ -188,10 +188,10 @@ export function Header() {
               <div className="rounded-lg border border-line bg-paper p-4">
                 <div className="mb-3 flex items-center gap-2 text-sm font-bold text-ink">
                   <ShieldCheck className="h-4 w-4 text-signal" aria-hidden="true" />
-                  US-registered global delivery partner
+                  AI-first technology company
                 </div>
                 <p className="text-sm leading-6 text-slate-600">
-                  Operations teams, outsourcing workflows, and business software for growing companies.
+                  Vertical AI, enterprise software, and intelligent workflows for insurance, financial services, and complex business operations.
                 </p>
               </div>
 
