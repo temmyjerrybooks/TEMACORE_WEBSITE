@@ -1,3 +1,4 @@
+import { founderProfile } from "@/lib/founder-profile";
 import type { Service } from "@/lib/data";
 import { getServiceFaqs, site } from "@/lib/data";
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
@@ -7,7 +8,10 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Temacore",
+    "@id": absoluteUrl("/#organization"),
+    name: "TEMACORE",
+    legalName: "TEMACORE LLC",
+    founder: { "@type": "Person", "@id": absoluteUrl("/founder#person"), name: founderProfile.name, url: absoluteUrl(routes.founder) },
     url: getSiteUrl(),
     logo: absoluteUrl("/logo.png"),
     email: site.email,
@@ -27,11 +31,13 @@ export function websiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
     name: "Temacore",
     url: getSiteUrl(),
     description: site.description,
     publisher: {
       "@type": "Organization",
+    "@id": absoluteUrl("/#organization"),
       name: "Temacore"
     }
   };
@@ -49,16 +55,19 @@ export function webPageSchema({
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
     name,
     description,
     url: absoluteUrl(path),
     isPartOf: {
       "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
       name: site.name,
       url: getSiteUrl()
     },
     about: {
       "@type": "Organization",
+    "@id": absoluteUrl("/#organization"),
       name: site.name,
       url: getSiteUrl()
     }
@@ -75,6 +84,7 @@ export function serviceSchema(service: Service) {
     description: service.summary,
     provider: {
       "@type": "Organization",
+    "@id": absoluteUrl("/#organization"),
       name: "Temacore",
       url: getSiteUrl()
     },
@@ -123,6 +133,7 @@ export function whitepaperSchema({
     version: "1.0",
     publisher: {
       "@type": "Organization",
+    "@id": absoluteUrl("/#organization"),
       name: "Temacore LLC",
       url: getSiteUrl(),
       logo: absoluteUrl("/logo.png")
@@ -158,6 +169,7 @@ export function founderProfilePageSchema({
     },
     isPartOf: {
       "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
       name: site.name,
       url: getSiteUrl()
     }
@@ -189,6 +201,7 @@ export function founderPersonSchema({
     sameAs,
     worksFor: {
       "@type": "Organization",
+    "@id": absoluteUrl("/#organization"),
       name: "Temacore LLC",
       url: getSiteUrl()
     },
@@ -221,6 +234,7 @@ export function contactPointSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": absoluteUrl("/#organization"),
     name: "Temacore",
     url: getSiteUrl(),
     contactPoint: [

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/data";
 
-export const defaultSeoDescription =
-  "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.";
+export const defaultSeoDescription = site.description;
 
 export function getSiteUrl() {
   const configuredUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? site.domain).replace(/\/$/, "");
@@ -22,6 +21,7 @@ export function absoluteUrl(path = "/") {
 
 type SeoMetadataInput = {
   title: string;
+  absoluteTitle?: boolean;
   description?: string;
   path?: string;
   image?: string;
@@ -34,6 +34,7 @@ type SeoMetadataInput = {
 
 export function buildMetadata({
   title,
+  absoluteTitle = false,
   description = defaultSeoDescription,
   path = "/",
   image = "/logo.png",
@@ -47,7 +48,7 @@ export function buildMetadata({
   const imageUrl = absoluteUrl(image);
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: {
       canonical

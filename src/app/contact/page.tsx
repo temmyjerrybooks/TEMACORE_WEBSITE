@@ -12,7 +12,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 export const metadata: Metadata = buildMetadata({
   title: "Contact Temacore",
   description:
-    "Contact Temacore to discuss BPO, remote operations teams, customer support outsourcing, back-office operations, application development, and automation.",
+    "Contact Temacore about enterprise software, insurance workflows, financial operations, developing AI capabilities, and supporting managed services.",
   path: "/contact"
 });
 

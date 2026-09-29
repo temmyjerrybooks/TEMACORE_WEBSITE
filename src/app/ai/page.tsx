@@ -22,10 +22,10 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const description =
-  "Explore Temacore AI: a developing shared intelligence layer for insurance, FinTech, managed operations, and enterprise applications with human oversight.";
+  "Temacore AI is the shared intelligence layer in development for insurance, financial operations, and enterprise workflows, with human review and controls.";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Vertical AI & Workflow Intelligence",
+  title: "Temacore AI: Vertical AI & Workflow Intelligence",
   description,
   path: routes.ai
 });
@@ -47,9 +47,9 @@ export default function AiPage() {
     <>
       <JsonLd data={jsonLd} />
       <PageHero
-        eyebrow="AI workflow intelligence"
+        eyebrow="Temacore AI"
         title="AI-assisted workflow intelligence with people accountable for the decisions."
-        body="Temacore AI is the shared intelligence layer we are developing across insurance, financial services, managed operations, and enterprise applications. Reusable workflow architecture connects software, structured data, and AI assistance to real industry processes."
+        body="Temacore is an AI-first technology company. Temacore AI is the shared intelligence layer we are developing across enterprise products and workflows. Our strongest current product base is insurance, with separate Life and General Insurance platforms; financial operations and intelligent business operations are adjacent applications."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
@@ -76,8 +76,8 @@ export default function AiPage() {
         <Container>
           <SectionHeading
             eyebrow="AI across the ecosystem"
-            title="Vertical AI built around real industry workflows."
-            body="Temacore is developing AI-assisted capabilities that can help teams organize information, surface relevant context, and support repeatable workflows across insurance, financial services, managed operations, and business applications."
+            title="What is Temacore AI? Intelligence built around structured workflows."
+            body="AI cannot effectively automate a process that has not first been understood and structured. Temacore AI brings document intelligence, knowledge retrieval, workflow orchestration, and decision support into that structure. These capabilities are in development and validated for each implementation."
             align="center"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -87,7 +87,7 @@ export default function AiPage() {
               body="Developing workflow intelligence could assist document classification, structured extraction, administrative processing, and exception routing. People would validate records and approve sensitive changes; specific features require implementation-level validation."
               href={`${routes.services}/back-office-operations`}
             />
-            <InfoCard icon={ChartNoAxesColumnIncreasing} title="AI for FinTech" body="Strategic opportunities include document intelligence, reconciliation assistance, internal knowledge retrieval, compliance-support workflows, and financial administration. These are potential applications, with human review and regulated approvals retained by authorized people." href={routes.industries} />
+            <InfoCard icon={ChartNoAxesColumnIncreasing} title="AI for FinTech" body="Strategic opportunities include document intelligence, reconciliation assistance, internal knowledge retrieval, compliance-support workflows, and financial administration. These are potential applications, with human review and regulated approvals retained by authorized people." href={`${routes.industries}#financial-operations`} />
             <InfoCard
               icon={FileCheck2}
               title="AI for Insurance"
@@ -132,12 +132,12 @@ export default function AiPage() {
             <InfoCard
               icon={FileCheck2}
               title="Reviewable"
-              body="AI assistance is intended to make relevant information easier to inspect rather than conceal how a recommendation was reached."
+              body="Traceability is a design requirement: source documents, review steps, and approval records should make AI-assisted work inspectable."
             />
             <InfoCard
               icon={ShieldCheck}
               title="Role-aware"
-              body="Workflow support can be shaped around the responsibilities and access needs of the people using the system."
+              body="Permissions, enterprise controls, and scoped APIs and integrations are design requirements for controlled automation. Access and actions must reflect each person's role."
             />
             <InfoCard
               icon={Bot}

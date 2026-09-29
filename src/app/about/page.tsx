@@ -1,4 +1,7 @@
+import { JsonLd } from "@/components/seo/json-ld";
+import { webPageSchema, breadcrumbSchema } from "@/lib/seo-schema";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { InfoCard } from "@/components/ui/info-card";
 import { PageHero } from "@/components/ui/page-hero";
@@ -7,26 +10,32 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { CTASection } from "@/components/sections/home-sections";
 import { site, whyTemacore } from "@/lib/data";
 import { routes } from "@/lib/navigation";
-import { buildMetadata } from "@/lib/seo";
+import { absoluteUrl, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "About Our AI-First Technology Company",
   description:
-    "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.",
+    "Discover Temacore's AI-first direction: vertical AI, enterprise software, and intelligent workflows, with insurance as its strongest current product base.",
   path: "/about"
 });
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={[webPageSchema({ name: "About Temacore", description: site.description, path: routes.about }), breadcrumbSchema([{ name: "Home", url: absoluteUrl(routes.home) }, { name: "About", url: absoluteUrl(routes.about) }])]} />
       <PageHero
         eyebrow="About Temacore"
-        title="An AI technology company built around complex business operations."
-        body={`${site.name} is a ${site.legalDescriptor}. We build vertical AI, enterprise software, and workflow infrastructure. Life and General Insurance platforms provide an initial InsurTech foundation; FinTech and managed operations offer further applications for the same evolving intelligence layer.`}
+        title="An AI-first technology company built around complex business operations."
+        body={`${site.name} is a ${site.legalDescriptor}. We build vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, financial services, and complex business operations. Our strongest current product base is insurance, including separate Life and General Insurance platforms. FinTech and financial operations offer adjacent applications for our developing intelligence layer; managed operations provide commercial execution and practical workflow insight.`}
       >
         <ButtonLink href={routes.founder} variant="light">
           Meet the Founder
         </ButtonLink>
+        <p className="mt-6 text-sm leading-6 text-blue-50/90">
+          Explore <Link href={routes.ai} className="font-semibold underline underline-offset-4">Temacore AI</Link>,
+          our <Link href={routes.insurtech} className="font-semibold underline underline-offset-4">insurance operating system foundation</Link>,
+          and the direction for <Link href={`${routes.industries}#financial-operations`} className="font-semibold underline underline-offset-4">financial workflow automation</Link>.
+        </p>
       </PageHero>
 
       <section className="bg-white py-20 md:py-24">

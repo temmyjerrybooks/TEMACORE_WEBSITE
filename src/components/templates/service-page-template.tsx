@@ -137,9 +137,10 @@ export function ServicePageTemplate({ service }: { service: Service }) {
             body={serviceAiDirection[service.slug]}
           />
           <p className="mt-6 max-w-3xl text-sm leading-6 text-slate-600">
-            These are opportunities within Temacore&apos;s developing AI architecture.
+            Temacore is an AI-first technology company; this service supports its enterprise software and workflow direction. These are opportunities within Temacore&apos;s developing AI architecture.
             Specific AI features require scoping and validation and are not included
             as production capabilities unless confirmed for your engagement.
+            {" "}Explore <Link href={routes.technology} className="font-semibold text-blue001 underline underline-offset-4">enterprise software</Link> and the <Link href={routes.insurtech} className="font-semibold text-blue001 underline underline-offset-4">insurance operating system</Link> behind this direction.
           </p>
           <ButtonLink href={routes.ai} variant="outline" className="mt-6">
             Explore Temacore AI

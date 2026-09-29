@@ -1,4 +1,4 @@
-import { services } from "@/lib/data";
+import { services, site } from "@/lib/data";
 import { absoluteUrl } from "@/lib/seo";
 import { routes } from "@/lib/navigation";
 
@@ -9,20 +9,22 @@ export function GET() {
 
   const body = `# Temacore
 
-Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.
+${site.description}
 
-AI is the shared intelligence layer under development across the ecosystem. Life and General Insurance platforms are an initial software foundation. FinTech is a strategic vertical opportunity. Managed operations is both a commercial business line and a deployment environment for progressive automation.
+## What Temacore Builds
 
-## Who Temacore Serves
+Temacore builds vertical AI, enterprise software, and intelligent workflow infrastructure. Its strongest current product base is insurance, including separate Life and General Insurance platforms. Financial operations and intelligent business operations are adjacent applications.
 
-Temacore supports businesses that need reliable operational capacity, customer support workflows, back-office execution, CRM administration, business automation, and custom business software.
+## What Temacore AI Is
 
-## Platform Ecosystem
+Temacore AI is the shared intelligence layer in development across enterprise products and workflows. It brings document intelligence, knowledge retrieval, workflow orchestration, and decision support into structured processes, with human review, permissions, and traceability. AI cannot effectively automate a process that has not first been understood and structured. Candidate capabilities require implementation-specific validation.
 
-- Managed operations: business process outsourcing, remote operations teams, customer support, back-office operations, virtual assistance, CRM administration, and lead follow-up.
-- Custom business applications: web and mobile applications, CRM systems, client portals, internal dashboards, workflow automation, and reporting systems.
-- Insurance technology: Temacore has developed life insurance and general insurance technology platforms designed to support digital workflows, records, document handling, role-based operations, reporting, and visibility.
-- AI workflow intelligence: Temacore is building AI-assisted, human-in-the-loop workflow intelligence designed to provide decision support, operational recommendations, and reviewable assistance. It is not presented as making final regulated decisions.
+## Industries and Supporting Operations
+
+- Insurance: developed Life and General Insurance software platforms support structured records, documents, and operational workflows.
+- Financial operations / FinTech: strategic applications include document-heavy financial administration and review; no production financial product deployment is implied.
+- Intelligent business operations: reusable enterprise workflow architecture applies to complex business processes.
+- Managed operations and BPO: supporting commercial execution, a deployment environment, and practical workflow knowledge that informs software and AI development.
 
 ## Capability Status
 

@@ -26,7 +26,7 @@ export const site = {
   email: "info@temacore.com",
   domain: "https://www.temacore.com/",
   description:
-    "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations."
+    "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, financial services, and complex business operations."
 };
 
 export type ServiceSlug =

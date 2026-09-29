@@ -13,7 +13,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const pageDescription =
-  "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.";
+  "Explore Temacore's vertical AI strategy, developed insurance platforms, enterprise software foundation, and expansion direction in financial and business operations.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Venture Overview",
@@ -69,7 +69,7 @@ export default function VenturePage() {
       <PageHero
         eyebrow="Venture overview"
         title="Building vertical AI for complex industries."
-        body="Temacore is an AI-first technology company combining enterprise software, operating expertise, and a developing intelligence layer. Insurance, financial services, and managed operations are strategic verticals for reusable workflow infrastructure."
+        body="Temacore is an AI-first technology company combining enterprise software, operating expertise, and a developing intelligence layer. Insurance, financial services, and intelligent business operations are strategic verticals for reusable workflow infrastructure. Managed operations provide supporting commercial execution and workflow insight."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.platforms} variant="light">

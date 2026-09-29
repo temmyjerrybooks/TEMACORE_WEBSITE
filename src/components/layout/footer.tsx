@@ -85,7 +85,10 @@ export function Footer() {
             ))}
           </ul>
           <p className="mt-6 text-sm leading-6 text-slate-400">
-            Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent operations across InsurTech, FinTech, and BPO.
+            {site.description}{" "}
+            <Link href={routes.ai} className="underline underline-offset-4 transition hover:text-white">
+              Explore Temacore AI.
+            </Link>
           </p>
         </div>
       </Container>

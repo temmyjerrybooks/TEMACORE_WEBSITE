@@ -29,7 +29,7 @@ import {
 
 const title = "Connected Operations Intelligence Whitepaper";
 const description =
-  "Read Temacore's whitepaper on integrating managed BPO, custom business applications, insurance technology platforms and human-in-the-loop AI workflow intelligence.";
+  "Read Temacore's whitepaper on enterprise software and developing AI workflow intelligence, grounded in insurance platforms and managed operations.";
 
 export const metadata: Metadata = buildMetadata({
   title,
@@ -63,7 +63,7 @@ export default function WhitepaperPage() {
       <PageHero
         eyebrow="Temacore whitepaper"
         title="Connected Operations Intelligence"
-        body="A practical operating model connecting managed BPO, custom business applications, life and general insurance technology, and human-in-the-loop AI workflow intelligence."
+        body="An AI-first technology company's approach to enterprise software and developing AI workflow intelligence, grounded in Life and General Insurance platforms and supported by managed operations."
       >
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end">
           <WhitepaperHeroActions />
@@ -85,7 +85,7 @@ export default function WhitepaperPage() {
           <SectionHeading
             eyebrow="Executive overview"
             title="A connected operating model for practical delivery."
-            body="Temacore's Connected Operations Intelligence whitepaper presents an integrated operating model in which managed service teams, custom business applications, life and general insurance platforms, and human-in-the-loop AI work as connected layers. The paper explains Temacore's current foundations, developing AI direction, governance principles, commercial pathways and implementation roadmap without presenting unverified traction or automated regulated decision-making claims."
+            body="Temacore's Connected Operations Intelligence whitepaper explains how enterprise software structures workflows and data for a developing AI intelligence layer. Life and General Insurance platforms provide an industry foundation; managed operations contribute practical workflow insight and commercial execution. The paper covers these foundations, human review, governance principles, commercial pathways, and a development roadmap."
             align="center"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -93,21 +93,25 @@ export default function WhitepaperPage() {
               icon={BriefcaseBusiness}
               title="Managed Operations"
               body="Managed service teams and operational workflows designed around the work that needs to get done."
+              href={`${routes.services}/business-process-outsourcing`}
             />
             <InfoCard
               icon={Code2}
               title="Custom Business Applications"
               body="Business applications designed to organize workflows, records and operating visibility."
+              href={routes.technology}
             />
             <InfoCard
               icon={ShieldCheck}
               title="Insurance Technology"
               body="Life and general insurance technology platforms for structured operational workflows."
+              href={routes.insurtech}
             />
             <InfoCard
               icon={Bot}
               title="AI Workflow Intelligence"
-              body="Human-in-the-loop workflow intelligence designed to support accountable teams."
+              body="Workflow intelligence in development, with human review designed to support accountable teams."
+              href={routes.ai}
             />
           </div>
         </Container>

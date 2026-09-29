@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Client Intake Form",
   description:
-    "Start a Temacore client intake for BPO, remote teams, customer support, back-office operations, application development, or automation.",
+    "Scope an enterprise software, workflow automation, or managed operations engagement with Temacore, an AI-first technology company.",
   path: "/client-intake"
 });
 

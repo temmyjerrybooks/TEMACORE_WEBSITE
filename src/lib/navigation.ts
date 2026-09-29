@@ -30,7 +30,7 @@ export const mainNavigation = [
 export const platformNavigation = [
   {
     label: "Platform Overview",
-    description: "Shared AI architecture for InsurTech, FinTech, and BPO.",
+    description: "Enterprise software and developing vertical AI for complex workflows.",
     href: routes.platforms
   },
   {
@@ -40,7 +40,7 @@ export const platformNavigation = [
   },
   {
     label: "AI Workflow Intelligence",
-    description: "Human-in-the-loop operational decision support.",
+    description: "Developing workflow intelligence with human review.",
     href: routes.ai
   },
   {

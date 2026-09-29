@@ -28,6 +28,7 @@ export function inspectHtml(html) {
     description: metas.find(m => m.name === 'description')?.content ?? '',
     robots: metas.filter(m => ['robots', 'googlebot'].includes(m.name)).map(m => m.content),
     canonicals,
+    social: Object.fromEntries(metas.filter(m => /^(og:|twitter:)/.test(m.property ?? m.name ?? '')).map(m => [m.property ?? m.name, m.content])),
     h1: [...visible.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map(m => plain(m[1])),
     schemas, schemaErrors,
     text: plain(main),

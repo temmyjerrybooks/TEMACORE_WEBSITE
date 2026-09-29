@@ -181,13 +181,13 @@ export const metadata: Metadata = {
     url: absoluteUrl(routes.founder),
     siteName: "Temacore",
     type: "website",
-    images: []
+    images: [{ url: absoluteUrl("/logo.png"), width: 1024, height: 1024, alt: "TEMACORE logo" }]
   },
   twitter: {
     card: "summary",
     title: pageTitle,
     description: pageDescription,
-    images: []
+    images: [absoluteUrl("/logo.png")]
   }
 };
 

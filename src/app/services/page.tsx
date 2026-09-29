@@ -21,7 +21,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="All services"
         title="Business operations and technology services built to work together."
-        body="Temacore combines people, process, software, and developing AI to improve recurring work. We identify which tasks need human judgment, which need a digital system, and which can be progressively automated. Our teams continue to deliver BPO, customer support, back-office services, and enterprise applications, with people accountable for review and exceptions."
+        body="Temacore is an AI-first technology company combining people, process, software, and developing AI to improve recurring work. We identify which tasks need human judgment, which need a digital system, and which can be progressively automated. Our teams continue to deliver BPO, customer support, back-office services, and enterprise applications, with people accountable for review and exceptions."
       />
       <ServicesOverview showAll />
       <section className="bg-white py-20 md:py-24">
@@ -37,7 +37,7 @@ export default function ServicesPage() {
                 <p className="text-sm font-bold uppercase tracking-[0.18em] text-blue002">
                   {service.shortTitle}
                 </p>
-                <h2 className="mt-4 text-xl font-black text-ink">{service.title}</h2>
+                <h3 className="mt-4 text-xl font-black text-ink">{service.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{service.description}</p>
               </div>
             ))}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type InfoCardProps = {
+  id?: string;
   title: string;
   body: string;
   icon?: LucideIcon;
@@ -12,9 +13,10 @@ type InfoCardProps = {
   className?: string;
 };
 
-export function InfoCard({ title, body, icon: Icon, href, meta, className }: InfoCardProps) {
+export function InfoCard({ id, title, body, icon: Icon, href, meta, className }: InfoCardProps) {
   const content = (
     <div
+      id={id}
       className={cn(
         "group h-full rounded-lg border border-line bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:border-blue001/25 hover:shadow-[0_24px_70px_rgba(25,39,114,0.12)]",
         className

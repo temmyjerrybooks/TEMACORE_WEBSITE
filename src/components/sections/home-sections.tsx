@@ -49,16 +49,20 @@ export function HomeHero() {
             Vertical AI for Complex Business Operations
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50/90 md:text-xl">
-            Enterprise software, industry platforms, and an evolving AI intelligence layer for InsurTech, FinTech, and BPO. We digitize workflows and progressively automate repetitive work, with people accountable for decisions.
+            We build vertical AI, enterprise software, and intelligent workflow infrastructure for insurance and financial services, extending into complex business operations. Our developing AI layer supports structured workflows, with people accountable for decisions.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={routes.platforms} variant="light">
-              Explore Our Platforms
+            <ButtonLink href={routes.ai} variant="light">
+              Explore Temacore AI
             </ButtonLink>
             <ButtonLink href={routes.contact} variant="outline" className="border-white/25 bg-transparent text-white hover:bg-white hover:text-blue001">
               Book a Consultation
             </ButtonLink>
           </div>
+          <p className="mt-6 text-sm leading-6 text-blue-100/75">
+            <Link href={routes.about} className="underline underline-offset-4">About Temacore</Link>
+            {" / "}<Link href={routes.investors} className="underline underline-offset-4">Investor overview</Link>
+          </p>
           <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
             {homeStats.map((stat) => (
               <div key={stat.label} className="border-l border-white/15 pl-4">
@@ -187,7 +191,7 @@ export function ServicesOverview({ showAll = false }: { showAll?: boolean }) {
       <Container>
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
-            eyebrow="Core services"
+            eyebrow="Supporting enterprise services"
             title="Enterprise software and operating expertise, connected by AI."
             body="Temacore helps companies decide what should be delegated, what should be automated, and what should be built into a better system."
           />
@@ -217,7 +221,7 @@ export function ServicesOverview({ showAll = false }: { showAll?: boolean }) {
 
 export function EcosystemSection() {
   const ecosystem = [
-    { title: "FinTech / Financial Services", body: "A strategic opportunity for document intelligence, financial administration, and decision support with human controls. Capabilities are scoped opportunities, not a deployed financial product claim.", icon: Gauge, href: routes.industries },
+    { title: "FinTech / Financial Services", body: "A strategic opportunity for document intelligence, financial administration, and decision support with human controls. Capabilities are scoped opportunities, not a deployed financial product claim.", icon: Gauge, href: `${routes.industries}#financial-operations` },
     {
       title: "Managed BPO Services",
       body: "A commercial service and an environment for developing AI around real customer, document, and back-office workflows.",
@@ -257,7 +261,7 @@ export function EcosystemSection() {
           <SectionHeading
             eyebrow="Connected ecosystem"
             title="One AI architecture. Three strategic verticals."
-            body="Insurance, FinTech, and BPO are strategic applications of Temacore AI. Enterprise software structures the work and data; our developing intelligence layer is designed to support review, routing, and repeatable tasks across them."
+            body="Insurance, FinTech, and intelligent business operations are strategic applications of Temacore AI. Enterprise software structures the work and data; managed operations contribute delivery capacity and workflow knowledge to our developing intelligence layer."
           />
           <ButtonLink href={routes.venture} variant="outline" className="w-fit">
             Venture Overview
@@ -279,7 +283,7 @@ export function OperationsSection() {
       <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <SectionHeading
-            eyebrow="BPO and remote delivery"
+            eyebrow="Managed operations and workflow insight"
             title="A managed operating layer for the work your team should not chase manually."
             body="Temacore combines people, software, automation, and developing AI. Our managed teams deliver recurring work today and help identify what can be automated next, so people can focus on judgment, exceptions, relationships, and review."
           />

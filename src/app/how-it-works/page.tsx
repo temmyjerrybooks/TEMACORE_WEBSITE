@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "How It Works",
   description:
-    "See how Temacore scopes workflows, designs operating models, deploys remote teams, and optimizes business operations.",
+    "See how Temacore structures enterprise workflows, builds software, scopes AI assistance, and connects managed operations with human review.",
   path: "/how-it-works"
 });
 
@@ -19,7 +19,7 @@ export default function HowItWorksPage() {
       <PageHero
         eyebrow="How it works"
         title="A clear path from workflow pressure to managed execution."
-        body="Temacore engagements begin with practical discovery, then move into operating design, team setup, managed delivery, and optimization."
+        body="Temacore engagements begin by understanding and structuring the workflow. We then scope enterprise software, integrations, managed delivery, and AI assistance where appropriate, with validation and human review."
       />
       <HowItWorksSection />
       <section className="bg-white py-20 md:py-24">
@@ -45,7 +45,7 @@ export default function HowItWorksPage() {
               }
             ].map((model) => (
               <div key={model.title} className="rounded-lg border border-line bg-paper p-6">
-                <h2 className="text-xl font-black text-ink">{model.title}</h2>
+                <h3 className="text-xl font-black text-ink">{model.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{model.body}</p>
               </div>
             ))}

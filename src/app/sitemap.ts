@@ -26,12 +26,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes.map((route) => ({
-      url: `${base}${route}`,
-      lastModified: new Date()
+      url: `${base}${route}`
     })),
     ...services.map((service) => ({
-      url: `${base}${routes.services}/${service.slug}`,
-      lastModified: new Date()
+      url: `${base}${routes.services}/${service.slug}`
     }))
   ];
 }

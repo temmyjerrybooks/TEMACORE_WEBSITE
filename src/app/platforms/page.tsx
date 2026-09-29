@@ -21,7 +21,7 @@ import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const description =
-  "Temacore is an AI-first technology company building vertical AI, enterprise software, and intelligent workflow infrastructure for insurance, finance, and business operations.";
+  "Explore the enterprise software foundation for Temacore AI: Life and General Insurance platforms, structured workflows, and financial operations opportunities.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Vertical AI & Enterprise Software Platforms",
@@ -48,7 +48,7 @@ export default function PlatformsPage() {
       <PageHero
         eyebrow="Platform ecosystem"
         title="The software foundation for reusable vertical AI."
-        body="TEMACORE AI is the shared intelligence layer in development across InsurTech, FinTech, and BPO. Enterprise software provides the system layer; structured data, workflows, and automation provide the foundation. Life and General Insurance platforms are an initial product proof point, while managed operations provides workflow knowledge and deployment opportunities."
+        body="TEMACORE AI is the shared intelligence layer in development across InsurTech, FinTech, and intelligent business operations. Enterprise software provides the system layer; structured data, workflows, and automation provide the foundation. Life and General Insurance platforms are an initial product proof point, while managed operations provides workflow knowledge and deployment opportunities."
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <ButtonLink href={routes.projectRequest} variant="light">
