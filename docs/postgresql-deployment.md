@@ -26,7 +26,7 @@ The migration runner locks and applies migrations in one transaction, records ch
 
 `db:check` verifies migration checksums and a synthetic lead/intake write and read within a transaction, then rolls it back and confirms no lead remains. It does not call form endpoints or send emails. This checks connectivity and constraints; a production form acceptance test remains a separate verification step.
 
-Migrations are explicit; the ordinary Vercel build does not modify database schema. The runtime pool is capped at five connections per instance and uses the Vercel pool lifecycle helper. Keep the provider's TLS connection settings intact.
+The Vercel build command in `vercel.json` now runs migrations and `db:check` before compiling a Production deployment. Either failure prevents deployment. Preview and Development deployments skip database mutations; missing or unknown Vercel environment targets fail closed. Local `npm run build` remains a code-only build. Keep future migrations additive and compatible with the currently serving deployment. The runtime pool is capped at five connections per instance and uses the Vercel pool lifecycle helper. Keep the provider's TLS connection settings intact.
 
 ## Preserve existing records before switching
 
@@ -40,7 +40,7 @@ Admin sign-in still uses **Supabase Auth**, independently of application data. K
 
 After schema checks and any required data transfer pass, merge the tested branch into current `main` without a force push. Vercel's normal Git integration deploys the commit using Production environment variables.
 
-Verify the deployment SHA, client-intake page on desktop and mobile, safe feedback when unavailable, an authorized form submission and saved records, protected dashboards, and all 15 approved investor slides. A valid public form submission sends a real notification email; obtain authorization for that test or test with notifications disabled in an isolated Preview environment.
+Verify `/api/health` returns HTTP 200 with `ok: true` and the expected deployment SHA. This read-only check validates the production function's database connection and critical schema access without reading customer records or sending emails. Then verify the client-intake page on desktop and mobile, safe feedback when unavailable, an authorized form submission and saved records, protected dashboards, and all 15 approved investor slides. A valid public form submission sends a real notification email; obtain authorization for that test or test with notifications disabled in an isolated Preview environment.
 
 If rollback is needed, retain both databases and identify which received writes after cutover before switching a deployment back. Redeploying old code can point it back at Supabase; it does not automatically reconcile newly collected PostgreSQL records.
 

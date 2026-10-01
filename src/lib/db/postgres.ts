@@ -29,6 +29,15 @@ export function getDatabase() {
   return new DatabaseStore((sql, values) => getPool().query(sql, values));
 }
 
+export async function checkDatabaseReadiness() {
+  // Validate runtime connectivity and critical schema access without reading records.
+  await getPool().query(`
+    SELECT leads.id, client_intakes.lead_id, client_intakes.workflow_summary
+    FROM public.leads CROSS JOIN public.client_intakes
+    LIMIT 0
+  `);
+}
+
 export async function withDatabaseTransaction<T>(work: (store: DatabaseStore) => Promise<T>) {
   const client = await getPool().connect();
   try {
