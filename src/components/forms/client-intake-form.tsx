@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { services } from "@/lib/data";
+import { intakeUnavailableMessage, submitClientIntake } from "@/lib/forms/intake-submission";
 import { FormField } from "./form-field";
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
@@ -21,16 +22,12 @@ export function ClientIntakeForm() {
         setMessage("");
 
         try {
-          const response = await fetch("/api/client-intake", {
-            method: "POST",
-            body: new FormData(form)
-          });
-          const result = (await response.json().catch(() => null)) as {
-            error?: string;
-          } | null;
+          const result = await submitClientIntake(new FormData(form));
 
-          if (!response.ok) {
-            throw new Error(result?.error ?? "Unable to submit intake.");
+          if (!result.ok) {
+            setStatus("error");
+            setMessage(result.error);
+            return;
           }
 
           form.reset();
@@ -38,9 +35,9 @@ export function ClientIntakeForm() {
           setMessage(
             "Thank you for contacting TEMACORE. We have received your intake and the TEMACORE Team will review it shortly. If your inquiry is urgent, please email info@temacore.com."
           );
-        } catch (error) {
+        } catch {
           setStatus("error");
-          setMessage(error instanceof Error ? error.message : "Unable to submit intake.");
+          setMessage(intakeUnavailableMessage);
         }
       }}
     >
@@ -99,9 +96,14 @@ export function ClientIntakeForm() {
       </div>
 
       {message ? (
-        <p className={`rounded-md px-4 py-3 text-sm font-bold ${status === "error" ? "bg-red-50 text-red-700" : "bg-signal/10 text-signal"}`}>
-          {message}
-        </p>
+        <div role={status === "error" ? "alert" : "status"} className={`rounded-md px-4 py-3 text-sm font-bold ${status === "error" ? "bg-red-50 text-red-700" : "bg-signal/10 text-signal"}`}>
+          <p>{message}</p>
+          {status === "error" ? (
+            <a href="mailto:info@temacore.com?subject=Client%20intake%20enquiry" className="mt-2 inline-block underline underline-offset-4">
+              Email the TEMACORE team
+            </a>
+          ) : null}
+        </div>
       ) : null}
     </form>
   );

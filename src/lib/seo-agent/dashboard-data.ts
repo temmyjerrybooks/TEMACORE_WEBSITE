@@ -1,5 +1,5 @@
-import { getSupabaseAdminConfig } from "@/lib/admin/config";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabaseConfig } from "@/lib/db/config";
+import { getDatabase } from "@/lib/db/postgres";
 import type {
   ContentRecommendation,
   KeywordOpportunity,
@@ -92,21 +92,16 @@ function countSeverities(issues: SeoIssue[]) {
 }
 
 export async function getSeoAgentDashboardData(): Promise<SeoAgentDashboardData> {
-  const config = getSupabaseAdminConfig();
+  const config = getDatabaseConfig();
 
   if (!config.isConfigured) {
     return emptyDashboard(
-      "Supabase is not connected yet. Add the required environment variables and run the SEO schema to enable live audit storage."
+      "PostgreSQL is not connected yet. Configure DATABASE_URL and run npm run db:migrate to enable database storage."
     );
   }
 
-  const supabase = getSupabaseAdminClient();
-  const { data: latestAudit, error: auditError } = await supabase
-    .from("seo_audits")
-    .select("*")
-    .order("audit_date", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+  const database = getDatabase();
+  const { data: latestAudit, error: auditError } = await database.selectOne("seo_audits", { orderBy: "audit_date", ascending: false, limit: 1 });
 
   if (auditError) {
     return emptyDashboard(auditError.message);
@@ -120,30 +115,16 @@ export async function getSeoAgentDashboardData(): Promise<SeoAgentDashboardData>
     };
   }
 
-  const [{ data: issues }, { data: recommendations }, { data: keywordOpportunities }, { data: alerts }] =
-    await Promise.all([
-      supabase
-        .from("seo_issues")
-        .select("*")
-        .eq("audit_id", latestAudit.id)
-        .order("created_at", { ascending: false })
-        .limit(25),
-      supabase
-        .from("content_recommendations")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(8),
-      supabase
-        .from("keyword_opportunities")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(8),
-      supabase
-        .from("website_alerts")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(8)
+  const results = await Promise.all([
+      database.select("seo_issues", { equals: { audit_id: latestAudit.id }, orderBy: "created_at", ascending: false, limit: 25 }),
+      database.select("content_recommendations", { orderBy: "created_at", ascending: false, limit: 8 }),
+      database.select("keyword_opportunities", { orderBy: "created_at", ascending: false, limit: 8 }),
+      database.select("website_alerts", { orderBy: "created_at", ascending: false, limit: 8 })
     ]);
+
+  const failed = results.find(result => result.error);
+  if (failed?.error) return emptyDashboard(failed.error.message);
+  const [{ data: issues }, { data: recommendations }, { data: keywordOpportunities }, { data: alerts }] = results;
 
   const latestIssues = issues ?? [];
 

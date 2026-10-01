@@ -7,7 +7,7 @@ import {
 } from "@/lib/api/form-data";
 import { detectBasicSpam, rateLimitPlaceholder } from "@/lib/api/security";
 import { sendWebsiteAlert } from "@/lib/alerts/website-alerts";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabase } from "@/lib/db/postgres";
 import { sendSubmissionNotification } from "@/lib/email/notifications";
 
 export const runtime = "nodejs";
@@ -40,9 +40,9 @@ export async function POST(request: Request) {
       return jsonError(missing);
     }
 
-    const supabase = getSupabaseAdminClient();
+    const database = getDatabase();
 
-    const { error } = await supabase.from("talent_applications").insert({
+    const { error } = await database.insert("talent_applications", {
       full_name: formText(formData, "full_name"),
       email: formText(formData, "email"),
       country: optionalFormText(formData, "country"),

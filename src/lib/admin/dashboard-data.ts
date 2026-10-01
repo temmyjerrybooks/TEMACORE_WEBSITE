@@ -1,5 +1,5 @@
-import { getSupabaseAdminConfig } from "@/lib/admin/config";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabaseConfig } from "@/lib/db/config";
+import { getDatabase } from "@/lib/db/postgres";
 
 export type AdminDashboardItem = {
   title: string;
@@ -54,7 +54,7 @@ function emptySection(title: string, description: string, href?: string): AdminD
     title,
     description,
     href,
-    countLabel: "0 records",
+    countLabel: "Unavailable",
     items: []
   };
 }
@@ -64,14 +64,10 @@ function countLabel(count: number | null) {
 }
 
 async function getLeadsSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("leads").select("id", { count: "exact", head: true }),
-    supabase
-      .from("leads")
-      .select("company_name, contact_name, email, status, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("leads", { head: true }),
+    database.select("leads", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -91,14 +87,10 @@ async function getLeadsSection(): Promise<AdminDashboardSection> {
 }
 
 async function getClientIntakesSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("client_intakes").select("id", { count: "exact", head: true }),
-    supabase
-      .from("client_intakes")
-      .select("company_name, region, services_needed, status, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("client_intakes", { head: true }),
+    database.select("client_intakes", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -118,14 +110,10 @@ async function getClientIntakesSection(): Promise<AdminDashboardSection> {
 }
 
 async function getProjectRequestsSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("project_requests").select("id", { count: "exact", head: true }),
-    supabase
-      .from("project_requests")
-      .select("company_name, contact_email, project_type, status, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("project_requests", { head: true }),
+    database.select("project_requests", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -145,14 +133,10 @@ async function getProjectRequestsSection(): Promise<AdminDashboardSection> {
 }
 
 async function getTalentApplicationsSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("talent_applications").select("id", { count: "exact", head: true }),
-    supabase
-      .from("talent_applications")
-      .select("full_name, email, role_interest, status, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("talent_applications", { head: true }),
+    database.select("talent_applications", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -172,14 +156,10 @@ async function getTalentApplicationsSection(): Promise<AdminDashboardSection> {
 }
 
 async function getSeoAgentSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("seo_issues").select("id", { count: "exact", head: true }),
-    supabase
-      .from("seo_issues")
-      .select("page_url, issue_type, severity, status, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("seo_issues", { head: true }),
+    database.select("seo_issues", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -200,14 +180,10 @@ async function getSeoAgentSection(): Promise<AdminDashboardSection> {
 }
 
 async function getWebsiteAlertsSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("website_alerts").select("id", { count: "exact", head: true }),
-    supabase
-      .from("website_alerts")
-      .select("alert_type, message, severity, status, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("website_alerts", { head: true }),
+    database.select("website_alerts", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -227,14 +203,10 @@ async function getWebsiteAlertsSection(): Promise<AdminDashboardSection> {
 }
 
 async function getInvestorPresentationSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("investor_deck_events").select("id", { count: "exact", head: true }),
-    supabase
-      .from("investor_deck_events")
-      .select("event_name, slide_number, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("investor_deck_events", { head: true }),
+    database.select("investor_deck_events", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -259,14 +231,10 @@ async function getInvestorPresentationSection(): Promise<AdminDashboardSection> 
 }
 
 async function getWhitepaperSection(): Promise<AdminDashboardSection> {
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [{ count, error: countError }, { data, error }] = await Promise.all([
-    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }),
-    supabase
-      .from("whitepaper_events")
-      .select("event_name, page_number, created_at")
-      .order("created_at", { ascending: false })
-      .limit(5)
+    database.select("whitepaper_events", { head: true }),
+    database.select("whitepaper_events", { orderBy: "created_at", ascending: false, limit: 5 })
   ]);
 
   if (countError || error) {
@@ -291,11 +259,11 @@ async function getWhitepaperSection(): Promise<AdminDashboardSection> {
 }
 
 export async function getAdminDashboardData(): Promise<AdminDashboardData> {
-  const adminConfig = getSupabaseAdminConfig();
+  const adminConfig = getDatabaseConfig();
   const settings = [
-    { label: "Supabase project connection", isConfigured: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) },
+    { label: "Admin authentication connection", isConfigured: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) },
     { label: "Browser auth key", isConfigured: Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) },
-    { label: "Server data access", isConfigured: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY) },
+    { label: "PostgreSQL data connection", isConfigured: adminConfig.isConfigured },
     { label: "Admin identity", isConfigured: Boolean(process.env.ADMIN_EMAIL) }
   ];
 

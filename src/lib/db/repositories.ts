@@ -6,7 +6,7 @@ import type {
   TalentApplication
 } from "./types";
 
-export const SUPABASE_TABLES = {
+export const DATABASE_TABLES = {
   leads: "leads",
   clientIntakes: "client_intakes",
   projectRequests: "project_requests",
@@ -28,11 +28,8 @@ export type TemacoreRepositories = {
   adminUsers: Repository<Partial<AdminUser>, AdminUser>;
 };
 
-export function assertSupabaseConfigured() {
-  const hasUrl = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
-  const hasAnonKey = Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-
-  if (!hasUrl || !hasAnonKey) {
-    throw new Error("Supabase is not configured yet.");
+export function assertDatabaseConfigured() {
+  if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
+    throw new Error("PostgreSQL is not configured yet.");
   }
 }

@@ -26,6 +26,7 @@ export function Header() {
     href === routes.home ? pathname === href : pathname.startsWith(href);
 
   return (
+    <>
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/95 backdrop-blur-xl">
       <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between page-padding">
         <Link href={routes.home} className="flex items-center gap-3" aria-label="Temacore home">
@@ -159,7 +160,7 @@ export function Header() {
           <Menu className="h-5 w-5" aria-hidden="true" />
         </button>
       </div>
-
+    </header>
       {mobileOpen ? (
         <div className="fixed inset-0 z-50 bg-ink/60 lg:hidden">
           <div className="ml-auto flex h-full w-full max-w-md flex-col bg-white shadow-2xl">
@@ -270,6 +271,6 @@ export function Header() {
           </div>
         </div>
       ) : null}
-    </header>
+    </>
   );
 }

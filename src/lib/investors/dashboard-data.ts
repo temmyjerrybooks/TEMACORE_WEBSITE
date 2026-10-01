@@ -1,5 +1,5 @@
-import { getSupabaseAdminConfig } from "@/lib/admin/config";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabaseConfig } from "@/lib/db/config";
+import { getDatabase } from "@/lib/db/postgres";
 import type { InvestorDeckEvent } from "@/lib/db/types";
 
 export type InvestorDeckDashboardData = {
@@ -72,15 +72,15 @@ function getAverageFurthestSlide(events: InvestorDeckEvent[]) {
 }
 
 export async function getInvestorDeckDashboardData(): Promise<InvestorDeckDashboardData> {
-  const config = getSupabaseAdminConfig();
+  const config = getDatabaseConfig();
 
   if (!config.isConfigured) {
     return emptyDashboard(
-      "Supabase is not connected yet. Add the required server-side settings and run src/lib/db/investor-deck-schema.sql to enable investor presentation analytics."
+      "PostgreSQL is not connected yet. Configure DATABASE_URL and run npm run db:migrate to enable database storage."
     );
   }
 
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [
     opens,
     starts,
@@ -90,22 +90,13 @@ export async function getInvestorDeckDashboardData(): Promise<InvestorDeckDashbo
     slideEvents,
     recentEvents
   ] = await Promise.all([
-    supabase.from("investor_deck_events").select("id", { count: "exact", head: true }).eq("event_name", "investor_deck_page_view"),
-    supabase.from("investor_deck_events").select("id", { count: "exact", head: true }).eq("event_name", "investor_deck_started"),
-    supabase.from("investor_deck_events").select("id", { count: "exact", head: true }).eq("event_name", "investor_deck_completed"),
-    supabase.from("investor_deck_events").select("id", { count: "exact", head: true }).eq("event_name", "investor_deck_pdf_downloaded"),
-    supabase.from("investor_deck_events").select("id", { count: "exact", head: true }).eq("event_name", "investor_deck_contact_clicked"),
-    supabase
-      .from("investor_deck_events")
-      .select("id, session_id, event_name, slide_number, referrer, user_agent_category, created_at")
-      .not("slide_number", "is", null)
-      .order("created_at", { ascending: false })
-      .limit(5000),
-    supabase
-      .from("investor_deck_events")
-      .select("id, session_id, event_name, slide_number, referrer, user_agent_category, created_at")
-      .order("created_at", { ascending: false })
-      .limit(12)
+    database.select("investor_deck_events", { head: true, equals: { event_name: "investor_deck_page_view" } }),
+    database.select("investor_deck_events", { head: true, equals: { event_name: "investor_deck_started" } }),
+    database.select("investor_deck_events", { head: true, equals: { event_name: "investor_deck_completed" } }),
+    database.select("investor_deck_events", { head: true, equals: { event_name: "investor_deck_pdf_downloaded" } }),
+    database.select("investor_deck_events", { head: true, equals: { event_name: "investor_deck_contact_clicked" } }),
+    database.select("investor_deck_events", { notNull: "slide_number", orderBy: "created_at", ascending: false, limit: 5000 }),
+    database.select("investor_deck_events", { orderBy: "created_at", ascending: false, limit: 12 })
   ]);
 
   const errors = [opens.error, starts.error, completions.error, downloads.error, contactClicks.error, slideEvents.error, recentEvents.error].filter(Boolean);

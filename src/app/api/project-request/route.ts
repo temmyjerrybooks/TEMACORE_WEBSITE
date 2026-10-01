@@ -7,7 +7,7 @@ import {
 } from "@/lib/api/form-data";
 import { detectBasicSpam, rateLimitPlaceholder } from "@/lib/api/security";
 import { sendWebsiteAlert } from "@/lib/alerts/website-alerts";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabase } from "@/lib/db/postgres";
 import { sendSubmissionNotification } from "@/lib/email/notifications";
 import type { ProjectRequest } from "@/lib/db/types";
 
@@ -55,10 +55,10 @@ export async function POST(request: Request) {
       return jsonError(missing);
     }
 
-    const supabase = getSupabaseAdminClient();
+    const database = getDatabase();
     const projectType = projectTypeMap[formText(formData, "project_type")] ?? "other";
 
-    const { error } = await supabase.from("project_requests").insert({
+    const { error } = await database.insert("project_requests", {
       project_type: projectType,
       company_name: formText(formData, "company_name"),
       contact_email: formText(formData, "contact_email"),

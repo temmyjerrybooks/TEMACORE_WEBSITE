@@ -1,5 +1,5 @@
-import { getSupabaseAdminConfig } from "@/lib/admin/config";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabaseConfig } from "@/lib/db/config";
+import { getDatabase } from "@/lib/db/postgres";
 import type { WhitepaperEvent } from "@/lib/db/types";
 
 export type WhitepaperDashboardData = {
@@ -74,33 +74,24 @@ function getAverageFurthestPage(events: WhitepaperEvent[]) {
 }
 
 export async function getWhitepaperDashboardData(): Promise<WhitepaperDashboardData> {
-  const config = getSupabaseAdminConfig();
+  const config = getDatabaseConfig();
 
   if (!config.isConfigured) {
     return emptyDashboard(
-      "Supabase is not connected yet. Add the required server-side settings and run src/lib/db/whitepaper-schema.sql to enable whitepaper analytics."
+      "PostgreSQL is not connected yet. Configure DATABASE_URL and run npm run db:migrate to enable database storage."
     );
   }
 
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
   const [opens, starts, halfway, completions, downloads, contactClicks, pageEvents, recentEvents] = await Promise.all([
-    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }).eq("event_name", "whitepaper_page_view"),
-    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }).eq("event_name", "whitepaper_started"),
-    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }).eq("event_name", "whitepaper_halfway_reached"),
-    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }).eq("event_name", "whitepaper_completed"),
-    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }).eq("event_name", "whitepaper_pdf_downloaded"),
-    supabase.from("whitepaper_events").select("id", { count: "exact", head: true }).eq("event_name", "whitepaper_contact_clicked"),
-    supabase
-      .from("whitepaper_events")
-      .select("id, session_id, event_name, page_number, referrer, user_agent_category, created_at")
-      .eq("event_name", "whitepaper_page_viewed")
-      .order("created_at", { ascending: false })
-      .limit(5000),
-    supabase
-      .from("whitepaper_events")
-      .select("id, session_id, event_name, page_number, referrer, user_agent_category, created_at")
-      .order("created_at", { ascending: false })
-      .limit(12)
+    database.select("whitepaper_events", { head: true, equals: { event_name: "whitepaper_page_view" } }),
+    database.select("whitepaper_events", { head: true, equals: { event_name: "whitepaper_started" } }),
+    database.select("whitepaper_events", { head: true, equals: { event_name: "whitepaper_halfway_reached" } }),
+    database.select("whitepaper_events", { head: true, equals: { event_name: "whitepaper_completed" } }),
+    database.select("whitepaper_events", { head: true, equals: { event_name: "whitepaper_pdf_downloaded" } }),
+    database.select("whitepaper_events", { head: true, equals: { event_name: "whitepaper_contact_clicked" } }),
+    database.select("whitepaper_events", { equals: { event_name: "whitepaper_page_viewed" }, orderBy: "created_at", ascending: false, limit: 5000 }),
+    database.select("whitepaper_events", { orderBy: "created_at", ascending: false, limit: 12 })
   ]);
 
   const errors = [

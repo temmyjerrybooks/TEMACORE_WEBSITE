@@ -1,5 +1,5 @@
-import { getSupabaseAdminConfig } from "@/lib/admin/config";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabaseConfig } from "@/lib/db/config";
+import { getDatabase } from "@/lib/db/postgres";
 
 export const whitepaperEventNames = [
   "whitepaper_page_view",
@@ -136,14 +136,14 @@ function categorizeUserAgent(userAgent: string | null) {
 }
 
 export async function recordWhitepaperEvent(input: WhitepaperEventInput, request: Request) {
-  const config = getSupabaseAdminConfig();
+  const config = getDatabaseConfig();
 
   if (!config.isConfigured) {
     return false;
   }
 
-  const supabase = getSupabaseAdminClient();
-  const { error } = await supabase.from("whitepaper_events").insert({
+  const database = getDatabase();
+  const { error } = await database.insert("whitepaper_events", {
     session_id: input.sessionId,
     event_name: input.eventName,
     page_number: input.pageNumber ?? null,

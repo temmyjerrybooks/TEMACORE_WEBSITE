@@ -8,7 +8,7 @@ Premium corporate website for Temacore, a US-registered AI-first technology comp
 - TypeScript
 - Tailwind CSS v4
 - Reusable component architecture
-- Supabase-ready data model stubs
+- PostgreSQL application storage with versioned migrations
 
 ## Local Development
 
@@ -19,13 +19,16 @@ npm run dev
 
 ## Deployment
 
-This project is ready for Vercel. Add environment variables later when Supabase is connected:
+Connect a PostgreSQL database through Vercel's Marketplace. Follow [PostgreSQL deployment and data-preservation instructions](docs/postgresql-deployment.md) before switching production.
 
-```bash
+Server environment settings:
+
+```text
 NEXT_PUBLIC_SITE_URL=https://www.temacore.com
+DATABASE_URL=
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
+ADMIN_EMAIL=
 RESEND_API_KEY=
 NOTIFICATION_EMAIL_FROM=
 INDEXNOW_KEY=
@@ -33,20 +36,9 @@ SEO_AUDIT_SECRET=
 CRON_SECRET=
 ```
 
-## Supabase Activation
+Initialize a new database with `npm run db:migrate`, then run `npm run db:check`. The second command verifies write/read/rollback without retaining test submissions or sending emails. Configure secrets privately in Vercel or ignored `.env.local`.
 
-1. In Supabase, open SQL Editor and run `src/lib/db/schema.sql` for a fresh setup.
-2. If the original schema was already created, run `src/lib/db/activation.sql` to add the newer form fields.
-3. Run `src/lib/db/seo-schema.sql` when you are ready to prepare SEO Agent storage.
-4. In Vercel, add:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY`
-   - the private admin identity setting
-5. Configure the authorized admin account privately in Supabase Auth.
-6. Redeploy the project.
-
-The public forms submit through server API routes so the service role key stays server-side.
+Application data uses PostgreSQL. Admin sign-in still uses Supabase Auth; keep the authentication project and settings until a separate identity migration is complete. Preserve existing records before production cutover. Database migrations do not run automatically during builds.
 
 ## Admin Access
 
@@ -67,7 +59,7 @@ Scheduled audit placeholder:
 - Requires private cron authorization.
 - Add a Vercel Cron schedule later when you are ready to activate it.
 
-The audit stores real results in the Supabase SEO tables from `src/lib/db/seo-schema.sql`. It does not use Search Console, Bing Webmaster Tools, paid SEO tools, or fake SEO metrics.
+The audit stores real results in PostgreSQL tables initialized by the versioned database migrations. It does not use Search Console, Bing Webmaster Tools, paid SEO tools, or fake SEO metrics.
 
 ## Email Notifications
 
@@ -78,7 +70,7 @@ Form notification emails use Resend. In Vercel, add:
 
 Notification recipients are locked to `info@temacore.com`.
 
-If `RESEND_API_KEY` is not set, form submissions still save to Supabase but no email is sent.
+If `RESEND_API_KEY` is not set, form submissions still save to PostgreSQL but no email is sent.
 
 ## SEO and AI Search Readiness
 
@@ -105,7 +97,7 @@ public/investor-deck/
 
 Use the original deck as the source of truth. Do not publish the editable PowerPoint file. If the exported assets are unavailable, the production page shows a safe contact state instead of broken images; development additionally shows the expected asset manifest.
 
-For optional, privacy-conscious deck analytics, run `src/lib/db/investor-deck-schema.sql` after Supabase is configured. The public viewer continues to work if Supabase or the analytics table is unavailable. The current access-protection helper is intentionally inactive: publicly served assets cannot be truly protected until they move to authenticated/private storage or server-delivered asset routes.
+Optional, privacy-conscious deck analytics use the PostgreSQL schema initialized by `npm run db:migrate`. The public viewer continues to work if the database or analytics table is unavailable. The current access-protection helper is intentionally inactive: publicly served assets cannot be truly protected until they move to authenticated/private storage or server-delivered asset routes.
 
 ## Site Verification
 

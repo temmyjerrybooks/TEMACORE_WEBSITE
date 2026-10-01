@@ -1,6 +1,6 @@
 import { sendWebsiteAlert } from "@/lib/alerts/website-alerts";
-import { getSupabaseAdminConfig } from "@/lib/admin/config";
-import { getSupabaseAdminClient } from "@/lib/db/supabase";
+import { getDatabaseConfig } from "@/lib/db/config";
+import { getDatabase } from "@/lib/db/postgres";
 import type { SeoIssueSeverity } from "@/lib/seo-agent/types";
 import { runSeoAudit, type SeoAuditResult } from "@/lib/seo-agent/audit-engine";
 
@@ -41,15 +41,15 @@ export async function recordWebsiteAlert(input: {
   message: string;
   severity: SeoIssueSeverity;
 }) {
-  const config = getSupabaseAdminConfig();
+  const config = getDatabaseConfig();
 
   if (!config.isConfigured) {
     return;
   }
 
-  const supabase = getSupabaseAdminClient();
+  const database = getDatabase();
 
-  await supabase.from("website_alerts").insert({
+  await database.insert("website_alerts", {
     alert_type: input.alertType,
     message: input.message,
     severity: input.severity,
@@ -58,42 +58,36 @@ export async function recordWebsiteAlert(input: {
 }
 
 export async function runAndStoreSeoAudit() {
-  const config = getSupabaseAdminConfig();
+  const config = getDatabaseConfig();
 
   if (!config.isConfigured) {
     throw new Error(
-      "Supabase is not connected yet. Add the required server-side Supabase settings, then run src/lib/db/seo-schema.sql."
+      "PostgreSQL is not connected yet. Configure DATABASE_URL and run npm run db:migrate to enable database storage."
     );
   }
 
   const result = await runSeoAudit();
-  const supabase = getSupabaseAdminClient();
-  const { data: audit, error: auditError } = await supabase
-    .from("seo_audits")
-    .insert({
+  const database = getDatabase();
+  const { data: audit, error: auditError } = await database.insertOne("seo_audits", {
       audit_date: result.auditDate,
       overall_score: result.overallScore,
       pages_checked: result.pagesChecked,
       issues_found: result.issues.length
-    })
-    .select("id")
-    .single();
+    });
 
   if (auditError || !audit) {
     throw new Error(auditError?.message ?? "Unable to store SEO audit.");
   }
 
   if (result.issues.length > 0) {
-    const { error } = await supabase.from("seo_issues").insert(
-      result.issues.map((issue) => ({
+    const { error } = await database.insert("seo_issues", result.issues.map((issue) => ({
         audit_id: audit.id,
         page_url: issue.pageUrl,
         issue_type: issue.issueType,
         issue_message: issue.issueMessage,
         severity: issue.severity,
         status: "New" as const
-      }))
-    );
+      })));
 
     if (error) {
       throw new Error(error.message);
@@ -101,39 +95,33 @@ export async function runAndStoreSeoAudit() {
   }
 
   if (result.indexedUrls.length > 0) {
-    await supabase.from("indexed_urls").insert(
-      result.indexedUrls.map((url) => ({
+    await database.insert("indexed_urls", result.indexedUrls.map((url) => ({
         url: url.url,
         source: url.source,
         status: url.status,
         last_checked_at: url.lastCheckedAt
-      }))
-    );
+      })));
   }
 
   if (result.recommendations.length > 0) {
-    await supabase.from("content_recommendations").insert(
-      result.recommendations.map((recommendation) => ({
+    await database.insert("content_recommendations", result.recommendations.map((recommendation) => ({
         page_url: recommendation.pageUrl,
         recommendation_type: recommendation.recommendationType,
         title: recommendation.title,
         description: recommendation.description,
         status: "New" as const
-      }))
-    );
+      })));
   }
 
   if (result.keywordOpportunities.length > 0) {
-    await supabase.from("keyword_opportunities").insert(
-      result.keywordOpportunities.map((opportunity) => ({
+    await database.insert("keyword_opportunities", result.keywordOpportunities.map((opportunity) => ({
         keyword: opportunity.keyword,
         target_page: opportunity.targetPage,
         search_intent: opportunity.searchIntent,
         priority: opportunity.priority,
         recommendation: opportunity.recommendation,
         status: "New" as const
-      }))
-    );
+      })));
   }
 
   const alertableIssues = result.issues.filter(
@@ -141,14 +129,12 @@ export async function runAndStoreSeoAudit() {
   );
 
   if (alertableIssues.length > 0) {
-    await supabase.from("website_alerts").insert(
-      alertableIssues.slice(0, 10).map((issue) => ({
+    await database.insert("website_alerts", alertableIssues.slice(0, 10).map((issue) => ({
         alert_type: "SEO audit",
         message: `${issue.issueType}: ${issue.issueMessage}`,
         severity: issue.severity,
         status: "New" as const
-      }))
-    );
+      })));
 
     const highestSeverity = alertableIssues.some((issue) => issue.severity === "Critical")
       ? "Critical"

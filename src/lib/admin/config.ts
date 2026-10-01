@@ -13,14 +13,3 @@ export function getSupabaseAuthConfig() {
     anonKey
   };
 }
-
-export function getSupabaseAdminConfig() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  return {
-    isConfigured: Boolean(supabaseUrl && serviceRoleKey),
-    supabaseUrl,
-    serviceRoleKey
-  };
-}
