@@ -1,3 +1,4 @@
+import { getDatabaseConfig } from "./config";
 import type {
   AdminUser,
   ClientIntake,
@@ -29,7 +30,7 @@ export type TemacoreRepositories = {
 };
 
 export function assertDatabaseConfigured() {
-  if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
+  if (!getDatabaseConfig().isConfigured) {
     throw new Error("PostgreSQL is not configured yet.");
   }
 }

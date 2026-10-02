@@ -15,7 +15,7 @@ function logStorageFailure(error: unknown) {
   console.error("Client intake backend failure", {
     code: typeof detail.code === "string" && /^[A-Z0-9_]{1,40}$/.test(detail.code) ? detail.code : "BACKEND_REQUEST_FAILED",
     networkCode: diagnosticText.match(/\b(ENOTFOUND|EAI_AGAIN|ECONNREFUSED|ECONNRESET|ETIMEDOUT|UND_ERR_CONNECT_TIMEOUT|UND_ERR_HEADERS_TIMEOUT)\b/)?.[1] ?? null,
-    configured: Boolean(process.env.DATABASE_URL || process.env.POSTGRES_URL)
+    configured: Boolean(process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.TEMACORE_DATABASE_URL)
   });
 }
 

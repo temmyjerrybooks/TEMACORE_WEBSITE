@@ -8,19 +8,43 @@ export function loadDatabaseEnvironment() {
   if (existsSync('.env.local')) process.loadEnvFile('.env.local');
 }
 
+export function databaseConnectionString(environment, { migration = false } = {}) {
+  const runtimeUrl = environment.DATABASE_URL || environment.POSTGRES_URL || environment.TEMACORE_DATABASE_URL;
+  const connectionString = migration
+    ? environment.DATABASE_MIGRATION_URL || environment.DATABASE_URL_UNPOOLED || runtimeUrl
+    : runtimeUrl;
+  if (!connectionString) throw Object.assign(new Error('Database connection is not configured.'), { code: 'DATABASE_URL_MISSING' });
+  try {
+    const url = new URL(connectionString);
+    if (!['postgres:', 'postgresql:'].includes(url.protocol) || !url.hostname) throw new Error();
+  } catch {
+    throw Object.assign(new Error('Database connection URL is invalid.'), { code: 'DATABASE_URL_INVALID' });
+  }
+  return connectionString;
+}
+
 export function databasePool({ migration = false } = {}) {
   loadDatabaseEnvironment();
-  const runtimeUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL;
-  const connectionString = migration
-    ? process.env.DATABASE_MIGRATION_URL || process.env.DATABASE_URL_UNPOOLED || runtimeUrl
-    : runtimeUrl;
-  if (!connectionString) throw new Error('Set DATABASE_URL privately in .env.local or the deployment environment.');
+  const connectionString = databaseConnectionString(process.env, { migration });
   return new Pool({ connectionString, max: 1, connectionTimeoutMillis: 10000, statement_timeout: 60000 });
 }
 
-export function safeFailure(error) {
+export function databaseFailureMessage(error) {
   const code = typeof error?.code === 'string' && /^[A-Z0-9_]{1,40}$/.test(error.code) ? error.code : 'DATABASE_ERROR';
-  console.error(`Database operation failed (${code}). Check connection settings and schema; credentials and row data are omitted.`);
+  const hints = {
+    DATABASE_URL_MISSING: 'Set DATABASE_URL, POSTGRES_URL, or TEMACORE_DATABASE_URL for this Vercel project in the Production environment, then redeploy. Other custom-prefixed variable names are not used automatically.',
+    DATABASE_URL_INVALID: 'The configured value must be a PostgreSQL connection URL, not a dashboard URL or API key. Check it privately in Vercel.',
+    ENOTFOUND: 'The database hostname could not be resolved. Check the connection setting privately in Vercel.',
+    ETIMEDOUT: 'The database connection timed out. Check provider availability and network access.',
+    '28P01': 'PostgreSQL rejected the credentials. Refresh the project connection through the database integration.',
+    '42501': 'The database role lacks required permissions. Check schema ownership and permissions.',
+    '42P07': 'An application table already exists. Inspect the migration state before retrying; do not delete existing data.'
+  };
+  return `Database operation failed (${code}). ${hints[code] ?? 'Check connection settings and schema.'} Credentials and row data are omitted.`;
+}
+
+export function safeFailure(error) {
+  console.error(databaseFailureMessage(error));
   process.exitCode = 1;
 }
 

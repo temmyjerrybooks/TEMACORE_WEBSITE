@@ -2,6 +2,8 @@
 
 Application data uses PostgreSQL through server-side `pg` connections. The schema and versioned migrations are in `src/lib/db/migrations`. The database itself is a persistent managed service connected to Vercel, not a file inside a deployment.
 
+The connected TEMACORE integration uses `TEMACORE_DATABASE_URL`. This name is supported by both the migration scripts and application runtime. It must be scoped to Production in Vercel. Existing `DATABASE_URL` and `POSTGRES_URL` settings take precedence if present; keep these aligned with the intended database. Never expose these variables with a `NEXT_PUBLIC_` prefix.
+
 ## Create and connect the database
 
 1. Open the TEMACORE project in Vercel, then **Storage → Create Database**. Select **Neon** from the Marketplace. Alternatively, open the [Neon Marketplace integration](https://vercel.com/marketplace/neon/neon).

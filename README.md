@@ -36,6 +36,8 @@ SEO_AUDIT_SECRET=
 CRON_SECRET=
 ```
 
+The connected Vercel integration can use `TEMACORE_DATABASE_URL` instead of `DATABASE_URL`; both are supported, as is `POSTGRES_URL`. Enable the chosen variable for Production.
+
 Initialize a new database with `npm run db:migrate`, then run `npm run db:check`. The second command verifies write/read/rollback without retaining test submissions or sending emails. Configure secrets privately in Vercel or ignored `.env.local`.
 
 Application data uses PostgreSQL. Admin sign-in still uses Supabase Auth; keep the authentication project and settings until a separate identity migration is complete. Preserve existing records before production cutover. Production Vercel builds apply migrations and verify the runtime database connection before publishing. Preview and local builds do not mutate the database.
